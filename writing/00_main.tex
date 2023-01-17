@@ -1,0 +1,223 @@
+% Template for Cogsci submission with R Markdown
+
+% Stuff changed from original Markdown PLOS Template
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage{cogsci}
+\usepackage{pslatex}
+\usepackage{float}
+\usepackage{caption}
+
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+% hyperref package, useful for hyperlinks
+\usepackage{hyperref}
+
+% graphicx package, useful for including eps and pdf graphics
+% include graphics with the command \includegraphics
+\usepackage{graphicx}
+
+% Sweave(-like)
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
+\newenvironment{Schunk}{}{}
+\DefineVerbatimEnvironment{Code}{Verbatim}{}
+\DefineVerbatimEnvironment{CodeInput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{CodeOutput}{Verbatim}{}
+\newenvironment{CodeChunk}{}{}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{apacite}
+
+% KM added 1/4/18 to allow control of blind submission
+\cogscifinalcopy
+
+\usepackage{color}
+
+% Use doublespacing - comment out for single spacing
+%\usepackage{setspace}
+%\doublespacing
+
+
+% % Text layout
+% \topmargin 0.0cm
+% \oddsidemargin 0.5cm
+% \evensidemargin 0.5cm
+% \textwidth 16cm
+% \textheight 21cm
+
+\title{Pokemon go go go}
+
+
+\author{Anjie Cao$^1$  (anjiecao@stanford.edu)
+ and \bf{Michael C. Frank$^1$ (mcfrank@stanford.edu)} \\
+$^1$Department of Psychology, Stanford University, }
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+HAHA
+
+\textbf{Keywords:}
+pikachu; mimikyu; ditto; jigglypufff
+\end{abstract}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+haha!
+
+In the first three years of life, children undergo a plethora of
+developmental changes, transitioning from newborn infants who possess a
+limited understanding of language and categories to toddlers who are
+able to master a wide range of linguistic and cognitive skills. Despite
+a wealth of research examining cognitive development, constructing a
+comprehensive theory of cognitive development remains a formidable
+challenge. Research in this area generally falls under two categories:
+observational research and experimental research. The former provides a
+holistic picture of an individual child's development (e.g.~CITE), yet
+it does not provide any concrete insights into the underlying
+mechanisms. In contrast, experimental research allows causal tractions
+on potential mechanisms, but it tends to focus on one single construct
+and does not reveal the connections between different processes and
+mechanisms. In this paper, we aim to provide a quantitative synthesis of
+experimental work across multiple areas of developmental psychology,
+providing insights into the interrelatedness between psychological
+constructs. We achieve this goal by consolidating and integrating 23
+meta-analyses of cognitive and language development compiled on MetaLab,
+a community-augmented meta-analysis platform.
+
+Statistical meta-analysis, the technique of aggregating effect sizes
+across a systematic sample of experiments, has some unique advantages as
+a source of data about developmental processes in early childhood. First
+and foremost, it allows researchers to explore questions that are
+difficult to address with individual studies. One such example is the
+functional form of developmental curves, or how different psychological
+processes change over time. Many developmental studies use linear
+regression models with age as a predictor, but this assumption of
+linearity may not capture the complexities of developmental processes,
+especially as they interact with developmental changes in measurement.
+For example, some cognitive abilities -- such as relational reasoning --
+might follow an inverted-U shape (Carstensen et al., 2019; Walkers,
+Bridgers, \& Gopnik, 2016), while others -- like early vocabulary size
+-- show an exponential increase (Frank, Braginsky, Yurovsky, \&
+Marchman, 2021). These non-linear trends can be challenging to identify
+and interpret with limited data from individual studies, but
+meta-analytic methods can provide a large amount of data across a broad
+age range, enabling researchers to evaluate and compare different
+functional forms of developmental trajectories.
+
+Meta-analysis can also shed light on the relationships between methods
+and theories. Research methods and theories are fundamentally
+intertwined, and this is especially true for developmental psychology
+(Dale, Warlaumont, \& Johnson, 2022). Developmental theories are often
+based on interpretations of experimental results, which are produced by
+methods that even small changes to the parameters would substantially
+change the outcomes. One example is the influence of familiarization
+time. It has been proposed that the amount of exposure infants have
+prior to the test events can influence infants' direction of preference
+(i.e.~novelty preference or familiarity preference) (Hunter \& Ames,
+1988). Although the empirical evidence for this theory is mixed, this
+ambiguity has significant downstream consequences on our understanding
+of infants' cognitive capabilities (Bergmann \& Cristia, 2016). Debates
+about infants' arithmetic competencies or their evaluations of social
+agents are often centered around the direction of preferences (Infants
+arithmetic competencies: Clearfield \& Westfahl, 2006; Wakely, Rivera,
+\& Langer, 2000; Wynn, 1992; Evaluation of social agents: Hamlin, Wynn,
+\& Bloom; Salvadori et al., 2015). Due to the time and resources
+required for developmental studies, it is often difficult to directly
+evaluate the impact of subtle changes in parameters. Therefore,
+meta-analytic methods provide a unique opportunity to investigate the
+effects of methodological factors on research findings.
+
+Last but not least, meta-analytic methods make it possible to compare
+and connect research findings across research areas. The use of effect
+size as the fundamental unit of analysis allows for comparisons across
+different domains and research areas. These comparisons can provide
+insight into how different processes facilitate learning at different
+stages of development and can aid in the development of data-driven
+cognitive development theories (Cao \& Lewis, 2021; Lewis et al., 2022).
+However, a synthesis across multiple domains requires a database of
+multiple meta-analyses. Towards that aim, MetaLab was established to
+provide an open database of meta-analyses (CITE). Developmental
+researchers are invited to deposit their meta-analysis dataset into
+MetaLab, and they are encouraged to use the datasets for custom
+analyses. As of DATE, Metalab contains X effect sizes from 30 different
+meta-analyses. This resource would allow us to quantitatively synthesize
+the insights across different research areas in developmental
+psychology.
+
+The plan for this paper is as follows. We first describe the datasets
+included in the current synthesis, including our selection criteria and
+the descriptive statistics associated with our final dataset. We then
+turn to model comparison, comparing the fits of age models under
+different functional forms. Next, we present methodological moderators
+analysis. Four methodological moderators are selected due to their
+theoretical relevances: behavioral measure type, exposure phase type,
+stimuli type (audio and visual), and major author effect. Finally, we
+present a synthesis of the developmental curves across all of the
+domains considered. We end the paper by discussing the implications and
+limitations of our current work.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+gogogo
+
+\hypertarget{datasets}{%
+\subsection{Datasets}\label{datasets}}
+
+\hypertarget{analytic-methods}{%
+\subsection{Analytic Methods}\label{analytic-methods}}
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+\hypertarget{functional-form-of-developmental-curves}{%
+\subsection{Functional form of developmental
+curves}\label{functional-form-of-developmental-curves}}
+
+\hypertarget{methodological-moderators}{%
+\subsection{Methodological Moderators}\label{methodological-moderators}}
+
+\hypertarget{behavioral-measures}{%
+\subsubsection{Behavioral Measures}\label{behavioral-measures}}
+
+\hypertarget{exposure-phase}{%
+\subsubsection{Exposure Phase}\label{exposure-phase}}
+
+\hypertarget{stimuli-naturalness}{%
+\subsubsection{Stimuli Naturalness}\label{stimuli-naturalness}}
+
+\hypertarget{major-author}{%
+\subsubsection{Major author}\label{major-author}}
+
+\hypertarget{synthesis}{%
+\subsection{Synthesis}\label{synthesis}}
+
+lmao
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\setlength{\parindent}{-0.1in} 
+\setlength{\leftskip}{0.125in}
+
+\noindent
+
+\bibliographystyle{apacite}
+
+
+\end{document}
