@@ -207,11 +207,9 @@ because they measure theoretically identical constructs. To minimize the
 heterogeneity in our datasets, we also excluded effect sizes calculated
 from participants with clinical diagnoses.
 
-The final dataset contains 23 meta-analysis datasets. Table 1 provides a
-summary of the meta-analyses included in the dataset, along with the
-number of effect sizes and participants included in each dataset.
-
-The final dataset and analysis scripts are available at X.
+The final dataset contains 23 meta-analysis datasets, including X effect
+sizes and X participants. The final dataset and analysis scripts are
+available at X.
 
 \hypertarget{analytic-methods}{%
 \subsection{Analytic Methods}\label{analytic-methods}}
@@ -232,56 +230,81 @@ Information Criterion (AICc).
 \subsection{Functional form of developmental
 curves}\label{functional-form-of-developmental-curves}}
 
-\begin{table*}
-\begin{tabular}{l|r|r|r|r|r|r|r}
-
-\hline
-\textbf{Dataset} & N ES & N Participants & ES & Linear & Log & Quadratic & Constant\\
-\hline
-Label advantage in concept learning & 100 & 1644 & 0.36 & 169.48 & \textbf{168.53} & 170.16 & 170.89\\
-Vowel discrimination (native) & 143 & 2418 & 0.59 & 256.49 & 256.13 & 256.78 & \textbf{255.15}\\
-Vowel discrimination (non-native) & 49 & 600 & 0.65 & 73.25 & 73.36 & 73.15 & \textbf{71.69}\\
-Statistical word segmentation & 103 & 804 & -0.08 & 128.84 & 129.01 & 128.62 & \textbf{127.50}\\
-Online word recognition & 14 & 330 & 1.37 & \textbf{46.50} & 46.73 & 46.65 & 48.72\\
-Mutual exclusivity & 131 & 2222 & 1.27 & 421.60 & \textbf{415.85} & 432.76 & 453.07\\
-Sound symbolism & 44 & 425 & 0.16 & 58.20 & \textbf{58.16} & 58.83 & 61.04\\
-Categorization bias & 80 & 382 & 0.25 & 300.29 & \textbf{299.99} & 300.37 & 300.90\\
-Familiar word recognition & 34 & 586 & 0.54 & 27.46 & 28.32 & \textbf{27.18} & 28.86\\
-Abstract rule learning & 95 & 1123 & 0.22 & 140.80 & 141.34 & \textbf{140.47} & 140.91\\
-Switch task & 143 & 2764 & -0.16 & 204.79 & 204.81 & 204.73 & \textbf{203.67}\\
-Mispronunciation sensitivity & 249 & 2122 & 0.45 & 620.05 & 628.16 & \textbf{613.67} & 644.40\\
-Prosocial agents & 61 & 1244 & 0.40 & 82.16 & 81.95 & 82.23 & \textbf{80.08}\\
-Simple arithmetic competences & 14 & 369 & 0.25 & 22.91 & 23.01 & 22.81 & \textbf{16.26}\\
-Symbolic play & 196 & 7148 & 0.63 & 234.15 & 234.11 & 234.13 & \textbf{233.57}\\
-Natural speech preference & 55 & 786 & 0.44 & 111.40 & 112.01 & \textbf{110.97} & 111.83\\
-Cross-situational word learning & 48 & 2241 & 0.67 & 79.81 & 81.62 & \textbf{79.70} & 83.71\\
-Language discrimination and preference & 153 & 2060 & -0.13 & 264.70 & 265.59 & \textbf{262.65} & 264.95\\
-Syntactic bootstrapping & 60 & 832 & 0.24 & 107.28 & \textbf{106.99} & 107.57 & 107.47\\
-Statistical sound category learning (habituation) & 11 & 350 & 0.56 & 33.47 & 34.54 & 32.94 & \textbf{30.46}\\
-Gaze following (combined) & 81 & 1407 & 0.81 & 151.53 & 159.88 & \textbf{149.47} & 193.20\\
-Word Segmentation (combined) & 315 & 2910 & 0.20 & 328.83 & 328.60 & 329.16 & \textbf{327.55}\\
-Infant directed speech preference & 83 & 985 & 0.47 & 70.17 & 70.87 & 70.06 & \textbf{69.13}\\
-\hline
-\end{tabular}
-\caption{\label{demo-table}Your caption.}
-\end{table*}
-
 Four functional forms of developmental curves were considered: linear,
 logarithmic, quadratic, and constant. For each of the functional forms
 except constant, we include mean age in months with the corresponding
 form as a fixed effect. Then we evaluated the models based on the
-corrected AICc (Table 1). 10 out of the 23 datasets has the constant
-model as the best-fitting model. 7 and 5` datasets' best-fitting models
-are the Quadratic model and logarithmic model, respectively. Finally,
-among all datasets considered, Online Word Cognition is the only domain
-in which the linear age model provides the best fit.
+corrected AICc. N out of the 23 datasets has the constant model as the
+best-fitting model. X and Y datasets' best-fitting models are the
+Quadratic model and logarithmic model, respectively. Finally, among all
+datasets considered, Online Word Cognition is the only domain in which
+the linear age model provides the best fit.
 
 Model evaluation based on Bayesian Information Criterion (BIC) yielded
 similar results with little discrepancy. Under BIC-based evaluation, X
 domains' best-fitting models became constant models from higher-order
 models (From Quadratic: N = 3; From Logarithmic: N = 2). One domain,
 Statistical sound category learning (habituation), has the best fitting
-model changed from Constant to Quadratic.
+model changed from Constant into Quadratic (STATS).
+
+Table 1 provides a summary of the AICc for each domain's four functional
+forms.
+
+\begin{CodeChunk}
+
+\begin{tabular}{l|l|l|l|l}
+\hline
+Dataset & Linear & Log & Quadratic & Constant\\
+\hline
+Label advantage in concept learning & 169.48 & \textbackslash{}textbf\{168.53\} & 170.16 & 170.89\\
+\hline
+Vowel discrimination (native) & 256.49 & 256.13 & 256.78 & \textbackslash{}textbf\{255.15\}\\
+\hline
+Vowel discrimination (non-native) & 73.25 & 73.36 & 73.15 & \textbackslash{}textbf\{71.69\}\\
+\hline
+Statistical word segmentation & 128.84 & 129.01 & 128.62 & \textbackslash{}textbf\{127.5\}\\
+\hline
+Online word recognition & \textbackslash{}textbf\{46.5\} & 46.73 & 46.65 & 48.72\\
+\hline
+Mutual exclusivity & 421.6 & \textbackslash{}textbf\{415.85\} & 432.76 & 453.07\\
+\hline
+Sound symbolism & 58.2 & \textbackslash{}textbf\{58.16\} & 58.83 & 61.04\\
+\hline
+Categorization bias & 300.29 & \textbackslash{}textbf\{299.99\} & 300.37 & 300.9\\
+\hline
+Familiar word recognition & 27.46 & 28.32 & \textbackslash{}textbf\{27.18\} & 28.86\\
+\hline
+Abstract rule learning & 140.8 & 141.34 & \textbackslash{}textbf\{140.47\} & 140.91\\
+\hline
+Switch task & 204.79 & 204.81 & 204.73 & \textbackslash{}textbf\{203.67\}\\
+\hline
+Mispronunciation sensitivity & 620.05 & 628.16 & \textbackslash{}textbf\{613.67\} & 644.4\\
+\hline
+Prosocial agents & 82.16 & 81.95 & 82.23 & \textbackslash{}textbf\{80.08\}\\
+\hline
+Simple arithmetic competences & 22.91 & 23.01 & 22.81 & \textbackslash{}textbf\{16.26\}\\
+\hline
+Symbolic play & 234.15 & 234.11 & 234.13 & \textbackslash{}textbf\{233.57\}\\
+\hline
+Natural speech preference & 111.4 & 112.01 & \textbackslash{}textbf\{110.97\} & 111.83\\
+\hline
+Cross-situational word learning & 79.81 & 81.62 & \textbackslash{}textbf\{79.7\} & 83.71\\
+\hline
+Language discrimination and preference & 264.7 & 265.59 & \textbackslash{}textbf\{262.65\} & 264.95\\
+\hline
+Syntactic bootstrapping & 107.28 & \textbackslash{}textbf\{106.99\} & 107.57 & 107.47\\
+\hline
+Statistical sound category learning (habituation) & 33.47 & 34.54 & 32.94 & \textbackslash{}textbf\{30.46\}\\
+\hline
+Gaze following (combined) & 151.53 & 159.88 & \textbackslash{}textbf\{149.47\} & 193.2\\
+\hline
+Word Segmentation (combined) & 328.83 & 328.6 & 329.16 & \textbackslash{}textbf\{327.55\}\\
+\hline
+Infant directed speech preference & 70.17 & 70.87 & 70.06 & \textbackslash{}textbf\{69.13\}\\
+\hline
+\end{tabular}
+
+\end{CodeChunk}
 
 \hypertarget{methodological-moderators}{%
 \subsection{Methodological Moderators}\label{methodological-moderators}}
@@ -311,12 +334,9 @@ Behavioral Measure is a significant predictor of effect sizes in two
 domains, Vowel Discrimination (Native) and Sound Symbolism. In Vowel
 Discrimination (native), studies with Other or Sucking behavioral
 measure has larger effect sizes than studies using looking as the
-behavioral measure (Other: \(\beta\) = 0.58 {[}0.33, 0.82{]}, \emph{z} =
-4.6, \emph{p} \textless{} 0.01 ; Sucking: \(\beta\) = 0.96 {[}0.53,
-1.4{]}, \emph{z} = 4.34, \emph{p} \textless{} 0.01). Similarly, in Sound
+behavioral measure (Other: STATS; Sucking: STATS). Similarly, in Sound
 Symbolism, studies with ``Other'' behavioral measures also yield larger
-effect sizes than looking studies (\(\beta\) = 0.61 {[}0.24, 0.97{]},
-\emph{z} = 3.29, \emph{p} \textless{} 0.01).
+effect sizes than looking studies (STATS).
 
 \hypertarget{exposure-phase}{%
 \subsubsection{Exposure Phase}\label{exposure-phase}}
@@ -325,28 +345,21 @@ Exposure phase refers to the type of exposure infants have during the
 experiments prior to the test events. There are four levels in this
 moderator: Conditioning, Familiarization, Habituation, and Test Only. If
 a study does not include pre-test training for infants, it is coded as
-``Test Only''.
-
-Exposure phase is a significant predictor of effect sizes in four
-domains. In Language Discrimination and Preference, habituation studies
-yield smaller effect sizes than conditioning studies (\(\beta\) = -0.3
-{[}-0.55, -0.04{]}, \emph{z} = -2.28, \emph{p} = 0.02). A similar trend
-is found in Vowel discrimination (native), where both habituation
-studies and familiarization studies have smaller effect sizes than
-conditioning studies (Habituation: \(\beta\) = -0.71 {[}-1.11, -0.31{]},
-\emph{z} = -3.48, \emph{p} \textless{} 0.01; Familiarization: \(\beta\)
-= -0.43 {[}-0.87, 0.01{]}, \emph{z} = -1.94, \emph{p} = 0.05).
+``Test Only''. Exposure phase is a significant predictor of effect sizes
+in four domains. In Language Discrimination and Preference, habituation
+studies yield smaller effect sizes than conditioning studies (STATS). A
+similar trend is found in Vowel discrimination (native), where both
+habituation studies and familiarization studies have smaller effect
+sizes than conditioning studies (Habituation: STATS; Familiarization:
+STATS).
 
 Interestingly, the results of the comparison between familiarization
 studies and conditioning studies are mixed. In the Vowel discrimination
 (non-native) dataset, both familiarization and test-only studies produce
 smaller effect sizes than the conditioning studies (Familiarization:
-\(\beta\) = -1.4 {[}-2.35, -0.46{]}, \emph{z} = -2.93, \emph{p}
-\textless{} 0.01; Test-only: \(\beta\) = -1.26 {[}-2.42, -0.1{]},
-\emph{z} = -2.13, \emph{p} = 0.03). However, the opposite trend is found
-in Natural Speech Preference, with familiarization studies producing
-larger effect sizes than the conditioning studies (\(\beta\) = 1.65
-{[}0.33, 2.97{]}, \emph{z} = 2.44, \emph{p} = 0.01).
+STATS; Test-only: STATS.). However, the opposite trend is found in
+Natural Speech Preference, with familiarization studies producing larger
+effect sizes than the conditioning studies (STATS).
 
 \hypertarget{stimuli-naturalness}{%
 \subsubsection{Stimuli Naturalness}\label{stimuli-naturalness}}
@@ -361,25 +374,11 @@ stimuli that use real-world objects (e.g.~puppets, blocks). We compared
 these natural stimuli with representation-type stimuli, such as
 pictures, videos, or drawings. We found that naturalness is a
 significant predictor for Label advantage in concept learning, with
-natural stimuli yielding larger effect sizes than representation-type
-stimuli (\(\beta\) = 0.23 {[}0.01, 0.45{]}, \emph{z} = 2.06, \emph{p} =
-0.04). In primarily auditory stimuli, we compared natural speech with
-synthesized stimuli. In both Statistical word segmentation and Abstract
-rule learning, we found a natural speech advantage (Statistical word
-segmentation: \(\beta\) = 0.47 {[}0.23, 0.72{]}, \emph{z} = 3.8,
-\emph{p} \textless{} 0.01; Abstract rule learning: \(\beta\) = 0.27
-{[}0.05, 0.5{]}, \emph{z} = 2.35, \emph{p} = 0.02).
-
-\begin{CodeChunk}
-\begin{figure*}[h]
-
-{\centering \includegraphics{figs/2-col-image-1} 
-
-}
-
-\caption[This image spans both columns]{This image spans both columns. And the caption text is limited to 0.8 of the width of the document.}\label{fig:2-col-image}
-\end{figure*}
-\end{CodeChunk}
+representation-type stimuli yielding smaller effect sizes than natural
+stimuli (STATS). In primarily auditory stimuli, we compared natural
+speech with synthesized stimuli. In both Statistical word segmentation
+and Abstract rule learning, we found a natural speech advantage
+(Statistical word segmentation: STAT; Abstract rule learning: STAT).
 
 \hypertarget{major-author}{%
 \subsubsection{Major author}\label{major-author}}
@@ -421,17 +420,6 @@ heterogeneous ways. Finally, we synthesized the data by integrating the
 predictions from all of the best-fitting models based on the type of
 theoretical constructs. We found a variety of developmental trajectories
 across all types of theoretical constructs.
-
-\begin{CodeChunk}
-\begin{figure}[H]
-
-{\centering \includegraphics{figs/image-1} 
-
-}
-
-\caption[One column image]{One column image.}\label{fig:image}
-\end{figure}
-\end{CodeChunk}
 
 This current synthesis highlights the variation in developmental
 trajectories, challenging the traditional ``milestone'' view of

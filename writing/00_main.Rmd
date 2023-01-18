@@ -37,10 +37,40 @@ knitr::opts_chunk$set(fig.width=3, fig.height=3, fig.crop = F,
 ```
 
 
+```{r}
+library(tidyverse)
+library(here)
+library(ggthemes)
+library(metafor)
+library(kableExtra)
+library(patchwork)
+
+
+d <- read_csv(here("data/clean_data.csv"))
+author_d <- read_csv(here("data/clean_author.csv"))
+
+
+source(here("helper/plot_moderator_help.r"))
+
+# Functional form eval
+age_df <- readRDS(here("cached_data/age_models_df.Rds"))
+
+# cached methodological moderators 
+best_fit_bmeasure_model_df <- readRDS(here("cached_data/best_fit_behavioral_measure_df.Rds"))
+best_fit_exposure_phase_df <- readRDS(here("cached_data/best_fit_exposure_phase.Rds"))
+best_fit_real_visual_df <- readRDS(here("cached_data/best_fit_real_visual_df.Rds"))
+best_fit_real_aud_df <- readRDS(here("cached_data/best_fit_real_aud_df.Rds"))
+best_fit_major_author_df <- readRDS(here("cached_data/best_fit_major_author_df.Rds"))
+
+# preiction curve
+all_age_pred <- readRDS(here("cached_data/min_age_pred_df.RDS"))
+```
+
+
+
 
 # Introduction 
 
-haha! 
 
 ```{r child = "01_introduction.Rmd"}
 ```
@@ -48,7 +78,6 @@ haha!
 
 # Methods  
 
-gogogo
 
 ```{r child = "02_methods.Rmd"}
 ```
@@ -58,7 +87,6 @@ gogogo
 ```{r child = "03_results.Rmd"}
 ```
 
-lmao
 
 # Discussion  
 

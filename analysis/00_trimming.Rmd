@@ -1,0 +1,407 @@
+---
+title: "00_trimming.Rmd"
+author: "anjie"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(here)
+library(janitor)
+library(metalabr)
+library(tidyboot)
+library(ggthemes)
+
+# metadata <- get_metalab_metadata()
+# metalab_data <- get_metalab_data(metadata)
+# write_csv(metalab_data, here("data/metalab_data.csv"))
+
+metalab_data <- read_csv(here("data/metalab_data.csv"))
+ids_data <- read_csv(here("data/rework/ids_clean.csv")) %>% 
+  mutate(ds_clean = "Infant directed speech preference")
+```
+
+
+# metalab_data trimming procedure 
+
+## 1. Replace dataset and/or get rid of dataset
+
+```{r}
+trimmed_data <- metalab_data %>% 
+  filter(!dataset %in% c(# dataset to be replaced 
+                         "Infant directed speech preference", 
+                         
+                         # dataset to be excluded 
+                         "Phonotactic learning", 
+                         "Pointing and vocabulary (concurrent)", 
+                         "Pointing and vocabulary (longitudinal)",
+                         "Video deficit", 
+                         "Word segmentation (neuro)", 
+                         
+                         # dataset to be modified 
+                         "Statistical sound category learning", 
+                         "Gaze following (live)",
+                         "Gaze following (video)",
+                         "Function word segmentation", 
+                         "Word segmentation (behavioral)"
+                         
+                         )) %>% 
+  mutate(ds_clean = dataset) %>% 
+  bind_rows(
+    ids_data %>% mutate(expt_num = as.numeric(expt_num)), #IDS replacement 
+
+    # modifying statistical sound category learning 
+    metalab_data %>% 
+    filter(dataset == "Statistical sound category learning", exposure_phase == "habituation") %>% 
+    mutate(ds_clean = "Statistical sound category learning (habituation)"), 
+    
+    #combining gaze following 
+    metalab_data %>% 
+      filter(dataset %in% c("Gaze following (live)","Gaze following (video)")) %>% 
+      mutate(ds_clean = "Gaze following (combined)"),
+    
+    #combining function word segmentation 
+    metalab_data %>% 
+      filter(dataset %in% c("Function word segmentation", "Word segmentation (behavioral)")) %>% 
+      mutate(ds_clean = "Word Segmentation (combined)")
+    
+  )
+
+```
+
+
+## 2. import method recode 
+
+```{r}
+m_recode <- read_csv(here("data/rework/ds_clean_rework.csv"))
+
+
+trimmed_data <- m_recode %>% 
+  select(-note) %>% 
+  left_join(trimmed_data, by = c("ds_clean", "response_mode", "method", "dependent_measure"))
+  
+```
+
+## 3. import infant recode 
+
+```{r}
+it_recode <- read_csv(here("data/rework/infant_type_rework.csv"))
+
+
+trimmed_data <- it_recode %>% 
+  select(-long_cite) %>% 
+  left_join(trimmed_data, by = c("ds_clean", "native_lang", "infant_type")) %>% 
+  rename(infant_type_clincal =  `infant_type_clinical (typical vs nt (preterm / delayed / developmental disorder)`)
+```
+
+## 4. prune infant recode (little variation)
+
+- currently preserve the non-monolingual kids because the impact of bilingualism might be different for cog dev dataset than for lang dev dataset 
+
+```{r}
+trimmed_data <- trimmed_data %>% 
+  filter(infant_type_clincal == "typical")
+```
+
+## 5. fix issue wrt the author exploration 
+
+```{r}
+
+pre_trimmed_data <- trimmed_data %>% 
+  filter(!ds_clean %in% c("Infant directed speech preference",
+                          "Prosocial Agents"
+                          ))
+
+# fix one by one 
+ids_clean <- trimmed_data %>% 
+  filter(ds_clean == "Infant directed speech preference") %>% 
+  mutate(mean_age_months = mean_age_1 / 30.44, 
+         d_calc = d, 
+         d_var_calc = d_var)
+
+pa_clean <- trimmed_data %>% 
+  filter(ds_clean == "Prosocial Agents") %>% 
+  mutate(by_major_author = ifelse(Hamlin_Lab == 1, "yes", "no"), 
+         major_author = "hamlin") 
+
+final_trimmed_data <- pre_trimmed_data %>% bind_rows(ids_clean) %>% 
+  bind_rows(pa_clean)
+
+write_csv(final_trimmed_data, here("data/clean_data.csv"))
+```
+
+
+## 6. supplementary dataset on author 
+
+```{r}
+author_list_draft <- (final_trimmed_data %>% 
+  distinct(ds_clean, long_cite) %>%
+  rowwise() %>% 
+  mutate(new_long_cite = sub("\\(.*", "", long_cite), 
+         author_list_draft = list(strsplit(new_long_cite, ",")[[1]])))$author_list_draft
+
+# get a list of author last name 
+
+author_list_wo_initial <- lapply(author_list_draft, function(list_of_name){
+  Filter(function(word) !grepl("\\.", word), list_of_name)
+})
+
+author_list_clean <- lapply(author_list_wo_initial, function(list_of_name){
+  s <- unlist(sapply(list_of_name, function(x)gsub(" & ", "", x) %>% gsub(" ", "", .) %>% gsub("([0-9])", "", .) ), use.names = FALSE)
+  
+})
+
+ds_for_author <- final_trimmed_data %>% distinct(ds_clean, long_cite)
+ds_for_author$author_clean <- author_list_clean
+
+
+ds_for_author <- ds_for_author %>% unnest(author_clean)
+
+
+ds_author_percent <- final_trimmed_data %>% 
+  left_join(ds_for_author, by = c("ds_clean", "long_cite")) %>% 
+  group_by(ds_clean, author_clean) %>% 
+  count() %>% 
+  filter(!(author_clean %in% c("", "J", "JR", "LA", "oradvantagespeech?PLoSOne", 
+                             "RL", "SD", "needmeans/sdsord", "I", 'notpresentedatconferenceandcurrentlynotat"inprep"stage', "unpublisheddataset"
+                             )))%>% 
+  mutate(author_clean = case_when(
+    author_clean == "Byersäó\u0090Heinlein" ~ "Byers-Heinlein", 
+    author_clean == "Byers‐Heinlein" ~ "Byers-Heinlein",
+    author_clean == "Sebastian-Galles" ~ "Sebastián-Gallés", 
+    author_clean == "Houstonäó\u0090Price" ~ "Houston-Price",
+    author_clean == "Vouloumanos" ~ "Vouloumanos",
+    author_clean == "andKager" ~ "Kager",
+    author_clean == "andvanZuijen" ~ "vanZuijen",
+    author_clean == "andWijnen" ~ "Wijnen",
+    author_clean == "Lewâ€\u0090Williams" ~ "Lew-Williams",
+    TRUE ~ author_clean
+    
+  )) %>% 
+  left_join(final_trimmed_data %>% group_by(ds_clean) %>% count() %>% rename(n_effect_size = n), by = "ds_clean") %>% 
+  mutate(percent_by_author = n / n_effect_size) 
+
+
+clean_ds_author_percent <- ds_author_percent %>% 
+  mutate(author_clean = case_when(
+    ds_clean == "Language discrimination and preference" & author_clean == "Sebastián-Gallés" ~ "Sebastian-Galles",
+    ds_clean == "Statistical sound category learning (habituation)" & author_clean == "vanZuijen" ~ "van Zuijen", 
+    ds_clean == "Statistical sound category learning (habituation)" & author_clean == "MayeJ" ~ "Maye J",
+    ds_clean == "Statistical sound category learning (habituation)" & author_clean == "WeissDJ" ~ "Weiss DJ", 
+    TRUE ~ author_clean
+    )
+  )
+  
+
+write_csv(clean_ds_author_percent, here("data/clean_author.csv"))
+```
+
+
+# basic stats 
+
+## n of effect size 
+
+```{r}
+final_trimmed_data %>% 
+  group_by(ds_clean) %>% 
+  count() %>% 
+  ggplot(aes(x = reorder(ds_clean, -n), y = n)) + 
+  geom_point()+ 
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+
+## n sample sizes 
+
+```{r}
+trimmed_n <- final_trimmed_data %>% 
+  mutate(n_2 = ifelse(is.na(n_2), 0, n_2)) %>% 
+  distinct(ds_clean, same_infant, n_1, n_2) %>% 
+  mutate(total_infants = n_1 + n_2) %>% 
+  group_by(ds_clean) %>% 
+  summarise(n = sum(total_infants)) %>% 
+  arrange(n) 
+
+trimmed_n %>% 
+  ggplot(aes(reorder(ds_clean,-n), n)) + 
+  geom_point() + 
+  theme_classic() + 
+  theme() + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+do we worry about the potential outliers here? ds that has small effect size n but contributes a lot of sample n? 
+
+```{r}
+final_trimmed_data %>% 
+  group_by(ds_clean) %>% 
+  count() %>% 
+  rename(effect_size_n = n) %>% 
+  left_join(trimmed_n %>% rename(sample_size = n), by = "ds_clean") %>% 
+  ggplot(aes(x = effect_size_n, 
+             y = sample_size)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+
+```
+
+
+## method distribution 
+
+
+### response mode 
+
+```{r}
+final_trimmed_data %>% 
+  group_by(ds_clean, response_mode) %>% 
+  count() %>% 
+  ungroup() %>% 
+  left_join(
+    final_trimmed_data %>% 
+  group_by(ds_clean) %>% summarise(n_row = n()), 
+  by = "ds_clean"
+  ) %>% 
+  mutate(proportion_response_mode = n/ n_row) %>% 
+  
+  ggplot(aes(x = reorder(response_mode, -proportion_response_mode), y = proportion_response_mode)) + 
+  geom_point() + 
+  facet_wrap(~ds_clean) + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), 
+        strip.text.x = element_text(size = 7)) + 
+  labs(title = "Response mode")
+```
+
+### method
+
+```{r}
+final_trimmed_data %>% 
+  group_by(ds_clean, method) %>% 
+  count() %>% 
+  ungroup() %>% 
+  left_join(
+    final_trimmed_data %>% 
+  group_by(ds_clean) %>% summarise(n_row = n()), 
+  by = "ds_clean"
+  ) %>% 
+  mutate(proportion_method = n/ n_row) %>% 
+  
+  ggplot(aes(x = reorder(method, -proportion_method), y = proportion_method)) + 
+  geom_point() + 
+  facet_wrap(~ds_clean) + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), 
+        strip.text.x = element_text(size = 7)) + 
+  labs(title = "method")
+```
+
+
+### dependent_measure 
+
+```{r}
+final_trimmed_data %>% 
+  group_by(ds_clean, dependent_measure) %>% 
+  count() %>% 
+  ungroup() %>% 
+  left_join(
+    final_trimmed_data %>% 
+  group_by(ds_clean) %>% summarise(n_row = n()), 
+  by = "ds_clean"
+  ) %>% 
+  mutate(proportion_dm = n/ n_row) %>% 
+  ggplot(aes(x = dependent_measure, y = proportion_dm)) + 
+  geom_point() + 
+  facet_wrap(~ds_clean) + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), 
+        strip.text.x = element_text(size = 7)) + 
+  labs(title = "dependent_measure")
+```
+
+
+### coded: looking 
+
+```{r}
+filter(final_trimmed_data, 
+       mean_age_months < 36) %>%
+  ggplot(aes(x = mean_age_months, y = d_calc, 
+             weight = 1/d_var_calc)) +
+  geom_point(aes(size = 1/d_var_calc,  
+             color = looking),
+             alpha = .3) + 
+  facet_wrap(~ ds_clean) + 
+  geom_hline(yintercept = 0, lty = 2, col = "black") + 
+  xlab("Mean age (months)") +
+  ylab("Effect size (d)") +
+  ggthemes::theme_few()
+```
+
+### coded: behavioral_measure
+
+```{r}
+filter(final_trimmed_data, 
+       mean_age_months < 36) %>%
+  ggplot(aes(x = mean_age_months, y = d_calc, 
+             weight = 1/d_var_calc)) +
+  geom_point(aes(size = 1/d_var_calc,  
+             color = behavioral_measure),
+             alpha = .3) + 
+  facet_wrap(~ ds_clean) + 
+  geom_hline(yintercept = 0, lty = 2, col = "black") + 
+  xlab("Mean age (months)") +
+  ylab("Effect size (d)") +
+  ggthemes::theme_few()
+
+filter(final_trimmed_data, 
+       mean_age_months < 36) %>%
+  ggplot(aes(x = mean_age_months, y = d_calc, 
+             weight = 1/d_var_calc)) +
+  geom_point(aes(size = 1/d_var_calc,  
+             color = behavioral_measure),
+             alpha = .3 
+            ) + 
+  geom_hline(yintercept = 0, lty = 2, col = "black") + 
+  xlab("Mean age (months)") +
+  ylab("Effect size (d)") +
+  ggthemes::theme_few()
+```
+
+
+### fam vs hab vs test only 
+
+```{r}
+filter(final_trimmed_data, 
+       mean_age_months < 36)  %>% 
+  filter(exposure_phase %in% c("familiarization", "habituation", "test_only"), 
+         looking == "yes") %>% 
+  ggplot(aes(x = mean_age_months, y = d_calc, 
+             weight = 1/d_var_calc)) +
+  geom_point(aes(size = 1/d_var_calc,  
+             color = exposure_phase),
+             alpha = .3) + 
+  facet_wrap( ~ ds_clean) + 
+  geom_hline(yintercept = 0, lty = 2, col = "black") + 
+  xlab("Mean age (months)") +
+  ylab("Effect size (d)") +
+  ggthemes::theme_few()
+```
+
+
+
+
+
+## publicaion year
+
+citation density?
+
+
+```{r}
+final_trimmed_data  %>% 
+  ggplot(aes(x = year, y = d_calc, color = publication_type)) +
+  geom_point() + 
+  facet_wrap( ~ ds_clean) + 
+  geom_hline(yintercept = 0, lty = 2, col = "black") + 
+  xlab("publishing year") +
+  ylab("Effect size (d)") +
+  ggthemes::theme_few() 
+```
