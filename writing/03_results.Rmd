@@ -110,20 +110,19 @@ conflict_AICBIC_summary_df <- aic_winner_df %>%
   group_by(AICc_winner) %>% count()
 ```
 
-Four functional forms of developmental curves were considered: linear, logarithmic, quadratic, and constant. For each of the functional forms except constant, we include mean age in months with the corresponding form as a fixed effect. Then we evaluated the models based on the corrected AICc (Table 1). `r filter(age_df_summary, model_spec_clean == "Const")$n` out of the 23 datasets has the constant model as the best-fitting model. `r filter(age_df_summary, model_spec_clean == "Quadratic")$n` and `r filter(age_df_summary, model_spec_clean == "Log")$n`` datasets’ best-fitting models are the Quadratic model and logarithmic model, respectively. Finally, among all datasets considered, Online Word Cognition is the only domain in which the linear age model provides the best fit.
+Our first research question was about the functional form of the developmental trajectories we observed. We considered four specific forms: linear, logarithmic, quadratic, and constant, each considered as an age-related fixed effect.  We evaluated the models based on the corrected AICc (Table 1). `r filter(age_df_summary, model_spec_clean == "Const")$n` out of the 23 datasets had the constant model as the best-fitting model. `r filter(age_df_summary, model_spec_clean == "Quadratic")$n` and `r filter(age_df_summary, model_spec_clean == "Log")$n`` datasets’ best-fitting models are the Quadratic model and logarithmic model, respectively. Finally, among all datasets considered, Online Word Recognition was the only domain in which the linear age model provides the best fit. Model evaluation based on Bayesian Information Criterion (BIC) yielded similar results with little discrepancy.
 
-Model evaluation based on Bayesian Information Criterion (BIC) yielded similar results with little discrepancy. Under BIC-based evaluation, X domains’ best-fitting models became constant models from higher-order models (From Quadratic: N = `r filter(conflict_AICBIC_summary_df, AICc_winner == "Quadratic")$n`; From Logarithmic: N = `r filter(conflict_AICBIC_summary_df, AICc_winner == "Log")$n`). One domain, Statistical sound category learning (habituation), has the best fitting model changed from Constant to Quadratic.
 
 
 
 
 ## Methodological Moderators 
 
-
-
-In this section, we considered methodological moderators shared by multiple datasets. Given the limited number of studies conducted with neuroimaging methods, we focused our analyses on studies conducted with behavioral methods. Therefore, we excluded studies that were conducted with either fNIRS or EEG.  Moreover, to minimize irrelevant heterogeneity, we only included studies with participants’ mean age below 36 months. All analyses were conducted on the subset of research domains with multiple levels for the moderator of interests. 
+In this section, we considered methodological moderators shared by multiple datasets. Given the limited number of studies conducted with neuroimaging methods, we focused our analyses on studies conducted with behavioral methods. Therefore, we excluded studies that were conducted with either fNIRS or EEG.  Moreover, to minimize age-related heterogeneity, we only included studies with participants’ mean age below 36 months. All analyses were conducted on the subset of research domains with multiple levels for the moderator of interests. 
 
 Figure 1 provides a summary of the estimates for moderators. 
+
+
 
 
 ```{r}
@@ -135,6 +134,12 @@ bmeasure_df <- best_fit_bmeasure_model_df %>%
     TRUE ~ "Behavioral Measure - Sucking"
   )) %>% 
   select(dataset, term_print, statistic, p.value, estimate, std.error) 
+
+bmeasure_int_df <- best_fit_bmeasure_interaction_df %>% 
+   filter(grepl("behavioral_measure", term) & grepl("age", term)) %>% 
+  mutate(term_print = "bmeasure_age_interaction") %>% 
+  select(dataset, term_print, statistic, p.value, estimate, std.error) 
+
 
 # baseline is conditionining 
 ep_df <- best_fit_exposure_phase_df %>% 
@@ -165,7 +170,7 @@ ma_df <- best_fit_major_author_df %>%
 
 
 ```{r}
-all_mod_df <- bind_rows(bmeasure_df, ep_df, rv_df, av_df, ma_df) %>% 
+all_mod_df <- bind_rows(bmeasure_df, bmeasure_int_df, ep_df, rv_df, av_df, ma_df) %>% 
   mutate(lb = estimate - std.error  * 1.96, 
          ub = estimate + std.error * 1.96) %>% 
   mutate(estimate_print = paste0(round(estimate, 2), " [", round(lb, 2), ", ", round(ub, 2), "]"), 
@@ -184,12 +189,25 @@ all_mod_df <- bind_rows(bmeasure_df, ep_df, rv_df, av_df, ma_df) %>%
 
 ```{r}
 bm_models <- all_mod_df %>% filter(type == "Behavioral Measure ")
+bm_int <- all_mod_df %>% filter(type == "bmeasure_age_interaction")
+
+int_improved_dataset <- best_fit_bmeasure_model_df %>% 
+  distinct(dataset, REML) %>% 
+  rename(reg_REML = REML) %>% 
+  left_join(best_fit_bmeasure_interaction_df %>% distinct(dataset, REML) %>% rename(int_REML = REML), by = "dataset") %>% 
+  filter(int_REML < reg_REML)
+
+
 ```
 
 
-We created the moderator behavioral measure based on Method, an existing moderator in the Metalab. Behavioral Measure has three levels, looking, sucking, and other. The level “other” includes studies with dependent measures such as pointing or manual exploration time. 
 
-We added Behavioral Measure as an additional fixed effect to the age model with the best-fitting functional form from the previous analysis. Behavioral Measure is a significant predictor of effect sizes in two domains, Vowel Discrimination (Native) and Sound Symbolism. In Vowel Discrimination (native), studies with Other or Sucking behavioral measure has larger effect sizes than studies using looking as the behavioral measure (Other: $\beta$ = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$estimate_print`, *z* = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$z_print`, *p* `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$p_print` ; Sucking: $\beta$ = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$estimate_print`, *z* = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$z_print`, *p* `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$p_print`). Similarly, in Sound Symbolism, studies with “Other” behavioral measures also yield larger effect sizes than looking studies ($\beta$ = `r filter(bm_models, dataset == "Sound symbolism")$estimate_print`, *z* = `r filter(bm_models, dataset == "Sound symbolism")$z_print`, *p* `r filter(bm_models, dataset == "Sound symbolism")$p_print`). 
+Meta-analyses have very heterogeneous moderators coded, but many included coding of which behavioral response measure was used in the original study: looking-based behaviors (e.g., looking time or other eye-tracking measures), sucking (as in the high amplitude sucking procedure), and manual behaviors (e.g., pointing, exploration). We thus added behavioral measure as an additional fixed effect to the age model with the best-fitting functional form from the previous analysis. 
+
+In general, nearly all effects were weakly positive such that sucking and manual response modes yielded slightly larger effect sizes, though these effects were not always significant. Behavioral measure was a significant predictor of effect sizes in only two domains, Vowel Discrimination (Native) and Sound Symbolism. In Vowel Discrimination (native), studies with Manual or Sucking behavioral measure has larger effect sizes than studies using looking as the behavioral measure (Manual: $\beta$ = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$estimate_print`, *z* = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$z_print`, *p* `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$p_print` ; Sucking: $\beta$ = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$estimate_print`, *z* = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$z_print`, *p* `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$p_print`). Similarly, in Sound Symbolism, studies with manual behavioral measures also yield larger effect sizes than looking studies ($\beta$ = `r filter(bm_models, dataset == "Sound symbolism")$estimate_print`, *z* = `r filter(bm_models, dataset == "Sound symbolism")$z_print`, *p* `r filter(bm_models, dataset == "Sound symbolism")$p_print`). 
+
+We also explored whether there would be an interaction between the research methods and the age of participants. There was limited evidence for such interaction. The inclusion of interaction terms only improved the AICc in `r nrow(int_improved_dataset)` domains (Label advantage in concept learning; Language discrimination and preference; Mutual exclusivity). Of all the interaction models, only the Language discrimination and preference showed a significant positive interaction effect between the manual behavioral measure and age ($\beta$ = `r filter(bm_int, p.value < 0.05)$estimate_print`, *z* = `r filter(bm_int, p.value < 0.05)$z_print`, *p* `r filter(bm_int, p.value < 0.05)$p_print`). 
+
 
 
 ### Exposure Phase 
@@ -198,12 +216,12 @@ We added Behavioral Measure as an additional fixed effect to the age model with 
 ep_models <- all_mod_df %>% filter(type == "Exposure phase ")
 ```
 
-
-Exposure phase refers to the type of exposure infants have during the experiments prior to the test events. There are four levels in this moderator: Conditioning, Familiarization, Habituation, and Test Only. If a study does not include pre-test training for infants, it is coded as “Test Only”. 
+Exposure phase refers to the type of exposure infants have during the experiments prior to the test events. There are typically four types of exposure phase: 1) an infant would be conditioned to show an orienting behavior (conditioning); 2) an infant would be exposed to a stimulus for a constant amount of time (familiarization); 3) an infant would be shown some stimulus repeatedly until the magnitude of response drops below a threshold (habituation); 4) no exposure to the stimulus at all; the infant would be tested immediately (test-only). We coded these four types of exposure phases as four levels in the moderator exposure phase. 
 
 Exposure phase is a significant predictor of effect sizes in four domains. In Language Discrimination and Preference,  habituation studies yield smaller effect sizes than conditioning studies ($\beta$ = `r filter(ep_models, dataset =="Language discrimination and preference", group == " Habituation")$estimate_print`, *z* = `r filter(ep_models, dataset =="Language discrimination and preference", group == " Habituation")$z_print`, *p* `r filter(ep_models, dataset =="Language discrimination and preference", group == " Habituation")$p_print`). A similar trend is found in Vowel discrimination (native), where both habituation studies and familiarization studies have smaller effect sizes than conditioning studies (Habituation: $\beta$ = `r filter(ep_models, dataset =="Vowel discrimination (native)", group == " Habituation")$estimate_print`, *z* = `r filter(ep_models, dataset =="Vowel discrimination (native)", group == " Habituation")$z_print`, *p* `r filter(ep_models, dataset =="Vowel discrimination (native)", group == " Habituation")$p_print`; Familiarization: $\beta$ = `r filter(ep_models, dataset =="Vowel discrimination (native)", group == " Familiarization")$estimate_print`, *z* = `r filter(ep_models, dataset =="Vowel discrimination (native)", group == " Familiarization")$z_print`, *p* `r filter(ep_models, dataset =="Vowel discrimination (native)", group == " Familiarization")$p_print`). 
 
 Interestingly, the results of the comparison between familiarization studies and conditioning studies are mixed. In the Vowel discrimination (non-native) dataset, both familiarization and test-only studies produce smaller effect sizes than the conditioning studies (Familiarization: $\beta$ = `r filter(ep_models, dataset =="Vowel discrimination (non-native)", group == " Familiarization")$estimate_print`, *z* = `r filter(ep_models, dataset =="Vowel discrimination (non-native)", group == " Familiarization")$z_print`, *p* `r filter(ep_models, dataset =="Vowel discrimination (non-native)", group == " Familiarization")$p_print`; Test-only:  $\beta$ = `r filter(ep_models, dataset =="Vowel discrimination (non-native)", group == " Test only")$estimate_print`, *z* = `r filter(ep_models, dataset =="Vowel discrimination (non-native)", group == " Test only")$z_print`, *p* `r filter(ep_models, dataset =="Vowel discrimination (non-native)", group == " Test only")$p_print`). However, the opposite trend is found in Natural Speech Preference, with familiarization studies producing larger effect sizes than the conditioning studies ($\beta$ = `r filter(ep_models, dataset =="Natural speech preference", group == " Test only")$estimate_print`, *z* = `r filter(ep_models, dataset =="Natural speech preference", group == " Test only")$z_print`, *p* `r filter(ep_models, dataset =="Natural speech preference", group == " Test only")$p_print`).
+
 
 
 ### Stimuli Naturalness 
@@ -214,27 +232,30 @@ aud_mod <-  all_mod_df %>% filter(type == "Auditory stimulus type ")
 ```
 
 
-Next, we considered the effect of stimuli type. We focused on one key dimension: naturalness. Since naturalness could be represented differently for primarily visual stimuli versus primarily auditory stimuli, we did not collapse across domains. 
+Next, we considered the effect of stimuli type. We focused on one key dimension: naturalness. For primarily visual stimuli, we considered “naturalness” to mean stimuli that use real-world objects (e.g. puppets, blocks). We compared these natural stimuli with representation-type stimuli, such as pictures, videos, or drawings. In primarily auditory stimuli, we compared natural speech with synthesized stimuli. 
 
-For primarily visual stimuli, we considered “naturalness” to mean stimuli that use real-world objects (e.g. puppets, blocks). We compared these natural stimuli with representation-type stimuli, such as pictures, videos, or drawings. We found that naturalness is a significant predictor for Label advantage in concept learning, with natural stimuli yielding larger effect sizes than representation-type stimuli ($\beta$ = `r filter(vis_mod, dataset =="Label advantage in concept learning")$estimate_print`, *z* = `r filter(vis_mod, dataset =="Label advantage in concept learning")$z_print`, *p* `r filter(vis_mod, dataset =="Label advantage in concept learning")$p_print`). In primarily auditory stimuli, we compared natural speech with synthesized stimuli. In both Statistical word segmentation and Abstract rule learning, we found a natural speech advantage (Statistical word segmentation: $\beta$ = `r filter(aud_mod, dataset =="Statistical word segmentation")$estimate_print`, *z* = `r filter(aud_mod, dataset =="Statistical word segmentation")$z_print`, *p* `r filter(aud_mod, dataset =="Statistical word segmentation")$p_print`; Abstract rule learning: $\beta$ = `r filter(aud_mod, dataset =="Abstract rule learning")$estimate_print`, *z* = `r filter(aud_mod, dataset =="Abstract rule learning")$z_print`, *p* `r filter(aud_mod, dataset =="Abstract rule learning")$p_print`). 
+We found that naturalness is a significant predictor for Label advantage in concept learning, with natural stimuli yielding larger effect sizes than representation-type stimuli ($\beta$ = `r filter(vis_mod, dataset =="Label advantage in concept learning")$estimate_print`, *z* = `r filter(vis_mod, dataset =="Label advantage in concept learning")$z_print`, *p* `r filter(vis_mod, dataset =="Label advantage in concept learning")$p_print`). Similarly, in both Statistical word segmentation and Abstract rule learning, we found a natural speech advantage (Statistical word segmentation: $\beta$ = `r filter(aud_mod, dataset =="Statistical word segmentation")$estimate_print`, *z* = `r filter(aud_mod, dataset =="Statistical word segmentation")$z_print`, *p* `r filter(aud_mod, dataset =="Statistical word segmentation")$p_print`; Abstract rule learning: $\beta$ = `r filter(aud_mod, dataset =="Abstract rule learning")$estimate_print`, *z* = `r filter(aud_mod, dataset =="Abstract rule learning")$z_print`, *p* `r filter(aud_mod, dataset =="Abstract rule learning")$p_print`). 
 
 
 
-```{r 2-col-image, fig.env = "figure*", fig.pos = "h", fig.width=8, fig.height=6, fig.align = "center", set.cap.width=T, num.cols.cap=2, fig.cap = "This image spans both columns. And the caption text is limited to 0.8 of the width of the document."}
+
+```{r 2-col-image, fig.env = "figure*", fig.pos = "h", fig.width=6, fig.height=6, fig.align = "center", set.cap.width=T, num.cols.cap=2, fig.cap = "This image spans both columns. And the caption text is limited to 0.8 of the width of the document."}
 
 plot_moderators(all_mod_df)
 ```
 
 ### Major author 
 
-@margoni2018infants found evidence for authors-based bias in Prosocial Agents, where results produced by certain authors are consistently larger than others. We evaluated how prevalent this phenomenon is in the literature by coding a “By Major Author” moderator. Authors are considered “Major Author” if they are listed as authors in more than 15% of the papers in the literature. 
+@margoni2018infants found evidence for an author-based bias in Prosocial Agents, where results produced by certain authors were consistently larger than others. We evaluated how prevalent this phenomenon was in the literature by coding a “major author” moderator. Authors are considered to be a “major author” if they are listed as authors in more than 15% of the papers in the literature. 
 
-We found evidence for Major Author effect in 7 datasets, where studies produced by the major author are larger than the rest of the papers. In 3 datasets, however, we also found the opposite patterns, where certain authors produced on average smaller effect sizes than the rest of the literature. 
+We found evidence for a major author effect in 7 datasets, where studies produced by the major author were larger than the rest of the papers. In 3 datasets, however, we also found the opposite patterns, where certain authors produced on average smaller effect sizes than the rest of the literature. 
 
-
+```{r image, fig.env = "figure", fig.pos = "H", fig.align='center', fig.width=3, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "One column image."}
+plot_major_author(all_mod_df)
+```
 
 ## Synthesis 
 
-Finally, we synthesized 23 datasets by grouping them based on the type of theoretical constructs: Cognitive, Communication, Sounds, and Words. We integrated the predictions from the best-fitting age-based models in Figure 2. We found a striking range of functional forms in the developmental trajectories across all types of theoretical constructs. 
+Finally, we synthesized all 23 datasets by grouping them based on the type of theoretical constructs they represented: Cognitive, Communication, Sounds, and Words. We integrated the predictions from the best-fitting age-based models in Figure 2, showing predictions across the range of measured phenomena. We found a striking range of functional forms in the developmental trajectories across all types of theoretical constructs. In particular, the magnitudes of some phenomena – online word recognition, gaze following, and mutual exclusivity, for example – increased substantially over development. In contrast, others – sound symbolism, categorization bias, and others – stayed constant at a measurable level without showing developmental increases. We considered several explanations for these differences: one is that these meta-analyses might correspond to relatively more experience-independent biases. On the other hand, we cannot rule out cross-experiment confounding wherein experimenters test progressively harder stimuli with development, thus counteracting any developmental gains that might otherwise be measured.  
 
 

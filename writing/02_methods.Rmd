@@ -1,9 +1,9 @@
 
 ## Datasets
 
-The datasets were retrieved from `metalabr`, the R package built from Metalab. As of November 2022, the package includes 30 individual meta-analysis datasets covering different research domains in language learning and cognitive development. We removed 5 datasets from the final analysis, including 2 due to data quality reasons (Word segmentation (neuro); Phonotactic learning), 2 due to being observational studies (Pointing and vocabulary (concurrent) and Pointing and vocabulary (longitudinal)), and 1 due to being theoretically irrelevant (Video deficit). We modified 2 datasets to reflect a more accurate representation of the literature and combined two pairs of datasets because they measure theoretically identical constructs. To minimize the heterogeneity in our datasets, we also excluded effect sizes calculated from participants with clinical diagnoses. 
+Datasets were retrieved from `metalabr`, the R package built from Metalab. As of November 2022, the package includes 30 individual meta-analysis datasets covering different research domains in language learning and cognitive development. We removed 5 datasets from the final analysis, including 2 with data quality issues (Word segmentation neuro; Phonotactic learning), 3 due to being observational studies or including studies with quasi-experimental design (Pointing and vocabulary concurrent; Pointing and vocabulary, longitudinal; Video deficit)). We modified 2 datasets to reflect a more accurate representation of the literature and combined two pairs of datasets because they measure theoretically identical constructs. To minimize the heterogeneity in our datasets, we also excluded effect sizes calculated from participants with clinical diagnoses. 
 
-The final dataset contains 23 meta-analysis datasets. Table 1 provides a summary of the meta-analyses included in the dataset, along with the number of effect sizes and participants included in each dataset. 
+The final dataset contained 23 meta-analyses. Table 1 provides a summary of the, along with the number of effect sizes and participants included in each dataset. 
  
 The final dataset and analysis scripts are available at X. 
 
@@ -11,4 +11,4 @@ The final dataset and analysis scripts are available at X.
 ## Analytic Methods
 
 
-All analyses reported in this paper are conducted in R using the `metafor` package [@viechtbauer2010conducting]. We specified multi-level random effect models with random effect structure that includes grouping by paper and by participant group. We removed the clustering if either grouping information was missing from the dataset. All moderators are included as additional fixed-effect in the models. Unless otherwise specified, all model comparisons are based on the corrected Akaike Information Criterion (AICc).
+All analyses were conducted in R using the `metafor` package [@viechtbauer2010conducting]. We specified multi-level random effect models with random effect structures that included grouping by paper and by participant group. We removed the clustering if grouping information was missing from the dataset. All moderators were included as fixed effects. Unless otherwise specified, all model comparisons were based on the corrected Akaike Information Criterion (AICc).

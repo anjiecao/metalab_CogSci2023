@@ -52,7 +52,8 @@
 % \textwidth 16cm
 % \textheight 21cm
 
-\title{Pokemon go go go}
+\title{A synthesis of early cognitive and language development using
+(meta-)meta-analysis}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -100,19 +101,19 @@ able to master a wide range of linguistic and cognitive skills. Despite
 a wealth of research examining cognitive development, constructing a
 comprehensive theory of cognitive development remains a formidable
 challenge. Research in this area generally falls under two categories:
-observational research and experimental research. The former provides a
-holistic picture of an individual child's development
-{[}e.g.@bayley2006bayley{]}, yet it does not provide any concrete
-insights into the underlying mechanisms. In contrast, experimental
-research allows causal tractions on potential mechanisms, but it tends
-to focus on one single construct and does not reveal the connections
-between different processes and mechanisms. In this paper, we aim to
-provide a quantitative synthesis of experimental work across multiple
-areas of developmental psychology, providing insights into the
-interrelatedness between psychological constructs. We achieve this goal
-by consolidating and integrating 23 meta-analyses of cognitive and
-language development compiled on MetaLab, a community-augmented
-meta-analysis platform.
+observational research and experimental research. Observational studies
+using instruments like the Bayley Scales can provide a holistic picture
+of an individual child's development {[}e.g.@bayley2006bayley{]}, but it
+is a challenge to move from global developmental milestones to
+underlying mechanisms. In contrast, experimental research allows causal
+tractions on potential mechanisms, but experiments typically focus on
+one single construct and does not reveal the connections between
+different processes and mechanisms. In this paper, we aim to provide a
+quantitative synthesis of experimental work across multiple areas of
+developmental psychology, providing insights into the interrelatedness
+between psychological constructs. We achieve this goal by consolidating
+and integrating 23 meta-analyses of cognitive and language development
+compiled on MetaLab, a community-augmented meta-analysis platform.
 
 Statistical meta-analysis, the technique of aggregating effect sizes
 across a systematic sample of experiments, has some unique advantages as
@@ -171,9 +172,27 @@ provide an open database of meta-analyses (Bergmann et al., 2018).
 Developmental researchers are invited to deposit their meta-analysis
 dataset into MetaLab, and they are encouraged to use the datasets for
 custom analyses. As of November 2022, Metalab contains X effect sizes
-from 30 different meta-analyses. This resource would allow us to
-quantitatively synthesize the insights across different research areas
-in developmental psychology.
+from 30 different meta-analyses. This resource allows the beginnings of
+a quantitative synthesis across different research areas in
+developmental psychology.
+
+In particular, we address three separate questions. First, we would like
+to investigate the shape of developmental curves across domains. The
+form of growth curves has been of interest in a lot of areas of
+developmental research (e.g., exponential growths in vocabulary:
+McMurray, 2007; asymptotic decreases in reaction time: Kail, 1991) These
+nuanced descriptions of developmental trajectories allow for a more
+precise understanding of the underlying mechanisms driving these
+changes. We aim to provide these quantitative descriptions for more
+research areas. Second, we hope to understand how research methods
+moderate the strengths of the findings. Increasingly, developmental
+research methods are scrutinized for their mechanisms and scientific
+rigors (Paulus, 2022; Stahl \& Kibbe, 2022). With MetaLab, the fields
+are ripe for a more systematic understanding of how different design
+choices in experiments could influence the results. Finally, we would
+like to offer a birds-eye view of the field by integrating the growth
+curves across multiple domains. This view would provide an empirical
+foundation for creating a synthesized theory of cognitive development.
 
 The plan for this paper is as follows. We first describe the datasets
 included in the current synthesis, including our selection criteria and
@@ -182,9 +201,9 @@ turn to model comparison, comparing the fits of age models under
 different functional forms. Next, we present methodological moderators
 analysis. Four methodological moderators are selected due to their
 theoretical relevances: behavioral measure type, exposure phase type,
-stimuli type (audio and visual), and major author effect. Finally, we
-present a synthesis of the developmental curves across all of the
-domains considered. We end the paper by discussing the implications and
+stimuli naturalness, and major author effect. Finally, we present a
+synthesis of the developmental curves across all of the domains
+considered. We end the paper by discussing the implications and
 limitations of our current work.
 
 \hypertarget{methods}{%
@@ -193,37 +212,36 @@ limitations of our current work.
 \hypertarget{datasets}{%
 \subsection{Datasets}\label{datasets}}
 
-The datasets were retrieved from \texttt{metalabr}, the R package built
-from Metalab. As of November 2022, the package includes 30 individual
+Datasets were retrieved from \texttt{metalabr}, the R package built from
+Metalab. As of November 2022, the package includes 30 individual
 meta-analysis datasets covering different research domains in language
 learning and cognitive development. We removed 5 datasets from the final
-analysis, including 2 due to data quality reasons (Word segmentation
-(neuro); Phonotactic learning), 2 due to being observational studies
-(Pointing and vocabulary (concurrent) and Pointing and vocabulary
-(longitudinal)), and 1 due to being theoretically irrelevant (Video
-deficit). We modified 2 datasets to reflect a more accurate
-representation of the literature and combined two pairs of datasets
-because they measure theoretically identical constructs. To minimize the
-heterogeneity in our datasets, we also excluded effect sizes calculated
-from participants with clinical diagnoses.
+analysis, including 2 with data quality issues (Word segmentation neuro;
+Phonotactic learning), 3 due to being observational studies or including
+studies with quasi-experimental design (Pointing and vocabulary
+concurrent; Pointing and vocabulary, longitudinal; Video deficit)). We
+modified 2 datasets to reflect a more accurate representation of the
+literature and combined two pairs of datasets because they measure
+theoretically identical constructs. To minimize the heterogeneity in our
+datasets, we also excluded effect sizes calculated from participants
+with clinical diagnoses.
 
-The final dataset contains 23 meta-analysis datasets. Table 1 provides a
-summary of the meta-analyses included in the dataset, along with the
-number of effect sizes and participants included in each dataset.
+The final dataset contained 23 meta-analyses. Table 1 provides a summary
+of the, along with the number of effect sizes and participants included
+in each dataset.
 
 The final dataset and analysis scripts are available at X.
 
 \hypertarget{analytic-methods}{%
 \subsection{Analytic Methods}\label{analytic-methods}}
 
-All analyses reported in this paper are conducted in R using the
-\texttt{metafor} package (Viechtbauer, 2010). We specified multi-level
-random effect models with random effect structure that includes grouping
-by paper and by participant group. We removed the clustering if either
-grouping information was missing from the dataset. All moderators are
-included as additional fixed-effect in the models. Unless otherwise
-specified, all model comparisons are based on the corrected Akaike
-Information Criterion (AICc).
+All analyses were conducted in R using the \texttt{metafor} package
+(Viechtbauer, 2010). We specified multi-level random effect models with
+random effect structures that included grouping by paper and by
+participant group. We removed the clustering if grouping information was
+missing from the dataset. All moderators were included as fixed effects.
+Unless otherwise specified, all model comparisons were based on the
+corrected Akaike Information Criterion (AICc).
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -266,22 +284,17 @@ Infant directed speech preference & 83 & 985 & 0.47 & 70.17 & 70.87 & 70.06 & \t
 \caption{\label{demo-table}Your caption.}
 \end{table*}
 
-Four functional forms of developmental curves were considered: linear,
-logarithmic, quadratic, and constant. For each of the functional forms
-except constant, we include mean age in months with the corresponding
-form as a fixed effect. Then we evaluated the models based on the
-corrected AICc (Table 1). 10 out of the 23 datasets has the constant
+Our first research question was about the functional form of the
+developmental trajectories we observed. We considered four specific
+forms: linear, logarithmic, quadratic, and constant, each considered as
+an age-related fixed effect. We evaluated the models based on the
+corrected AICc (Table 1). 10 out of the 23 datasets had the constant
 model as the best-fitting model. 7 and 5` datasets' best-fitting models
 are the Quadratic model and logarithmic model, respectively. Finally,
-among all datasets considered, Online Word Cognition is the only domain
-in which the linear age model provides the best fit.
-
-Model evaluation based on Bayesian Information Criterion (BIC) yielded
-similar results with little discrepancy. Under BIC-based evaluation, X
-domains' best-fitting models became constant models from higher-order
-models (From Quadratic: N = 3; From Logarithmic: N = 2). One domain,
-Statistical sound category learning (habituation), has the best fitting
-model changed from Constant to Quadratic.
+among all datasets considered, Online Word Recognition was the only
+domain in which the linear age model provides the best fit. Model
+evaluation based on Bayesian Information Criterion (BIC) yielded similar
+results with little discrepancy.
 
 \hypertarget{methodological-moderators}{%
 \subsection{Methodological Moderators}\label{methodological-moderators}}
@@ -290,7 +303,7 @@ In this section, we considered methodological moderators shared by
 multiple datasets. Given the limited number of studies conducted with
 neuroimaging methods, we focused our analyses on studies conducted with
 behavioral methods. Therefore, we excluded studies that were conducted
-with either fNIRS or EEG. Moreover, to minimize irrelevant
+with either fNIRS or EEG. Moreover, to minimize age-related
 heterogeneity, we only included studies with participants' mean age
 below 36 months. All analyses were conducted on the subset of research
 domains with multiple levels for the moderator of interests.
@@ -300,32 +313,50 @@ Figure 1 provides a summary of the estimates for moderators.
 \hypertarget{behavioral-measures}{%
 \subsubsection{Behavioral Measures}\label{behavioral-measures}}
 
-We created the moderator behavioral measure based on Method, an existing
-moderator in the Metalab. Behavioral Measure has three levels, looking,
-sucking, and other. The level ``other'' includes studies with dependent
-measures such as pointing or manual exploration time.
+Meta-analyses have very heterogeneous moderators coded, but many
+included coding of which behavioral response measure was used in the
+original study: looking-based behaviors (e.g., looking time or other
+eye-tracking measures), sucking (as in the high amplitude sucking
+procedure), and manual behaviors (e.g., pointing, exploration). We thus
+added behavioral measure as an additional fixed effect to the age model
+with the best-fitting functional form from the previous analysis.
 
-We added Behavioral Measure as an additional fixed effect to the age
-model with the best-fitting functional form from the previous analysis.
-Behavioral Measure is a significant predictor of effect sizes in two
-domains, Vowel Discrimination (Native) and Sound Symbolism. In Vowel
-Discrimination (native), studies with Other or Sucking behavioral
-measure has larger effect sizes than studies using looking as the
-behavioral measure (Other: \(\beta\) = 0.58 {[}0.33, 0.82{]}, \emph{z} =
-4.6, \emph{p} \textless{} 0.01 ; Sucking: \(\beta\) = 0.96 {[}0.53,
-1.4{]}, \emph{z} = 4.34, \emph{p} \textless{} 0.01). Similarly, in Sound
-Symbolism, studies with ``Other'' behavioral measures also yield larger
-effect sizes than looking studies (\(\beta\) = 0.61 {[}0.24, 0.97{]},
-\emph{z} = 3.29, \emph{p} \textless{} 0.01).
+In general, nearly all effects were weakly positive such that sucking
+and manual response modes yielded slightly larger effect sizes, though
+these effects were not always significant. Behavioral measure was a
+significant predictor of effect sizes in only two domains, Vowel
+Discrimination (Native) and Sound Symbolism. In Vowel Discrimination
+(native), studies with Manual or Sucking behavioral measure has larger
+effect sizes than studies using looking as the behavioral measure
+(Manual: \(\beta\) = 0.58 {[}0.33, 0.82{]}, \emph{z} = 4.6, \emph{p}
+\textless{} 0.01 ; Sucking: \(\beta\) = 0.96 {[}0.53, 1.4{]}, \emph{z} =
+4.34, \emph{p} \textless{} 0.01). Similarly, in Sound Symbolism, studies
+with manual behavioral measures also yield larger effect sizes than
+looking studies (\(\beta\) = 0.61 {[}0.24, 0.97{]}, \emph{z} = 3.29,
+\emph{p} \textless{} 0.01).
+
+We also explored whether there would be an interaction between the
+research methods and the age of participants. There was limited evidence
+for such interaction. The inclusion of interaction terms only improved
+the AICc in 3 domains (Label advantage in concept learning; Language
+discrimination and preference; Mutual exclusivity). Of all the
+interaction models, only the Language discrimination and preference
+showed a significant positive interaction effect between the manual
+behavioral measure and age (\(\beta\) = 0.01 {[}0, 0.02{]}, \emph{z} =
+2.19, \emph{p} = 0.03).
 
 \hypertarget{exposure-phase}{%
 \subsubsection{Exposure Phase}\label{exposure-phase}}
 
 Exposure phase refers to the type of exposure infants have during the
-experiments prior to the test events. There are four levels in this
-moderator: Conditioning, Familiarization, Habituation, and Test Only. If
-a study does not include pre-test training for infants, it is coded as
-``Test Only''.
+experiments prior to the test events. There are typically four types of
+exposure phase: 1) an infant would be conditioned to show an orienting
+behavior (conditioning); 2) an infant would be exposed to a stimulus for
+a constant amount of time (familiarization); 3) an infant would be shown
+some stimulus repeatedly until the magnitude of response drops below a
+threshold (habituation); 4) no exposure to the stimulus at all; the
+infant would be tested immediately (test-only). We coded these four
+types of exposure phases as four levels in the moderator exposure phase.
 
 Exposure phase is a significant predictor of effect sizes in four
 domains. In Language Discrimination and Preference, habituation studies
@@ -352,23 +383,22 @@ larger effect sizes than the conditioning studies (\(\beta\) = 1.65
 \subsubsection{Stimuli Naturalness}\label{stimuli-naturalness}}
 
 Next, we considered the effect of stimuli type. We focused on one key
-dimension: naturalness. Since naturalness could be represented
-differently for primarily visual stimuli versus primarily auditory
-stimuli, we did not collapse across domains.
+dimension: naturalness. For primarily visual stimuli, we considered
+``naturalness'' to mean stimuli that use real-world objects
+(e.g.~puppets, blocks). We compared these natural stimuli with
+representation-type stimuli, such as pictures, videos, or drawings. In
+primarily auditory stimuli, we compared natural speech with synthesized
+stimuli.
 
-For primarily visual stimuli, we considered ``naturalness'' to mean
-stimuli that use real-world objects (e.g.~puppets, blocks). We compared
-these natural stimuli with representation-type stimuli, such as
-pictures, videos, or drawings. We found that naturalness is a
-significant predictor for Label advantage in concept learning, with
-natural stimuli yielding larger effect sizes than representation-type
-stimuli (\(\beta\) = 0.23 {[}0.01, 0.45{]}, \emph{z} = 2.06, \emph{p} =
-0.04). In primarily auditory stimuli, we compared natural speech with
-synthesized stimuli. In both Statistical word segmentation and Abstract
-rule learning, we found a natural speech advantage (Statistical word
-segmentation: \(\beta\) = 0.47 {[}0.23, 0.72{]}, \emph{z} = 3.8,
-\emph{p} \textless{} 0.01; Abstract rule learning: \(\beta\) = 0.27
-{[}0.05, 0.5{]}, \emph{z} = 2.35, \emph{p} = 0.02).
+We found that naturalness is a significant predictor for Label advantage
+in concept learning, with natural stimuli yielding larger effect sizes
+than representation-type stimuli (\(\beta\) = 0.23 {[}0.01, 0.45{]},
+\emph{z} = 2.06, \emph{p} = 0.04). Similarly, in both Statistical word
+segmentation and Abstract rule learning, we found a natural speech
+advantage (Statistical word segmentation: \(\beta\) = 0.47 {[}0.23,
+0.72{]}, \emph{z} = 3.8, \emph{p} \textless{} 0.01; Abstract rule
+learning: \(\beta\) = 0.27 {[}0.05, 0.5{]}, \emph{z} = 2.35, \emph{p} =
+0.02).
 
 \begin{CodeChunk}
 \begin{figure*}[h]
@@ -384,43 +414,18 @@ segmentation: \(\beta\) = 0.47 {[}0.23, 0.72{]}, \emph{z} = 3.8,
 \hypertarget{major-author}{%
 \subsubsection{Major author}\label{major-author}}
 
-Margoni \& Surian (2018) found evidence for authors-based bias in
-Prosocial Agents, where results produced by certain authors are
+Margoni \& Surian (2018) found evidence for an author-based bias in
+Prosocial Agents, where results produced by certain authors were
 consistently larger than others. We evaluated how prevalent this
-phenomenon is in the literature by coding a ``By Major Author''
-moderator. Authors are considered ``Major Author'' if they are listed as
+phenomenon was in the literature by coding a ``major author'' moderator.
+Authors are considered to be a ``major author'' if they are listed as
 authors in more than 15\% of the papers in the literature.
 
-We found evidence for Major Author effect in 7 datasets, where studies
-produced by the major author are larger than the rest of the papers. In
+We found evidence for a major author effect in 7 datasets, where studies
+produced by the major author were larger than the rest of the papers. In
 3 datasets, however, we also found the opposite patterns, where certain
 authors produced on average smaller effect sizes than the rest of the
 literature.
-
-\hypertarget{synthesis}{%
-\subsection{Synthesis}\label{synthesis}}
-
-Finally, we synthesized 23 datasets by grouping them based on the type
-of theoretical constructs: Cognitive, Communication, Sounds, and Words.
-We integrated the predictions from the best-fitting age-based models in
-Figure 2. We found a striking range of functional forms in the
-developmental trajectories across all types of theoretical constructs.
-
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
-
-In this paper, we presented a bird-eye view of developmental psychology
-by synthesizing 23 meta-analyses available on MetaLab. We evaluated four
-functional forms of the developmental trajectories and we found great
-diversity in the shapes of the best-fitting models for each domain. We
-also considered the moderating effects of different methodological
-factors, including the type of behavioral measure, the type of exposure
-phase, stimuli naturalness, and whether the work is done by a ``major
-author''. These factors moderate effect sizes from different domains in
-heterogeneous ways. Finally, we synthesized the data by integrating the
-predictions from all of the best-fitting models based on the type of
-theoretical constructs. We found a variety of developmental trajectories
-across all types of theoretical constructs.
 
 \begin{CodeChunk}
 \begin{figure}[H]
@@ -431,6 +436,57 @@ across all types of theoretical constructs.
 
 \caption[One column image]{One column image.}\label{fig:image}
 \end{figure}
+\end{CodeChunk}
+
+\hypertarget{synthesis}{%
+\subsection{Synthesis}\label{synthesis}}
+
+Finally, we synthesized all 23 datasets by grouping them based on the
+type of theoretical constructs they represented: Cognitive,
+Communication, Sounds, and Words. We integrated the predictions from the
+best-fitting age-based models in Figure 2, showing predictions across
+the range of measured phenomena. We found a striking range of functional
+forms in the developmental trajectories across all types of theoretical
+constructs. In particular, the magnitudes of some phenomena -- online
+word recognition, gaze following, and mutual exclusivity, for example --
+increased substantially over development. In contrast, others -- sound
+symbolism, categorization bias, and others -- stayed constant at a
+measurable level without showing developmental increases. We considered
+several explanations for these differences: one is that these
+meta-analyses might correspond to relatively more experience-independent
+biases. On the other hand, we cannot rule out cross-experiment
+confounding wherein experimenters test progressively harder stimuli with
+development, thus counteracting any developmental gains that might
+otherwise be measured.
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+How can we quantitatively describe developmental growth at scale?
+Meta-analysis is one promising method. In this paper, we presented a
+bird-eye view of developmental psychology by synthesizing 23
+meta-analyses available on MetaLab. We found great diversity in the
+shapes of the best-fitting models for each domain -- while some
+phenomena showed larger and larger effects with development, quite a
+number of others stayed constant, suggesting a distinction between small
+but measurable in-lab effects and behaviors that can easily be observed
+in individual children (effect sizes \textgreater{} 2). We also
+considered the moderating effects of different methodological factors,
+including the type of behavioral measure, the type of exposure phase,
+stimuli naturalness, and whether the work is done by a ``major author''.
+These factors moderate effect sizes from different domains in
+heterogeneous ways, though we did find evidence for naturalistic stimuli
+leading to larger effects in a number of studies.
+
+\begin{CodeChunk}
+\begin{figure*}[h]
+
+{\centering \includegraphics{figs/2-col-imageb-1} 
+
+}
+
+\caption[This image spans both columns]{This image spans both columns. And the caption text is limited to 0.8 of the width of the document.}\label{fig:2-col-imageb}
+\end{figure*}
 \end{CodeChunk}
 
 This current synthesis highlights the variation in developmental
@@ -558,6 +614,11 @@ Hunter, M. A., \& Ames, E. W. (1988). A multifactor model of infant
 preferences for novel and familiar stimuli. \emph{Advances in Infancy
 Research}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-kail1991developmental}{}}%
+Kail, R. (1991). Developmental change in speed of processing during
+childhood and adolescence. \emph{Psychological Bulletin}, \emph{109}(3),
+490.
+
 \leavevmode\vadjust pre{\hypertarget{ref-kvarven2020comparing}{}}%
 Kvarven, A., Strømland, E., \& Johannesson, M. (2020). Comparing
 meta-analyses and preregistered multiple-laboratory replication
@@ -578,16 +639,30 @@ Margoni, F., \& Surian, L. (2018). Infants' evaluation of prosocial and
 antisocial agents: A meta-analysis. \emph{Developmental Psychology},
 \emph{54}(8), 1445.
 
+\leavevmode\vadjust pre{\hypertarget{ref-mcmurray2007defusing}{}}%
+McMurray, B. (2007). Defusing the childhood vocabulary explosion.
+\emph{Science}, \emph{317}(5838), 631--631.
+
 \leavevmode\vadjust pre{\hypertarget{ref-meylan2022learning}{}}%
 Meylan, S. C., \& Bergelson, E. (2022). Learning through processing:
 Toward an integrated approach to early word learning. \emph{Annual
 Review of Linguistics}, \emph{8}, 77--99.
+
+\leavevmode\vadjust pre{\hypertarget{ref-paulus2022should}{}}%
+Paulus, M. (2022). Should infant psychology rely on the
+violation-of-expectation method? Not anymore. \emph{Infant and Child
+Development}, \emph{31}(1), e2306.
 
 \leavevmode\vadjust pre{\hypertarget{ref-salvadori2015probing}{}}%
 Salvadori, E., Blazsekova, T., Volein, A., Karap, Z., Tatone, D.,
 Mascaro, O., \& Csibra, G. (2015). Probing the strength of infants'
 preference for helpers over hinderers: Two replication attempts of
 hamlin and wynn (2011). \emph{PloS One}, \emph{10}(11), e0140570.
+
+\leavevmode\vadjust pre{\hypertarget{ref-stahl2022great}{}}%
+Stahl, A. E., \& Kibbe, M. M. (2022). Great expectations: The construct
+validity of the violation-of-expectation method for studying infant
+cognition. \emph{Infant and Child Development}, \emph{31}(6), e2359.
 
 \leavevmode\vadjust pre{\hypertarget{ref-viechtbauer2010conducting}{}}%
 Viechtbauer, W. (2010). Conducting meta-analyses in r with the metafor
