@@ -85,10 +85,31 @@ $^1$Department of Psychology, Stanford University, }
 \maketitle
 
 \begin{abstract}
-HAHA
+Young children acquire and develop a wide range of linguistic and
+cognitive skills in the first three years of life. Decades of
+experimental work have established a solid empirical foundation for our
+understanding of cognitive development in early childhood. However, most
+experimental studies are limited in statistical power and focus on
+specific psychological constructs, thus making them unsuitable for
+describing developmental growth at scale. Here, we turned to
+meta-analyses of experimental research. We conducted a
+meta-meta-analysis to consolidate and integrate 23 meta-analyses
+compiled on MetaLab, a community-augmented meta-analysis platform. We
+found great diversity in the best-fitting functional forms of the age
+model across different research areas. In some domains, the effect size
+of the experimental phenomenon increases substantially with age
+(e.g.~Online word recognition), whereas in other domains the effect size
+remains constant throughout early childhood (e.g.~Sound symbolism). In
+addition, we evaluated the impact of a range of methodological factors,
+including behavioral measures, exposure phase, stimuli naturalness, and
+whether the study is produced by a prominent author in the particular
+research area. We showed that these moderators have diverse influences
+on the effect sizes of the studies. Overall, our work sheds light on the
+heterogeneous nature of developmental trajectories and the subtle
+interactions between research methods and experimental outcomes.
 
 \textbf{Keywords:}
-pikachu; mimikyu; ditto; jigglypufff
+meta-analysis; cognitive development; language learning
 \end{abstract}
 
 \hypertarget{introduction}{%
@@ -138,26 +159,25 @@ functional forms of developmental trajectories.
 Meta-analysis can also shed light on the relationships between methods
 and theories. Research methods and theories are fundamentally
 intertwined, and this is especially true for developmental psychology
-{[}@\hspace{0pt}\hspace{0pt}dale2022fundamental{]}. Developmental
-theories are often based on interpretations of experimental results,
-which are produced by methods that even small changes to the parameters
-would substantially change the outcomes. One example is the influence of
-familiarization time. It has been proposed that the amount of exposure
-infants have prior to the test events can influence infants' direction
-of preference (i.e.~novelty preference or familiarity preference)
-(Hunter \& Ames, 1988). Although the empirical evidence for this theory
-is mixed, this ambiguity has significant downstream consequences on our
-understanding of infants' cognitive capabilities (Bergmann \& Cristia,
-2016). Debates about infants' arithmetic competencies or their
-evaluations of social agents are often centered around the direction of
-preferences (Infants arithmetic competencies: Clearfield \& Westfahl,
-2006; Wakeley, Rivera, \& Langer, 2000; Wynn, 1993; Evaluation of social
-agents: Hamlin, Wynn, \& Bloom, 2007; Salvadori et al., 2015). Due to
-the time and resources required for developmental studies, it is often
-difficult to directly evaluate the impact of subtle changes in
-parameters. Therefore, meta-analytic methods provide a unique
-opportunity to investigate the effects of methodological factors on
-research findings.
+(Dale, Warlaumont, \& Johnson, 2022). Developmental theories are often
+based on interpretations of experimental results, which are produced by
+methods that even small changes to the parameters would substantially
+change the outcomes. One example is the influence of familiarization
+time. It has been proposed that the amount of exposure infants have
+prior to the test events can influence infants' direction of preference
+(i.e.~novelty preference or familiarity preference) (Hunter \& Ames,
+1988). Although the empirical evidence for this theory is mixed, this
+ambiguity has significant downstream consequences on our understanding
+of infants' cognitive capabilities (Bergmann \& Cristia, 2016). Debates
+about infants' arithmetic competencies or their evaluations of social
+agents are often centered around the direction of preferences (Infants
+arithmetic competencies: Clearfield \& Westfahl, 2006; Wakeley, Rivera,
+\& Langer, 2000; Wynn, 1993; Evaluation of social agents: Hamlin, Wynn,
+\& Bloom, 2007; Salvadori et al., 2015). Due to the time and resources
+required for developmental studies, it is often difficult to directly
+evaluate the impact of subtle changes in parameters. Therefore,
+meta-analytic methods provide a unique opportunity to investigate the
+effects of methodological factors on research findings.
 
 Last but not least, meta-analytic methods make it possible to compare
 and connect research findings across research areas. The use of effect
@@ -210,7 +230,7 @@ limitations of our current work.
 \section{Methods}\label{methods}}
 
 \hypertarget{datasets}{%
-\subsection{Datasets}\label{datasets}}
+\subsubsection{Datasets}\label{datasets}}
 
 Datasets were retrieved from \texttt{metalabr}, the R package built from
 Metalab. As of November 2022, the package includes 30 individual
@@ -233,7 +253,7 @@ in each dataset.
 The final dataset and analysis scripts are available at X.
 
 \hypertarget{analytic-methods}{%
-\subsection{Analytic Methods}\label{analytic-methods}}
+\subsubsection{Analytic Methods}\label{analytic-methods}}
 
 All analyses were conducted in R using the \texttt{metafor} package
 (Viechtbauer, 2010). We specified multi-level random effect models with
@@ -250,38 +270,38 @@ corrected Akaike Information Criterion (AICc).
 \subsection{Functional form of developmental
 curves}\label{functional-form-of-developmental-curves}}
 
-\begin{table*}
+\begin{table*}[ht]
 \begin{tabular}{l|r|r|r|r|r|r|r}
 
 \hline
-\textbf{Dataset} & N ES & N Participants & ES & Linear & Log & Quadratic & Constant\\
+\textbf{Dataset} & N ES & N Participants & ES estimates & Linear & Log & Quad. & Const.\\
 \hline
-Label advantage in concept learning & 100 & 1644 & 0.36 & 169.48 & \textbf{168.53} & 170.16 & 170.89\\
-Vowel discrimination (native) & 143 & 2418 & 0.59 & 256.49 & 256.13 & 256.78 & \textbf{255.15}\\
-Vowel discrimination (non-native) & 49 & 600 & 0.65 & 73.25 & 73.36 & 73.15 & \textbf{71.69}\\
-Statistical word segmentation & 103 & 804 & -0.08 & 128.84 & 129.01 & 128.62 & \textbf{127.50}\\
-Online word recognition & 14 & 330 & 1.37 & \textbf{46.50} & 46.73 & 46.65 & 48.72\\
-Mutual exclusivity & 131 & 2222 & 1.27 & 421.60 & \textbf{415.85} & 432.76 & 453.07\\
-Sound symbolism & 44 & 425 & 0.16 & 58.20 & \textbf{58.16} & 58.83 & 61.04\\
-Categorization bias & 80 & 382 & 0.25 & 300.29 & \textbf{299.99} & 300.37 & 300.90\\
-Familiar word recognition & 34 & 586 & 0.54 & 27.46 & 28.32 & \textbf{27.18} & 28.86\\
-Abstract rule learning & 95 & 1123 & 0.22 & 140.80 & 141.34 & \textbf{140.47} & 140.91\\
-Switch task & 143 & 2764 & -0.16 & 204.79 & 204.81 & 204.73 & \textbf{203.67}\\
-Mispronunciation sensitivity & 249 & 2122 & 0.45 & 620.05 & 628.16 & \textbf{613.67} & 644.40\\
-Prosocial agents & 61 & 1244 & 0.40 & 82.16 & 81.95 & 82.23 & \textbf{80.08}\\
-Simple arithmetic competences & 14 & 369 & 0.25 & 22.91 & 23.01 & 22.81 & \textbf{16.26}\\
-Symbolic play & 196 & 7148 & 0.63 & 234.15 & 234.11 & 234.13 & \textbf{233.57}\\
-Natural speech preference & 55 & 786 & 0.44 & 111.40 & 112.01 & \textbf{110.97} & 111.83\\
-Cross-situational word learning & 48 & 2241 & 0.67 & 79.81 & 81.62 & \textbf{79.70} & 83.71\\
-Language discrimination and preference & 153 & 2060 & -0.13 & 264.70 & 265.59 & \textbf{262.65} & 264.95\\
-Syntactic bootstrapping & 60 & 832 & 0.24 & 107.28 & \textbf{106.99} & 107.57 & 107.47\\
-Statistical sound category learning (habituation) & 11 & 350 & 0.56 & 33.47 & 34.54 & 32.94 & \textbf{30.46}\\
-Gaze following (combined) & 81 & 1407 & 0.81 & 151.53 & 159.88 & \textbf{149.47} & 193.20\\
-Word Segmentation (combined) & 315 & 2910 & 0.20 & 328.83 & 328.60 & 329.16 & \textbf{327.55}\\
-Infant directed speech preference & 83 & 985 & 0.47 & 70.17 & 70.87 & 70.06 & \textbf{69.13}\\
+Label advantage in concept learning & 100 & 1644 & 0.36 [0.23,0.48] & 169 & \textbf{169} & 170 & 171\\
+Vowel discrimination (native) & 143 & 2418 & 0.59 [0.43,0.75] & 256 & 256 & 258 & \textbf{255}\\
+Vowel discrimination (non-native) & 49 & 600 & 0.65 [0.2,1.1] & 73 & 73 & 73 & \textbf{72}\\
+Statistical word segmentation & 103 & 804 & -0.08 [-0.18,0.02] & 129 & 129 & 129 & \textbf{128}\\
+Online word recognition & 14 & 330 & 1.37 [0.78,1.96] & \textbf{47} & 47 & 47 & 49\\
+Mutual exclusivity & 131 & 2222 & 1.27 [0.99,1.56] & 422 & \textbf{416} & 433 & 453\\
+Sound symbolism & 44 & 425 & 0.16 [-0.01,0.33] & 58 & \textbf{58} & 59 & 61\\
+Categorization bias & 80 & 382 & 0.25 [-0.54,1.05] & 300 & \textbf{300} & 300 & 301\\
+Familiar word recognition & 34 & 586 & 0.54 [0.38,0.69] & 27 & 28 & \textbf{27} & 29\\
+Abstract rule learning & 95 & 1123 & 0.22 [0.07,0.37] & 141 & 141 & \textbf{140} & 141\\
+Switch task & 143 & 2764 & -0.16 [-0.25,-0.06] & 205 & 205 & 205 & \textbf{204}\\
+Mispronunciation sensitivity & 249 & 2122 & 0.45 [0.24,0.66] & 620 & 628 & \textbf{614} & 644\\
+Prosocial agents & 61 & 1244 & 0.4 [0.29,0.52] & 82 & 82 & 82 & \textbf{80}\\
+Simple arithmetic competences & 14 & 369 & 0.25 [0.04,0.46] & 23 & 23 & 23 & \textbf{16}\\
+Symbolic play & 196 & 7148 & 0.63 [0.53,0.72] & 234 & 234 & 234 & \textbf{234}\\
+Natural speech preference & 55 & 786 & 0.44 [0.23,0.65] & 111 & 112 & \textbf{111} & 112\\
+Cross-situational word learning & 48 & 2241 & 0.67 [0.5,0.84] & 80 & 82 & \textbf{80} & 84\\
+Language discrimination and preference & 153 & 2060 & -0.13 [-0.26,0] & 265 & 266 & \textbf{263} & 265\\
+Syntactic bootstrapping & 60 & 832 & 0.24 [0.03,0.44] & 107 & \textbf{107} & 108 & 107\\
+Statistical sound category learning & 11 & 350 & 0.56 [0.19,0.93]& 33 & 35 & 33 & \textbf{30}\\
+Gaze following & 81 & 1407 & 0.81 [0.61,1.01] & 152 & 160 & \textbf{149} & 193\\
+Word Segmentation & 315 & 2910 & 0.2 [0.14,0.26] & 329 & 329 & 329 & \textbf{328}\\
+Infant directed speech preference & 83 & 985 & 0.47 [0.28,0.65] & 70 & 71 & 70 & \textbf{69k}\\
 \hline
 \end{tabular}
-\caption{\label{demo-table}Your caption.}
+\caption{\label{demo-table}This table summarize the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Linear, Logarithmic, Quadratic and the Constant. The values were rounded to integers and the bold values are the smallest values among the four functional forms before rounding.}
 \end{table*}
 
 Our first research question was about the functional form of the
@@ -401,13 +421,13 @@ learning: \(\beta\) = 0.27 {[}0.05, 0.5{]}, \emph{z} = 2.35, \emph{p} =
 0.02).
 
 \begin{CodeChunk}
-\begin{figure*}[h]
+\begin{figure*}[t!]
 
 {\centering \includegraphics{figs/2-col-image-1} 
 
 }
 
-\caption[This image spans both columns]{This image spans both columns. And the caption text is limited to 0.8 of the width of the document.}\label{fig:2-col-image}
+\caption[Each panel shows the moderator estimates]{Each panel shows the moderator estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For exposure phase, the baseline level is conditioning. Red, blue, and green represent the estimates for studies using familiarization, test-only, and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimate for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech).}\label{fig:2-col-image}
 \end{figure*}
 \end{CodeChunk}
 
@@ -434,7 +454,7 @@ literature.
 
 }
 
-\caption[One column image]{One column image.}\label{fig:image}
+\caption[Each dot represents the estimate for studies produced by major author in the particular research area, compared to other studies in the same research area]{Each dot represents the estimate for studies produced by major author in the particular research area, compared to other studies in the same research area.}\label{fig:image}
 \end{figure}
 \end{CodeChunk}
 
@@ -479,13 +499,13 @@ heterogeneous ways, though we did find evidence for naturalistic stimuli
 leading to larger effects in a number of studies.
 
 \begin{CodeChunk}
-\begin{figure*}[h]
+\begin{figure*}[h!]
 
 {\centering \includegraphics{figs/2-col-imageb-1} 
 
 }
 
-\caption[This image spans both columns]{This image spans both columns. And the caption text is limited to 0.8 of the width of the document.}\label{fig:2-col-imageb}
+\caption[Predictions of the best-fitting functional forms of the age model]{Predictions of the best-fitting functional forms of the age model. X-axis is age in months. Y-axis is effect size. For each research area, we plotted the predicted values for the age range included in the dataset.}\label{fig:2-col-imageb}
 \end{figure*}
 \end{CodeChunk}
 
@@ -593,6 +613,10 @@ M. (2019). Context shapes early diversity in abstract thought.
 Clearfield, M. W., \& Westfahl, S. M.-C. (2006). Familiarization in
 infants' perception of addition problems. \emph{Journal of Cognition and
 Development}, \emph{7}(1), 27--43.
+
+\leavevmode\vadjust pre{\hypertarget{ref-dale2022fundamental}{}}%
+Dale, R., Warlaumont, A. S., \& Johnson, K. L. (2022). The fundamental
+importance of method to theory. \emph{Nature Reviews Psychology}, 1--12.
 
 \leavevmode\vadjust pre{\hypertarget{ref-frank2017collaborative}{}}%
 Frank, M. C., Bergelson, E., Bergmann, C., Cristia, A., Floccia, C.,

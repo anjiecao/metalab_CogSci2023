@@ -1,7 +1,7 @@
 plot_moderators <- function(all_mod_df){
   
   axis_font_size = 6
-  title_font_size = 8
+  title_font_size = 7
   ## behavioral measure
   
   # shorten label 
@@ -13,14 +13,14 @@ plot_moderators <- function(all_mod_df){
       dataset ==  "Label advantage in concept learning" ~ "Label adv", 
       dataset ==  "Language discrimination and preference" ~ "Lang disc & pref", 
       dataset ==  "Mutual exclusivity" ~ "Mutual exclusivity", 
-      dataset ==  "Natural speech preference"  ~ "Natural speech preference", 
+      dataset ==  "Natural speech preference"  ~ "Nat. speech pref", 
       dataset ==  "Sound symbolism"  ~ "Sound symbolism" , 
-      dataset ==  "Syntactic bootstrapping"     ~ "Syntactic bootstrapping", 
+      dataset ==  "Syntactic bootstrapping"     ~ "Syntac. bootstrapping", 
       dataset ==  "Vowel discrimination (native)"  ~ "Vowel disc (native)" , 
       dataset ==  "Vowel discrimination (non-native)" ~ "Vowel disc (non-native)", 
       dataset ==  "Abstract rule learning" ~ "Abstract rule learning", 
       dataset ==  "Familiar word recognition" ~ "Fam word recog", 
-      dataset ==  "Mispronunciation sensitivity" ~ "Mispronunciation sensitivity", 
+      dataset ==  "Mispronunciation sensitivity" ~ "Mispronun. sensitivi.", 
       dataset ==  "Simple arithmetic competences" ~ "Arithmetic", 
       dataset ==  "Word Segmentation (combined)" ~ "Word seg", 
       dataset ==  "Categorization bias" ~ "Categorization bias", 
@@ -37,7 +37,7 @@ plot_moderators <- function(all_mod_df){
     all_mod_df %>% 
     filter(grepl("Behavioral", type)) %>% 
     mutate(group = case_when(
-      group == "Other" ~ "Manual", 
+      group == " Other" ~ "Manual", 
       TRUE ~ group
     )) %>% 
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
@@ -48,7 +48,7 @@ plot_moderators <- function(all_mod_df){
     ylim(-2.5, 3)+ 
     xlab("") + 
     ylab("") + 
-    labs(title = "Behavioral Measure (Baseline: looking)") + 
+    labs(title = "Behavioral Measure \n (Baseline: looking)") + 
     theme_few() +
     theme(
       legend.position = "top",
@@ -76,7 +76,8 @@ plot_moderators <- function(all_mod_df){
     ylim(-2.5, 3)+ 
     xlab("") + 
     ylab("") + 
-    labs(title = "Exposure phase (Baseline: Conditioning)") + 
+    labs(title = "Exposure phase \n (Baseline: Conditioning)") + 
+    guides(colour = guide_legend(nrow = 2))+
     theme_few() +
     theme(
       legend.position = "top",
@@ -105,10 +106,10 @@ plot_moderators <- function(all_mod_df){
     ylim(-2.5, 3)+ 
     xlab("") + 
     ylab("") + 
-    labs(title = "Stimuli Naturalness (Baseline: Artificial stimulus)") + 
+    labs(title = "Stimuli Naturalness \n (Baseline: Artificial stimulus)") + 
     theme_few() +
     theme(
-      axis.text=element_text(size=axis_font_size),
+      axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust = 1),
       legend.position = "none",
       legend.title = element_blank(),
       
@@ -119,7 +120,7 @@ plot_moderators <- function(all_mod_df){
 
 
 
-  (bm_p | ep_mod_p) / (natural_mod_p)
+  (bm_p | ep_mod_p | natural_mod_p)
   
   
 }

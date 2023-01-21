@@ -11,11 +11,12 @@ author-information: >
     }
 
 abstract: >
-  HAHA
+  Young children acquire and develop a wide range of linguistic and cognitive skills in the first three years of life. Decades of experimental work have established a solid empirical foundation for our understanding of cognitive development in early childhood. However, most experimental studies are limited in statistical power and focus on specific psychological constructs, thus making them unsuitable for describing developmental growth at scale. Here, we turned to meta-analyses of experimental research. We conducted a meta-meta-analysis to consolidate and integrate 23 meta-analyses compiled on MetaLab, a community-augmented meta-analysis platform. We found great diversity in the best-fitting functional forms of the age model across different research areas. In some domains, the effect size of the experimental phenomenon increases substantially with age (e.g. Online word recognition), whereas in other domains the effect size remains constant throughout early childhood (e.g. Sound symbolism). In addition, we evaluated the impact of a range of methodological factors, including behavioral measures, exposure phase, stimuli naturalness, and whether the study is produced by a prominent author in the particular research area. We showed that these moderators have diverse influences on the effect sizes of the studies. Overall, our work sheds light on the heterogeneous nature of developmental trajectories and the subtle interactions between research methods and experimental outcomes. 
+
 
     
 keywords: >
-    pikachu; mimikyu; ditto; jigglypufff
+    meta-analysis; cognitive development; language learning
 
     
 output: 
