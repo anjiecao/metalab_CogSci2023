@@ -3,7 +3,7 @@
 
 Datasets were retrieved from `metalabr`, the R package built from Metalab. As of November 2022, the package includes 30 individual meta-analysis datasets covering different research domains in language learning and cognitive development. We removed 5 datasets from the final analysis, including 2 with data quality issues (Word segmentation neuro; Phonotactic learning), 3 due to being observational studies or including studies with quasi-experimental design (Pointing and vocabulary concurrent; Pointing and vocabulary, longitudinal; Video deficit)). We modified 2 datasets to reflect a more accurate representation of the literature and combined two pairs of datasets because they measure theoretically identical constructs. To minimize the heterogeneity in our datasets, we also excluded effect sizes calculated from participants with clinical diagnoses. 
 
-The final dataset contained 23 meta-analyses. Table 1 provides a summary of the, along with the number of effect sizes and participants included in each dataset. 
+The final dataset contained 23 meta-analyses. Table 1 provides a summary of the datasets, along with the number of effect sizes and participants included in each dataset. 
  
 The final dataset and analysis scripts are available at X. 
 

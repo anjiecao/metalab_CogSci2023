@@ -95,16 +95,14 @@ describing developmental growth at scale. Here, we turned to
 meta-analyses of experimental research. We conducted a
 meta-meta-analysis to consolidate and integrate 23 meta-analyses
 compiled on MetaLab, a community-augmented meta-analysis platform. We
-found great diversity in the best-fitting functional forms of the age
-model across different research areas. In some domains, the effect size
-of the experimental phenomenon increases substantially with age
-(e.g.~Online word recognition), whereas in other domains the effect size
-remains constant throughout early childhood (e.g.~Sound symbolism). In
-addition, we evaluated the impact of a range of methodological factors,
-including behavioral measures, exposure phase, stimuli naturalness, and
-whether the study is produced by a prominent author in the particular
-research area. We showed that these moderators have diverse influences
-on the effect sizes of the studies. Overall, our work sheds light on the
+found that most datasets can not meaningfully distinguish different
+functional forms, but in those that could, there is great diversity in
+the best-fitting functional forms of the age model. In addition, we
+evaluated the impact of a range of methodological factors, including
+behavioral measures, exposure phase, stimuli naturalness, and whether
+the study is produced by a prominent author in the particular research
+area. We showed that these moderators have diverse influences on the
+effect sizes of the studies. Overall, our work sheds light on the
 heterogeneous nature of developmental trajectories and the subtle
 interactions between research methods and experimental outcomes.
 
@@ -191,15 +189,15 @@ multiple meta-analyses. Towards that aim, MetaLab was established to
 provide an open database of meta-analyses (Bergmann et al., 2018).
 Developmental researchers are invited to deposit their meta-analysis
 dataset into MetaLab, and they are encouraged to use the datasets for
-custom analyses. As of November 2022, Metalab contains X effect sizes
-from 30 different meta-analyses. This resource allows the beginnings of
-a quantitative synthesis across different research areas in
-developmental psychology.
+custom analyses. As of November 2022, Metalab contains 2,497 effect
+sizes from 30 different meta-analyses. This resource allows the
+beginnings of a quantitative synthesis across different research areas
+in developmental psychology.
 
 In particular, we address three separate questions. First, we would like
 to investigate the shape of developmental curves across domains. The
 form of growth curves has been of interest in a lot of areas of
-developmental research (e.g., exponential growths in vocabulary:
+developmental research (e.g., accelerating growth in vocabulary:
 McMurray, 2007; asymptotic decreases in reaction time: Kail, 1991) These
 nuanced descriptions of developmental trajectories allow for a more
 precise understanding of the underlying mechanisms driving these
@@ -247,8 +245,8 @@ datasets, we also excluded effect sizes calculated from participants
 with clinical diagnoses.
 
 The final dataset contained 23 meta-analyses. Table 1 provides a summary
-of the, along with the number of effect sizes and participants included
-in each dataset.
+of the datasets, along with the number of effect sizes and participants
+included in each dataset.
 
 The final dataset and analysis scripts are available at X.
 
@@ -281,40 +279,59 @@ Vowel discrimination (native) & 143 & 2418 & 0.59 [0.43,0.75] & 256 & 256 & 258 
 Vowel discrimination (non-native) & 49 & 600 & 0.65 [0.2,1.1] & 73 & 73 & 73 & \textbf{72}\\
 Statistical word segmentation & 103 & 804 & -0.08 [-0.18,0.02] & 129 & 129 & 129 & \textbf{128}\\
 Online word recognition & 14 & 330 & 1.37 [0.78,1.96] & \textbf{47} & 47 & 47 & 49\\
-Mutual exclusivity & 131 & 2222 & 1.27 [0.99,1.56] & 422 & \textbf{416} & 433 & 453\\
+Mutual exclusivity & 131 & 2222 & 1.27 [0.99,1.56] & 422 & \textbf{416*} & 433 & 453\\
 Sound symbolism & 44 & 425 & 0.16 [-0.01,0.33] & 58 & \textbf{58} & 59 & 61\\
 Categorization bias & 80 & 382 & 0.25 [-0.54,1.05] & 300 & \textbf{300} & 300 & 301\\
 Familiar word recognition & 34 & 586 & 0.54 [0.38,0.69] & 27 & 28 & \textbf{27} & 29\\
 Abstract rule learning & 95 & 1123 & 0.22 [0.07,0.37] & 141 & 141 & \textbf{140} & 141\\
 Switch task & 143 & 2764 & -0.16 [-0.25,-0.06] & 205 & 205 & 205 & \textbf{204}\\
-Mispronunciation sensitivity & 249 & 2122 & 0.45 [0.24,0.66] & 620 & 628 & \textbf{614} & 644\\
+Mispronunciation sensitivity & 249 & 2122 & 0.45 [0.24,0.66] & 620 & 628 & \textbf{614*} & 644\\
 Prosocial agents & 61 & 1244 & 0.4 [0.29,0.52] & 82 & 82 & 82 & \textbf{80}\\
 Simple arithmetic competences & 14 & 369 & 0.25 [0.04,0.46] & 23 & 23 & 23 & \textbf{16}\\
 Symbolic play & 196 & 7148 & 0.63 [0.53,0.72] & 234 & 234 & 234 & \textbf{234}\\
 Natural speech preference & 55 & 786 & 0.44 [0.23,0.65] & 111 & 112 & \textbf{111} & 112\\
-Cross-situational word learning & 48 & 2241 & 0.67 [0.5,0.84] & 80 & 82 & \textbf{80} & 84\\
+Cross-situational word learning & 48 & 2241 & 0.67 [0.5,0.84] & 80* & 82* & \textbf{80*} & 84\\
 Language discrimination and preference & 153 & 2060 & -0.13 [-0.26,0] & 265 & 266 & \textbf{263} & 265\\
 Syntactic bootstrapping & 60 & 832 & 0.24 [0.03,0.44] & 107 & \textbf{107} & 108 & 107\\
-Statistical sound category learning & 11 & 350 & 0.56 [0.19,0.93]& 33 & 35 & 33 & \textbf{30}\\
-Gaze following & 81 & 1407 & 0.81 [0.61,1.01] & 152 & 160 & \textbf{149} & 193\\
+Statistical sound category learning & 11 & 350 & 0.56 [0.19,0.93]& 33* & 35 & 33* & \textbf{30*}\\
+Gaze following & 81 & 1407 & 0.81 [0.61,1.01] & 152* & 160 & \textbf{149*} & 193\\
 Word Segmentation & 315 & 2910 & 0.2 [0.14,0.26] & 329 & 329 & 329 & \textbf{328}\\
-Infant directed speech preference & 83 & 985 & 0.47 [0.28,0.65] & 70 & 71 & 70 & \textbf{69k}\\
+Infant directed speech preference & 83 & 985 & 0.47 [0.28,0.65] & 70 & 71 & 70 & \textbf{69}\\
 \hline
 \end{tabular}
-\caption{\label{demo-table}This table summarize the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Linear, Logarithmic, Quadratic and the Constant. The values were rounded to integers and the bold values are the smallest values among the four functional forms before rounding.}
+\caption{\label{demo-table}This table summarize the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Linear, Logarithmic, Quadratic and the Constant. The values were rounded to integers and the bold values are the smallest values among the four functional forms before rounding. Asterisks mark the models that are significantly better than the other models in the same research area.}
 \end{table*}
 
 Our first research question was about the functional form of the
 developmental trajectories we observed. We considered four specific
 forms: linear, logarithmic, quadratic, and constant, each considered as
 an age-related fixed effect. We evaluated the models based on the
-corrected AICc (Table 1). 10 out of the 23 datasets had the constant
-model as the best-fitting model. 7 and 5` datasets' best-fitting models
-are the Quadratic model and logarithmic model, respectively. Finally,
-among all datasets considered, Online Word Recognition was the only
-domain in which the linear age model provides the best fit. Model
-evaluation based on Bayesian Information Criterion (BIC) yielded similar
-results with little discrepancy.
+corrected AICc (Table 1).
+
+When using AICc in model selection, the value needs to be contextualized
+in relation to the lowest AICc. Under the conventional interpretation,
+\(\Delta_{i}\) (\(AIC_i - AIC_{min}\), where \(AIC_i\) is the model
+being evaluated, and \(AIC_{min}\) is the lowest AIC among the set of
+models evaluated) less than 4 suggests minimal evidence against the
+model with higher AICc; \(\Delta_{i}\) above 4 suggests substantial
+support for the model with lower AICc (Burnham \& Anderson, 2004). With
+this interpretation framework, the functional forms in most domains can
+not be meaningfully distinguished, with exceptions in 6 domains. In
+Mutual Exclusivity, there is a strong preference for the logarithmic
+model (\(\Delta_{Linear}\) = 5.75 ; \(\Delta_{Quad.}\) = 16.91;
+\(\Delta_{Const.}\) = 37.21). We also found a strong preference for the
+quadratic model in Mispronunciation sensitivity (\(\Delta_{Linear}\) =
+6.39; \(\Delta_{Const.}\) = 30.74; \(\Delta_{Log}\) = 14.49) and a
+strong preference for the constant model in Simple arithmetic competence
+(\(\Delta_{Linear}\) = 6.65; \(\Delta_{Quad.}\) = 6.55; \(\Delta_{Log}\)
+= 6.74). The comparison is less clear-cut in Gaze following, where there
+is support for the Quadratic model against the Constant model and the
+Logarithmic model ( \(\Delta_{Const.}\) = 43.73; \(\Delta_{Log}\) =
+10.41), but the Linear model is comparable with the Quadaratic model
+(\(\Delta_{Linear}\) = 2.07). Finally, in Statistical sound category
+learning and Cross situational word learning, we only found evidence
+against the logarithmic model (\(\Delta_{Log}\) = 4.08) and the constant
+model (\(\Delta_{Log}\) = 4.01), respectively.
 
 \hypertarget{methodological-moderators}{%
 \subsection{Methodological Moderators}\label{methodological-moderators}}
@@ -356,14 +373,10 @@ looking studies (\(\beta\) = 0.61 {[}0.24, 0.97{]}, \emph{z} = 3.29,
 \emph{p} \textless{} 0.01).
 
 We also explored whether there would be an interaction between the
-research methods and the age of participants. There was limited evidence
-for such interaction. The inclusion of interaction terms only improved
-the AICc in 3 domains (Label advantage in concept learning; Language
-discrimination and preference; Mutual exclusivity). Of all the
-interaction models, only the Language discrimination and preference
-showed a significant positive interaction effect between the manual
-behavioral measure and age (\(\beta\) = 0.01 {[}0, 0.02{]}, \emph{z} =
-2.19, \emph{p} = 0.03).
+research method and participants' age. The inclusion of interaction
+terms did not meaningfully improve the AICc of any of the main model
+(All \(\Delta_{interaction}\)s \textless{} 2). The current datasets can
+not distinguish between the interaction effect and the main effect.
 
 \hypertarget{exposure-phase}{%
 \subsubsection{Exposure Phase}\label{exposure-phase}}
@@ -404,30 +417,30 @@ larger effect sizes than the conditioning studies (\(\beta\) = 1.65
 
 Next, we considered the effect of stimuli type. We focused on one key
 dimension: naturalness. For primarily visual stimuli, we considered
-``naturalness'' to mean stimuli that use real-world objects
-(e.g.~puppets, blocks). We compared these natural stimuli with
-representation-type stimuli, such as pictures, videos, or drawings. In
-primarily auditory stimuli, we compared natural speech with synthesized
-stimuli.
+``natural'' to mean stimuli that use real-world objects (e.g.~puppets,
+blocks). We compared these natural stimuli with representation-type
+stimuli, such as pictures, videos, or drawings. In primarily auditory
+stimuli, we compared recorded natural speech with synthesized stimuli.
 
-We found that naturalness is a significant predictor for Label advantage
-in concept learning, with natural stimuli yielding larger effect sizes
-than representation-type stimuli (\(\beta\) = 0.23 {[}0.01, 0.45{]},
-\emph{z} = 2.06, \emph{p} = 0.04). Similarly, in both Statistical word
-segmentation and Abstract rule learning, we found a natural speech
-advantage (Statistical word segmentation: \(\beta\) = 0.47 {[}0.23,
-0.72{]}, \emph{z} = 3.8, \emph{p} \textless{} 0.01; Abstract rule
-learning: \(\beta\) = 0.27 {[}0.05, 0.5{]}, \emph{z} = 2.35, \emph{p} =
-0.02).
+Natural stimuli across modalities has advantages over artificial
+stimuli. We found that naturalness is a significant predictor for Label
+advantage in concept learning, with natural stimuli yielding larger
+effect sizes than representation-type stimuli (\(\beta\) = 0.23 {[}0.01,
+0.45{]}, \emph{z} = 2.06, \emph{p} = 0.04). Similarly, in both
+Statistical word segmentation and Abstract rule learning, we found a
+natural speech advantage (Statistical word segmentation: \(\beta\) =
+0.47 {[}0.23, 0.72{]}, \emph{z} = 3.8, \emph{p} \textless{} 0.01;
+Abstract rule learning: \(\beta\) = 0.27 {[}0.05, 0.5{]}, \emph{z} =
+2.35, \emph{p} = 0.02).
 
 \begin{CodeChunk}
 \begin{figure*}[t!]
 
-{\centering \includegraphics{figs/2-col-image-1} 
+{\centering \includegraphics{figs/mod_plot-1} 
 
 }
 
-\caption[Each panel shows the moderator estimates]{Each panel shows the moderator estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For exposure phase, the baseline level is conditioning. Red, blue, and green represent the estimates for studies using familiarization, test-only, and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimate for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech).}\label{fig:2-col-image}
+\caption[Each panel shows the moderator estimates]{Each panel shows the moderator estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For exposure phase, the baseline level is conditioning. Red, blue, and green represent the estimates for studies using familiarization, test-only, and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimate for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech).}\label{fig:mod_plot}
 \end{figure*}
 \end{CodeChunk}
 
@@ -439,7 +452,12 @@ Prosocial Agents, where results produced by certain authors were
 consistently larger than others. We evaluated how prevalent this
 phenomenon was in the literature by coding a ``major author'' moderator.
 Authors are considered to be a ``major author'' if they are listed as
-authors in more than 15\% of the papers in the literature.
+authors in more than 15\% of the papers in the research area. When
+multiple major authors co-authored the same set of publications, we
+considered one author from that author group. When multiple authors are
+considered as major authors but are associated with different
+publications, we selected the ones with the most publications in the
+research area
 
 We found evidence for a major author effect in 7 datasets, where studies
 produced by the major author were larger than the rest of the papers. In
@@ -516,11 +534,11 @@ different cognitive and linguistic skills as they grow (Meylan \&
 Bergelson, 2022; Wilks, Gerber, \& Erdie-Lalena, 2010). Our findings
 suggest that this view is missing two important details. First, at any
 given age, psychological constructs could have a wide range of effect
-sizes. For example, at 15 months of age, the predicted effect sizes for
-communication skills range from X (DOMAIN NAME) to X (DOMAIN NAME). The
-differences between the strengths of the effect may reflect the
-differences in how these skills contribute to communication, with some
-playing a more significant role than others. In addition, the
+sizes. For example, at 20 months of age, the predicted effect sizes for
+communication skills range from 0.16 (Switch task) to 2.18 (Gaze
+following). The differences between the strengths of the effect may
+reflect the differences in how these skills contribute to communication,
+with some playing a more significant role than others. In addition, the
 development of these skills could follow significantly different
 trajectories, with some increasing exponentially with age and others
 staying constant throughout early childhood. The heterogeneity of the
@@ -536,32 +554,30 @@ phase) could significantly alter the effect sizes. Moreover, methods'
 impact varies across domains, with some domains being more susceptible
 to methodological factors than others. Therefore, the developmental
 trajectories that we document could be influenced by researchers
-adapting their methods to participants of different ages. In fact, we
-have found that the inclusion of methodological moderators could change
-the functional form of the best-fitting models. For example, in Infant
-Directed Speech preference, the winning functional form for an age-only
-model is constant (STATS? ). However, when the Exposure Phase moderator
-is included, the best-fitting model includes age as a linear term
-(STATS? ). Our findings call attention to the importance of
-understanding methods' nuances: rather than treating methods as a
-perfect mirror perfectly reflecting the phenomenon, they should be
-regarded as an imperfect lens that could distort our perception of the
-phenomenon.
+adapting their methods to participants of different ages. Our findings
+call attention to the importance of understanding methods' nuances:
+rather than treating methods as a perfect mirror perfectly reflecting
+the phenomenon, they should be regarded as an imperfect lens that could
+distort our perception of the phenomenon.
 
 Of course, the same can be said about meta-analysis. Meta-analysis is
-not a perfect tool, and can often produce effect sizes significantly
-larger than a comparable large-scale replication (Kvarven, Strømland, \&
-Johannesson, 2020). Part of the discrepancy can be attributed to the
-heterogeneity of research methods that are often minimized in a
-large-scale replication (Lewis, Mathur, VanderWeele, \& Frank, 2020).
-While we have included methodological moderators in our analysis, it is
-highly likely that the coded moderators did not fully reflect the
-subtlety of research methods. However, the ``Major author'' effect found
-in many research domains could provide a window into understanding the
-workings of the research method. In the future, we could compare and
-contrast the methods used by ``major authors'' and those by others.
-Doing so would allow us to pinpoint the differences and understand which
-aspects of the methods really matter, and which do not.
+not a perfect tool. Our current datasets included high level of
+heterogeneity, which could bias our estimates of the effect sizes in
+unpredictable directions {[}\(I^2\): \emph{M} = 74; \emph{SD}:21;
+Higgins \& Thompson (2002){]}. Moreover, meta-analyitic methods can
+often produce effect sizes significantly larger than a comparable
+large-scale replication (Kvarven, Strømland, \& Johannesson, 2020). Part
+of the discrepancy can be attributed to the heterogeneity of research
+methods that are often minimized in a large-scale replication (Lewis,
+Mathur, VanderWeele, \& Frank, 2020). While we have included
+methodological moderators in our analysis, it is highly likely that the
+coded moderators did not fully reflect the subtlety of research methods.
+However, the ``Major author'' effect found in many research domains
+could provide a window into understanding the workings of the research
+method. In the future, we could compare and contrast the methods and
+materials used by ``major authors'' and those by others. Doing so would
+allow us to pinpoint the differences and understand which aspects of the
+methods really matter, and which do not.
 
 Our ultimate goal is to offer a data-driven synthetic theory of
 cognitive development. Here we have made our first step toward that goal
@@ -598,6 +614,11 @@ developmental research through meta-analyses: Insights from language
 acquisition research. \emph{Child Development}, \emph{89}(6),
 1996--2009.
 
+\leavevmode\vadjust pre{\hypertarget{ref-burnham2004multimodel}{}}%
+Burnham, K. P., \& Anderson, D. R. (2004). Multimodel inference:
+Understanding AIC and BIC in model selection. \emph{Sociological Methods
+\& Research}, \emph{33}(2), 261--304.
+
 \leavevmode\vadjust pre{\hypertarget{ref-cao2022quantifying}{}}%
 Cao, A., \& Lewis, M. (2022). Quantifying the syntactic bootstrapping
 effect in verb learning: A meta-analytic synthesis. \emph{Developmental
@@ -632,6 +653,11 @@ wordbank project}. MIT Press.
 \leavevmode\vadjust pre{\hypertarget{ref-hamlin2007social}{}}%
 Hamlin, J. K., Wynn, K., \& Bloom, P. (2007). Social evaluation by
 preverbal infants. \emph{Nature}, \emph{450}(7169), 557--559.
+
+\leavevmode\vadjust pre{\hypertarget{ref-higgins2002quantifying}{}}%
+Higgins, J. P., \& Thompson, S. G. (2002). Quantifying heterogeneity in
+a meta-analysis. \emph{Statistics in Medicine}, \emph{21}(11),
+1539--1558.
 
 \leavevmode\vadjust pre{\hypertarget{ref-hunter1988multifactor}{}}%
 Hunter, M. A., \& Ames, E. W. (1988). A multifactor model of infant
