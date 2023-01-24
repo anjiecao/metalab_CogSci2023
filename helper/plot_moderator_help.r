@@ -76,8 +76,7 @@ plot_moderators <- function(all_mod_df){
     ylim(-2.5, 3)+ 
     xlab("") + 
     ylab("") + 
-    labs(title = "Exposure phase \n (Baseline: Conditioning)") + 
-    guides(colour = guide_legend(nrow = 2))+
+    labs(title = "Stimuli Exposure Method \n (Baseline: Familiarization)") + 
     theme_few() +
     theme(
       legend.position = "top",

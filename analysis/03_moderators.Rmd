@@ -62,6 +62,8 @@ bmeasure_ds <- d %>%
   pull(ds_clean)
 
 # for model fits
+
+
 bmeasure_models_df <- lapply(bmeasure_ds, 
        function(name){
          print(name)
@@ -130,17 +132,28 @@ d %>%
 ## get subset of data
 ep_d <-d %>% 
   filter(!response_mode %in% c("NIRS", "EEG")) %>% 
-  distinct(ds_clean, exposure_phase) %>% 
+  filter(exposure_phase != "test_only") %>% 
+  distinct(ds_clean, exposure_phase) %>%
   group_by(ds_clean) %>% 
   count() %>% 
   filter(!n == 1) %>% 
+  filter(ds_clean != "Natural speech preference") %>% 
   pull(ds_clean)
+
+
+# taking out the natural speech preference because only 1 ES has certain values 
+ep_new_d <- d %>% mutate(exposure_phase = case_when(
+  exposure_phase == "familiarization" ~ "a_familiarization", 
+  TRUE ~ exposure_phase)) %>% 
+  filter(exposure_phase != "test_only") %>% 
+  filter(ds_clean != "Natural speech preference")
+
 
 ## get model comparison stats
 ep_models_df <- lapply(ep_d, 
        function(name){
          print(name)
-         get_compare_IC_df(d, name, c("exposure_phase"))
+         get_compare_IC_df(ep_new_d, name, c("exposure_phase"))
        }) %>% 
   bind_rows() %>% 
   mutate(model_type = "ep")
@@ -155,7 +168,7 @@ min_AICc_ep_models_df <- ep_models_df %>%
 ep_models_fits_df <- lapply(ep_d, 
        function(name){
          print(name)
-         get_model_fit_df(d, name, c("exposure_phase"))
+         get_model_fit_df(ep_new_d, name, c("exposure_phase"))
        }) %>% 
   bind_rows()
 
@@ -366,6 +379,23 @@ major_author_fit_df <- readRDS(here("cached_data/major_author_model_ds.Rds"))
 major_author_model_fit_df <- readRDS(here("cached_data/major_author_fits_ds.Rds"))
 ```
 
+## add in prosocial agents
+
+```{r}
+pa_d <- d %>% filter(ds_clean == "Prosocial agents") %>% 
+  mutate(by_major_author = case_when(Hamlin_Lab == 1 ~ "yes", TRUE ~ "no"))
+
+
+pa_model_d <- broom::tidy(rma.mv(
+    d_calc ~ mean_age_months + by_major_author, 
+      V = d_var_calc, 
+      random = ~ 1 | short_cite/unique_row, 
+      data = pa_d)) %>% 
+  mutate(dataset = "Prosocial agents")
+
+
+```
+
 
 ```{r eval=FALSE, include=FALSE}
 min_AICc_major_author <- major_author_fit_df %>% 
@@ -373,10 +403,13 @@ min_AICc_major_author <- major_author_fit_df %>%
   group_by(dataset) %>% 
   filter(REML == min(REML)) 
 
-best_fit_major_author_model <- major_author_model_fits_ds %>% 
+best_fit_major_author_model <- major_author_model_fit_df %>% 
     left_join(min_AICc_major_author, 
               by =  c("model_spec", "dataset", "model_spec_clean", "major_author")) %>% 
-    filter(!is.na(REML)) 
+    filter(!is.na(REML)) %>% 
+    bind_rows(pa_model_d)
+
+
 
 saveRDS(best_fit_major_author_model, here("cached_data/best_fit_major_author_df.Rds"))
 ```
