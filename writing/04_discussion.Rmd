@@ -2,7 +2,7 @@
 How can we quantitatively describe developmental growth at scale? Meta-analysis is one promising method. In this paper, we presented a bird-eye view of developmental psychology by synthesizing 23 meta-analyses available on MetaLab. We found great diversity in the shapes of the best-fitting models for each domain – while some phenomena showed larger and larger effects with development, quite a number of others stayed constant, suggesting a distinction between small but measurable in-lab effects and behaviors that can easily be observed in individual children (effect sizes > 2). We also considered the moderating effects of different methodological factors, including the type of behavioral measure, the type of exposure phase, stimuli naturalness, and whether the work is done by a “major author”. These factors moderate effect sizes from different domains in heterogeneous ways, though we did find evidence for naturalistic stimuli leading to larger effects in a number of studies. 
 
 
-```{r 2-col-imageb, fig.env = "figure*", fig.pos = "h!", fig.width=7, fig.height=5, fig.align = "center", set.cap.width=T, num.cols.cap=2, fig.cap = "Predictions of the best-fitting functional forms of the age model. X-axis is age in months. Y-axis is effect size. For each research area, we plotted the predicted values for the age range included in the dataset."}
+```{r 2-col-imageb, fig.env = "figure*", fig.pos = "h!", fig.width=7, fig.height=5, fig.align = "center", set.cap.width=T, num.cols.cap=2, fig.cap = "Predictions of the best-fitting functional forms of the age model. X-axis is age in months. Y-axis is the predicted effect size. For each research area, we plotted the predicted values for the age range included in the dataset."}
 
 age_range_df <- d %>% 
   group_by(ds_clean) %>% 
@@ -17,7 +17,7 @@ categorized_age_pred_df <- all_age_pred %>%
   mutate(mean_age_months = (row_number() + 1) / 2) %>% 
   left_join(age_range_df, by = c("ds_name")) %>% 
   filter(mean_age_months > min_age, 
-         mean_age_months < min(36, max_age)) %>% 
+         mean_age_months < min(36, max_age))%>% 
   mutate(
     ds_type = case_when(
       ds_name %in% c( "Language discrimination and preference", 
@@ -48,11 +48,12 @@ categorized_age_pred_df <- all_age_pred %>%
   mutate(pred = case_when(
     ds_name == "Abstract rule learning" ~ -pred, 
     ds_name == "Switch task" ~ -pred,
+    ds_name == "Statistical word segmentation" ~ -pred,
     TRUE ~ pred
   )) %>% 
   select(ds_name, ds_type, mean_age_months, pred) %>% 
   mutate(ds_name = case_when(
-    ds_name == "Word Segmentation (combined)" ~ "Word Segmentation", 
+    ds_name == "Word Segmentation (combined)" ~ "Word segmentation", 
     ds_name == "Statistical sound category learning (habituation)" ~ "Statistical sound category learning", 
     TRUE ~ ds_name
   ))
@@ -127,14 +128,14 @@ p <- categorized_age_pred_df %>%
   facet_wrap(~ds_type, scales = "free") + 
   theme_few()+
   theme(legend.position = "none", 
-        axis.title.x = element_text(size = 6), 
-        axis.title.y = element_text(size = 6), 
-        axis.text.x = element_text(size = 4), 
-        axis.text.y = element_text(size = 4),
-        strip.text.x = element_text(size = 6), 
+        axis.title.x = element_text(size = 8), 
+        axis.title.y = element_text(size = 8), 
+        axis.text.x = element_text(size = 6), 
+        axis.text.y = element_text(size = 6),
+        strip.text.x = element_text(size = 8), 
         plot.margin=grid::unit(c(0,0,0,0), "mm")) + 
   xlab("Age (months)") + 
-  ylab("Predicted Value")
+  ylab("Predicted Effect Size") 
   
 
 p
