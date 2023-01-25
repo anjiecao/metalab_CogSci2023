@@ -88,20 +88,17 @@ $^1$Department of Psychology, Stanford University }
 Young children acquire a wide range of linguistic and cognitive skills
 in the first three years of life. Decades of experimental work have
 established a solid empirical foundation for our understanding of
-cognitive development in early childhood. However, most experimental
-studies are limited in statistical power and focus on specific
-psychological constructs, thus making them unsuitable for describing
-developmental growth at scale. Here, we turned to meta-analyses of
-experimental research. We conducted a meta-meta-analysis to consolidate
-and integrate 23 meta-analyses compiled on MetaLab, a
-community-augmented meta-analysis platform. We found that most datasets
-can not meaningfully distinguish different functional forms for
-developmental change, but in those that could, there is great diversity
-in the best-fitting functional forms of the age model. In addition, we
-evaluated the impact of a range of methodological factors, including
-behavioral measures, exposure phase, stimuli naturalness, and whether
-the study is produced by a prominent author in the particular research
-area. Overall, our work sheds light on the heterogeneous nature of
+cognitive development. But most experimental studies are limited in
+statistical power and focus on specific psychological constructs, thus
+making them unsuitable for describing developmental growth at scale.
+Here, we turned to meta-analyses of experimental research. We conducted
+a meta-meta-analysis to consolidate and integrate 23 meta-analyses
+compiled on MetaLab, a community-augmented meta-analysis platform. We
+found that most datasets can not meaningfully distinguish different
+functional forms for developmental change, but in those that could,
+there is great diversity in the best-fitting functional forms of the age
+model. We also evaluated the impact of a range of methodological
+factors. Overall, our work sheds light on the heterogeneous nature of
 developmental trajectories and the subtle interactions between research
 methods and experimental outcomes.
 
@@ -124,7 +121,7 @@ using instruments like the Bayley Scales can provide a holistic picture
 of an individual child's development (e.g. Bayley, 2006), but it is a
 challenge to move from global developmental milestones to underlying
 mechanisms. In contrast, experimental research allows causal tractions
-on potential mechanisms, but experiments typically focus on one single
+on potential mechanisms, but it typically focuses on one single
 construct and does not reveal the connections between different
 processes and mechanisms.
 
@@ -143,8 +140,7 @@ difficult to address with individual studies. One such example is the
 functional form of developmental curves, or how different psychological
 processes change over time. Many developmental studies use linear
 regression models with age as a predictor, but this assumption of
-linearity may not capture the complexities of developmental processes,
-especially as they interact with developmental changes in measurement.
+linearity may not capture the complexities of developmental processes.
 For example, some cognitive abilities -- such as relational reasoning --
 might follow an inverted-U shape (Carstensen et al., 2019; Walker,
 Bridgers, \& Gopnik, 2016), while others -- like early vocabulary size
@@ -158,7 +154,7 @@ functional forms of developmental trajectories.
 Meta-analysis can also shed light on how research methods influence the
 strengths of observed effects. Research methods and theories are
 fundamentally intertwined, and this is especially true for developmental
-psychology, in which even small changes to the methods would
+psychology, in which even small changes to the methods could
 substantially change the outcomes (Dale, Warlaumont, \& Johnson, 2022).
 One example is the influence of familiarization time. It has been
 proposed that the amount of exposure infants have prior to the test
@@ -166,16 +162,16 @@ events can influence infants' direction of preference (i.e.~novelty
 preference or familiarity preference, Hunter \& Ames, 1988). Although
 the empirical evidence for this theory is mixed, this ambiguity has
 significant downstream consequences on our understanding of infants'
-cognitive capabilities (Bergmann \& Cristia, 2016). Debates about
-infants' arithmetic competencies or their evaluations of social agents
-are often centered around the direction of preferences (Infants
-arithmetic competencies: Clearfield \& Westfahl, 2006; Wakeley, Rivera,
-\& Langer, 2000; Wynn, 1993; Evaluation of social agents: Hamlin, Wynn,
-\& Bloom, 2007; Salvadori et al., 2015). Due to the time and resources
-required for developmental studies, it is often difficult to directly
-evaluate the impact of subtle changes in methods. Therefore,
-meta-analytic methods provide a unique opportunity to investigate the
-effects of methodological factors on research findings.
+cognitive capabilities (Bergmann \& Cristia, 2016; Cf. Black \&
+Bergmann, 2017). Debates about infants' arithmetic competence or their
+evaluations of social agents are often centered around the direction of
+preferences (Infants arithmetic competence: Clearfield \& Westfahl,
+2006; Wakeley, Rivera, \& Langer, 2000; Wynn, 1993; Evaluation of social
+agents: Hamlin, Wynn, \& Bloom, 2007; Salvadori et al., 2015). Due to
+the time and resources required for developmental studies, it is often
+difficult to directly evaluate the impact of subtle changes in methods.
+Therefore, meta-analytic methods provide a unique opportunity to
+investigate the effects of methodological factors on research findings.
 
 Last but not least, meta-analytic methods make it possible to compare
 and connect research findings across research areas. The use of effect
@@ -198,7 +194,7 @@ In particular, we address three separate questions. First, we
 investigate the shape of developmental curves across domains. The form
 of growth curves has been of interest in a lot of areas of developmental
 research (e.g., accelerating growth in vocabulary: McMurray, 2007;
-asymptotic decreases in reaction time: Kail, 1991) These nuanced
+asymptotic decreases in reaction time: Kail, 1991). These nuanced
 descriptions of developmental trajectories allow for a more precise
 understanding of the underlying mechanisms driving these changes. We aim
 to provide these quantitative descriptions for more research areas.
@@ -231,7 +227,7 @@ the retrieved datasets in the following way:
 \item 2 pairs of dataset were combined into one because they measure theoretically identical constructs (Pair 1: Word segmentation behavioral, Functional word segmentation; Pair 2: Gaze following live, Gaze following video). 
 \end{itemize}
 
-The final dataset contained 23 meta-analyses. Table 1 provides a summary
+The final dataset contains 23 meta-analyses. Table 1 provides a summary
 of the datasets, along with the number of effect sizes and participants
 included in each dataset.
 
@@ -245,8 +241,8 @@ All analyses were conducted in R using the \texttt{metafor} package
 random effect structures that included grouping by paper and by
 participant group. We removed the clustering if grouping information was
 missing from the dataset. All moderators were included as fixed effects.
-Unless otherwise specified, all model comparisons were based on the
-corrected Akaike Information Criterion (AICc).
+All model comparisons were based on the corrected Akaike Information
+Criterion (AICc).
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -287,12 +283,12 @@ Language discrimination and preference & 153 & 2060 & -0.13 [-0.26,0] & 2.3 & 2.
 
 \hline
 \end{tabular}
-\caption{\label{demo-table}This table summarize the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of $\Delta_{i}$ of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Linear, Logarithmic, Quadratic and the Constant. The values were calculated from subtracting the minimum AICc from the AICc of each model. They were rounded to one decimal. The bold values represent the smallest values among the four functional forms before rounding. Asterisks mark the models that are significantly better than the other models in the same research area.}
+\caption{\label{demo-table}This table summarize the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of $\Delta_{i}$ of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Constant, Linear, Logarithmic, and Quadratic. The values were calculated from subtracting the minimum AICc from the AICc of each model. They were rounded to one decimal. The bold values represent the smallest values among the four functional forms before rounding. Asterisks mark the models that are significantly better than the other models in the same research area.}
 \end{table*}
 
 Our first research question was about the functional form of the
 developmental trajectories we observed. We considered four specific
-forms: linear, logarithmic, quadratic, and constant, each considered as
+forms: constant, linear, logarithmic, and, quadratic, each considered as
 an age-related fixed effect. We evaluated the models based on corrected
 AICc (Table 1).
 
@@ -309,13 +305,13 @@ Exclusivity, there is a strong preference for the logarithmic model
 (\(\Delta_{Linear}\) = 5.75 ; \(\Delta_{Quad.}\) = 16.91;
 \(\Delta_{Const.}\) = 37.21). We also found a strong preference for the
 quadratic model in Mispronunciation sensitivity (\(\Delta_{Linear}\) =
-6.39; \(\Delta_{Const.}\) = 30.74; \(\Delta_{Log}\) = 14.49) and a
+6.39; \(\Delta_{Log}\) = 14.49; \(\Delta_{Const.}\) = 30.74) and a
 strong preference for the constant model in Simple arithmetic competence
-(\(\Delta_{Linear}\) = 6.65; \(\Delta_{Quad.}\) = 6.55; \(\Delta_{Log}\)
+( \(\Delta_{Quad.}\) = 6.55;\(\Delta_{Linear}\) = 6.65; \(\Delta_{Log}\)
 = 6.74). The comparison is less clear-cut in Gaze following, where there
 is support for the Quadratic model against the Constant model and the
-Logarithmic model ( \(\Delta_{Const.}\) = 43.73; \(\Delta_{Log}\) =
-10.41), but the Linear model is comparable with the Quadratic model
+Logarithmic model (\(\Delta_{Log}\) = 10.41;\(\Delta_{Const.}\) =
+43.73), but the Linear model is comparable with the Quadratic model
 (\(\Delta_{Linear}\) = 2.07). Finally, in Statistical sound category
 learning and Cross situational word learning, we only found evidence
 against the logarithmic model (\(\Delta_{Log}\) = 4.08) and the constant
@@ -364,7 +360,7 @@ Discrimination (Native) and Sound Symbolism. In Vowel Discrimination
 (native), studies with Manual or Sucking behavioral measure has larger
 effect sizes than studies using looking as the behavioral measure
 (Manual: \(\beta\) = 0.58 {[}0.33, 0.82{]}, \emph{z} = 4.6, \emph{p}
-\textless{} 0.01 ; Sucking: \(\beta\) = 0.96 {[}0.53, 1.4{]}, \emph{z} =
+\textless{} 0.01; Sucking: \(\beta\) = 0.96 {[}0.53, 1.4{]}, \emph{z} =
 4.34, \emph{p} \textless{} 0.01). Similarly, in Sound Symbolism, studies
 with manual behavioral measures also yield larger effect sizes than
 looking studies (\(\beta\) = 0.61 {[}0.24, 0.97{]}, \emph{z} = 3.29,
@@ -373,7 +369,7 @@ looking studies (\(\beta\) = 0.61 {[}0.24, 0.97{]}, \emph{z} = 3.29,
 We also explored whether there would be an interaction between the
 research method and participants' age. The inclusion of interaction
 terms did not meaningfully improve the AICc of any of the main model
-(All \(\Delta_{interaction}\)s \textless{} 2). The current datasets can
+(All \(\Delta_{interaction}\) \textless{} 2). The current datasets can
 not distinguish between the interaction effect and the main effect.
 
 \hypertarget{stimuli-exposure-method}{%
@@ -398,10 +394,10 @@ The results of the comparison between familiarization studies and
 habituation studies are mixed. In Infant directed speech preference,
 habituation studies produced larger effect sizes than the
 familiarization studies (\(\beta\) = 0.58 {[}0.07, 1.09{]}, \emph{z} =
-2.24, \emph{p} ), whereas the opposite pattern was found in Language
-discrimination and preference: habituation studies had smaller effect
-sizes than the familiarization studies (\(\beta\) = -0.38 {[}-0.69,
--0.07{]}, \emph{z} = -2.41, \emph{p} )
+2.24, \emph{p} = 0.03), whereas the opposite pattern was found in
+Language discrimination and preference: habituation studies had smaller
+effect sizes than the familiarization studies (\(\beta\) = -0.38
+{[}-0.69, -0.07{]}, \emph{z} = -2.41, \emph{p} = 0.02)
 
 \hypertarget{stimuli-naturalness}{%
 \subsubsection{Stimuli Naturalness}\label{stimuli-naturalness}}
@@ -414,7 +410,7 @@ stimuli, such as pictures, videos, or drawings. In primarily auditory
 stimuli, we compared recorded natural speech with synthesized stimuli.
 
 Natural stimuli has advantages over artificial stimuli across
-modalities. We found that naturalness is a significant predictor for
+modalities. We found that naturalness was a significant predictor for
 Label advantage in concept learning, with natural stimuli yielding
 larger effect sizes than representation-type stimuli (\(\beta\) = 0.23
 {[}0.01, 0.45{]}, \emph{z} = 2.06, \emph{p} = 0.04). Similarly, in both
@@ -529,23 +525,23 @@ The heterogeneity can also partly be attributed to the wide variety of
 research methods. In the current analysis, we focused on in-lab
 experimental work, and thus the effect sizes may as well reflect how
 well the research methods capture the phenomenon of interest. Indeed, we
-have shown that subtle experimental procedure changes (e.g.~exposure
-phase) could significantly alter the effect sizes. Moreover, methods'
-impact varies across domains, with some domains being more susceptible
-to methodological factors than others. Therefore, the developmental
-trajectories that we document could be influenced by researchers
-adapting their methods to participants of different ages. Our findings
-call attention to the importance of understanding methods' nuances:
-rather than treating methods as a perfect mirror perfectly reflecting
-the phenomenon, they should be regarded as an imperfect lens that could
-distort our perception of the phenomenon.
+have shown that subtle experimental procedure changes (e.g.~stimuli
+exposure methods) could significantly alter the effect sizes. Moreover,
+methods' impact varies across domains, with some domains being more
+susceptible to methodological factors than others. Therefore, the
+developmental trajectories that we document could be influenced by
+researchers adapting their methods to participants of different ages.
+Our findings call attention to the importance of understanding methods'
+nuances: rather than treating methods as a perfect mirror perfectly
+reflecting the phenomenon, they should be regarded as an imperfect lens
+that could distort our perception of the phenomenon.
 
 Of course, the same can be said about meta-analysis. Meta-analysis is
 not a perfect tool. Our current datasets included high level of
-heterogeneity, which could bias our estimates of the effect sizes in
-unpredictable directions {[}\(I^2\): \emph{M} = 74; \emph{SD}:21;
-Higgins \& Thompson (2002){]}. Moreover, meta-analytic methods can often
-produce effect sizes significantly larger than a comparable large-scale
+heterogeneity (\(I^2\): \emph{M} = 74; \emph{SD}:21), which could bias
+our estimates of the effect sizes in unpredictable directions (Higgins
+\& Thompson, 2002). Moreover, meta-analytic methods can often produce
+effect sizes significantly larger than a comparable large-scale
 replication (Kvarven, Strømland, \& Johannesson, 2020). Part of the
 discrepancy can be attributed to the heterogeneity of research methods
 that are often minimized in a large-scale replication (Lewis, Mathur,
@@ -596,6 +592,11 @@ Frank, M. C., \& Cristia, A. (2018). Promoting replicability in
 developmental research through meta-analyses: Insights from language
 acquisition research. \emph{Child Development}, \emph{89}(6),
 1996--2009.
+
+\leavevmode\vadjust pre{\hypertarget{ref-black2017quantifying}{}}%
+Black, A., \& Bergmann, C. (2017). Quantifying infants' statistical word
+segmentation: A meta-analysis. In \emph{39th annual meeting of the
+cognitive science society} (pp. 124--129). Cognitive Science Society.
 
 \leavevmode\vadjust pre{\hypertarget{ref-burnham2004multimodel}{}}%
 Burnham, K. P., \& Anderson, D. R. (2004). Multimodel inference:

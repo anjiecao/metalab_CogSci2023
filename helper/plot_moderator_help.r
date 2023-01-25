@@ -180,22 +180,34 @@ plot_major_author <- function(all_mod_df){
   
     all_mod_df %>% 
     filter(grepl("Author", type)) %>% 
-    distinct(dataset, dataset_short, estimate, lb, ub) %>% 
+    distinct(dataset, dataset_short, estimate, p.value, lb, ub) %>% 
+    mutate(es_type = case_when(p.value < 0.05 ~ "Significant", TRUE ~ "Non-significant")) %>%   
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate)) + 
+    geom_hline(yintercept = 0, linetype = "dashed")+ 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
-    geom_hline(yintercept = 0, linetype = "dashed")+ 
+    geom_point(aes(y = estimate, color = es_type, color = es_type)) + 
+    scale_color_manual(values = c("gray", "black")) +
     coord_flip()+
+    guides(fill = guide_legend(override.aes = list(linetype = 0)),
+             color = guide_legend(override.aes = list(linetype = 0)),  keyheight = 2)+ 
     xlab("") + 
     ylab("") + 
   
     labs(title = "Major author \n (Baseline: Non-Major author)") + 
+      
     theme_few() +
+      
     theme(
-      legend.position = c(0.8, 0.1),
-      legend.title = element_blank(),
-      legend.background = element_rect(fill = NA, color = NA), 
-      legend.text=element_text(size=6),
+      legend.position = c(.8, .3),
+      legend.title=element_blank(),
+      legend.margin = margin(0, 0, 0, 0),
+      legend.key.size = unit(0.2, "cm"),
+      
+      legend.spacing.x = unit(0, "mm"),
+      legend.spacing.y = unit(0, "mm"),
+      legend.background = element_rect(fill = "NA", color = "NA"), 
+      legend.text=element_text(size=4),
       axis.text=element_text(size=axis_font_size),
       plot.title = element_text(hjust = 0.5, size = 6)
     )  
