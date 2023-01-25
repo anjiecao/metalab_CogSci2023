@@ -43,6 +43,13 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
+   geom_text(
+       label="Looking", 
+       x= 8,
+       y= -0.25,
+       size = 2.5,
+       color = "gray"
+   )+
     geom_hline(yintercept = 0, linetype = "dashed")+ 
     #coord_flip() +
     ylim(-2.5, 3)+ 
@@ -70,8 +77,15 @@ plot_moderators <- function(all_mod_df){
     filter(grepl("Exposure", type)) %>% 
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
-                    position = position_dodge(width = .4)) +
+                    position = position_dodge(width = .4)) + 
     geom_hline(yintercept = 0, linetype = "dashed")+ 
+    geom_text(
+      label="Familiarization", 
+      x= 2,
+      y= 0.25,
+      size = 2.5,
+      color = "gray"
+    )+
     #coord_flip() +
     ylim(-2.5, 3)+ 
     xlab("") + 
@@ -101,6 +115,13 @@ plot_moderators <- function(all_mod_df){
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
     geom_hline(yintercept = 0, linetype = "dashed")+ 
+    geom_text(
+      label="Artificial stimulus", 
+      x= 3,
+      y= -0.25,
+      size = 2.5,
+      color = "gray"
+    )+
     #coord_flip() +
     ylim(-2.5, 3)+ 
     xlab("") + 

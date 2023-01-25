@@ -55,6 +55,7 @@ categorized_age_pred_df <- all_age_pred %>%
   mutate(ds_name = case_when(
     ds_name == "Word Segmentation (combined)" ~ "Word segmentation", 
     ds_name == "Statistical sound category learning (habituation)" ~ "Statistical sound category learning", 
+    ds_name == "Simple arithmetic competences"~ "Simple arithmetic competence",
     TRUE ~ ds_name
   ))
 
@@ -124,7 +125,7 @@ p <- categorized_age_pred_df %>%
                    size = 2.2,
                   segment.color = NA) + 
   xlim(0, 48) + 
-  ylim(-2, 4) + 
+  ylim(-1.5, 4) + 
   facet_wrap(~ds_type, scales = "free") + 
   theme_few()+
   theme(legend.position = "none", 
@@ -170,5 +171,5 @@ sd_i2 = round(sd(summary_df$i2),2) * 100
 
 Of course, the same can be said about meta-analysis. Meta-analysis is not a perfect tool. Our current datasets included high level of heterogeneity, which could bias our estimates of the effect sizes in unpredictable directions [$I^2$: *M* = `r m_i2`; *SD*:`r sd_i2`; @higgins2002quantifying]. Moreover, meta-analytic methods can often produce effect sizes significantly larger than a comparable large-scale replication [@kvarven2020comparing]. Part of the discrepancy can be attributed to the heterogeneity of research methods that are often minimized in a large-scale replication [@lewis2020puzzling]. While we have included methodological moderators in our analysis, it is highly likely that the coded moderators did not fully reflect the subtlety of research methods. However, the “Major author” effect found in many research domains could provide a window into understanding the subtler aspects of research methods. In the future, we could compare and contrast the methods and materials used by “major authors” and those by others. Doing so would allow us to pinpoint the differences and understand which aspects of the methods really matter, and which do not. 
 
-Our ultimate goal is to offer a data-driven synthetic theory of cognitive development. Here we have made our first step toward that goal by offering a synthesis of meta-analyses across 23 different research domains. Moving forward, we aim to expand and refine our synthesis by including more research areas, correcting potential publication biases, and accounting for more detailed methodological factors. We would also like to make more connections between our meta-analysis-based work and the many ongoing analyses based on large-scale multi-site replication projects [e.g. ManyBabies: @frank2017collaborative]. Ultimately, we hope our analysis could provide a solid empirical foundation to help us to better understand the complex and diverse processes involved in cognitive development. 
+Our ultimate goal is to offer a data-driven synthetic theory of cognitive development. Here we have made our first step toward that goal by offering a synthesis of meta-analyses across 23 different research domains. Moving forward, we aim to expand and refine our synthesis by including more research areas, correcting potential publication biases, and accounting for more detailed methodological factors. We would also like to make more connections between our meta-analysis-based work and the many ongoing analyses based on large-scale multi-site replication projects [e.g. ManyBabies: @frank2017collaborative]. Ultimately, we hope our analysis can provide a solid empirical foundation to help us to better understand the complex and diverse processes involved in cognitive development. 
 
