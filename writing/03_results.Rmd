@@ -200,7 +200,7 @@ all_mod_df <- bind_rows(bmeasure_df, bmeasure_int_df, ep_df, rv_df, av_df, ma_df
 
 ```
 
-```{r mod_plot, fig.env = "figure*", fig.pos = "t!", fig.width=7, fig.height=5, fig.align = "center", set.cap.width=T, num.cols.cap=2, fig.cap = "Each panel shows the moderator estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For stimuli exposure method, the baseline level is familiarization. Red, and teal represent the estimates for studies using conditioning and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimate for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech)."}
+```{r mod_plot, fig.env = "figure*", fig.pos = "t!", fig.width=7, fig.height=5, fig.align = "center", set.cap.width=T, num.cols.cap=2, fig.cap = "Each panel shows the moderator estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For stimuli exposure method, the baseline level is familiarization. Red, and teal represent the estimates for studies using conditioning and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimate for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech). Error bars show 95% confidence intervals."}
 
 plot_moderators(all_mod_df)
 ```
@@ -267,7 +267,7 @@ n_negative_ef <- nrow(ma_df %>%
 
 We found evidence for a major author effect in `r n_posistive_ef` datasets, where studies produced by the major author were larger than the rest of the papers. In `r n_negative_ef` datasets, however, we also found the opposite patterns, where certain authors produced on average smaller effect sizes than the rest of the literature. 
 
-```{r image, fig.env = "figure", fig.pos = "H", fig.align='center', fig.width=3, fig.height=3, set.cap.width=T, num.cols.cap=1, fig.cap = "Each dot represents the estimate for studies produced by major author in the particular research area, compared to other studies in the same research area."}
+```{r image, fig.env = "figure", fig.pos = "H", fig.align='center', fig.width=3, fig.height=3, set.cap.width=T, num.cols.cap=1, fig.cap = "Each dot represents the estimate for studies produced by major author in the particular research area, compared to other studies in the same research area. Error bars show 95% confidence intervals."}
 plot_major_author(all_mod_df)
 ```
 
