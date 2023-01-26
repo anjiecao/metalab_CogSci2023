@@ -5,7 +5,8 @@ csl: apa6.csl
 document-params: "10pt, letterpaper"
 
 author-information: > 
-    \author{Anjie Cao$^1$  (anjiecao@stanford.edu)
+    \author{Anjie Cao$^1$  (anjiecao@stanford.edu), 
+     Molley Lewis (mollylewis@gmail.com), \\
      and \bf{Michael C. Frank$^1$ (mcfrank@stanford.edu)} \\
     $^1$Department of Psychology, Stanford University
     }
@@ -75,6 +76,9 @@ best_fit_major_author_df <- readRDS(here("cached_data/best_fit_major_author_df.R
 
 # preiction curve
 all_age_pred <- readRDS(here("cached_data/min_age_pred_df.RDS"))
+
+# i2
+i2_df <- readRDS(here("cached_data/i2_df.Rds"))
 ```
 
 

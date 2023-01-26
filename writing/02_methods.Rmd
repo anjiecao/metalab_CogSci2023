@@ -12,7 +12,7 @@ Datasets were retrieved from `metalabr`, the R package built from Metalab. As of
 
 The final dataset contains 23 meta-analyses. Table 1 provides a summary of the datasets, along with the number of effect sizes and participants included in each dataset. 
  
-The final dataset and analysis scripts are available at X. 
+The final dataset and analysis scripts are available at https://tinyurl.com/metalabCogsci. 
 
 ### Analytic Methods
 

@@ -1,0 +1,86 @@
+---
+title: "04_unexplained_variance"
+author: "anjie"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(here)
+
+source(here("helper/summary_table_help.r"))
+
+
+d <- read_csv(here("data/clean_data.csv"))
+
+best_fit_bmeasure_model_df <- readRDS(here("cached_data/best_fit_behavioral_measure_df.Rds"))
+best_fit_exposure_phase_df <- readRDS(here("cached_data/best_fit_exposure_phase.Rds"))
+best_fit_real_visual_df <- readRDS(here("cached_data/best_fit_real_visual_df.Rds"))
+best_fit_real_aud_df <- readRDS(here("cached_data/best_fit_real_aud_df.Rds"))
+#best_fit_major_author_df <- readRDS(here("cached_data/best_fit_major_author_df.Rds"))
+age_modesl_df <- readRDS(here("cached_data/age_models_df.Rds"))
+```
+
+# some final process to get moderators in 
+
+```{r}
+visual_stimulus_d <- bind_rows((d %>% 
+  filter(!is.na(object_stimulus)) %>% 
+  #select(ds_clean, object_stimulus) %>% 
+  mutate(
+    visual_stimulus_type = case_when(
+      object_stimulus %in% c("drawings", "digital", "paper",
+                             "picture", "word") ~ "a_schematic_rep", 
+      TRUE ~ "b_real"
+    )
+  )), (d %>% 
+  filter(!is.na(stimuli_type), ds_clean == "Prosocial agents") %>% 
+  mutate(visual_stimulus_type = case_when(
+    stimuli_type == "cartoon" ~ "a_schematic_rep",
+    TRUE ~ "b_real"
+  ))))
+
+auditory_stimulus_d <- bind_rows(
+  d %>% 
+  filter(!is.na(stimuli_type)) %>% 
+  filter(ds_clean == "Statistical word segmentation") %>% 
+  mutate(auditory_stimulus_type = stimuli_type), 
+  
+  d %>% 
+  filter(!is.na(Modality)) %>% 
+  mutate(auditory_stimulus_type = case_when(
+    Modality == "Speech" ~ "natural", 
+    TRUE ~ "artificial"
+  ))
+)
+
+d <- d %>% 
+  filter(!ds_clean %in% unique(visual_stimulus_d$ds_clean)) %>% 
+  filter(!ds_clean %in% unique(auditory_stimulus_d$ds_clean)) %>% 
+  bind_rows(visual_stimulus_d) %>% 
+  bind_rows(auditory_stimulus_d)
+```
+
+
+# get all the models we fit
+
+```{r}
+all_fitted_models <- bind_rows(best_fit_bmeasure_model_df, 
+          best_fit_exposure_phase_df, 
+          best_fit_real_visual_df, 
+          best_fit_real_aud_df) %>% 
+  distinct(dataset, model_spec)
+
+
+
+all_i2_df <- lapply(seq(1, nrow(all_fitted_models)), function(x){
+    print(x)
+    get_i2(d, all_fitted_models$dataset[x], all_fitted_models$model_spec[x])
+})%>% 
+  bind_rows()
+
+
+saveRDS(all_i2_df, here("cached_data/i2_df.Rds"))
+```
+

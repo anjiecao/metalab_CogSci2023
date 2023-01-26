@@ -70,7 +70,8 @@
 \usepackage{makecell}
 \usepackage{xcolor}
 
-\author{Anjie Cao$^1$  (anjiecao@stanford.edu)
+\author{Anjie Cao$^1$  (anjiecao@stanford.edu), 
+ Molley Lewis (mollylewis@gmail.com), \\
  and \bf{Michael C. Frank$^1$ (mcfrank@stanford.edu)} \\
 $^1$Department of Psychology, Stanford University }
 
@@ -337,7 +338,7 @@ provides a summary of the estimates for moderators.
 
 }
 
-\caption[Each panel shows the moderator estimates]{Each panel shows the moderator estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For stimuli exposure method, the baseline level is familiarization. Red, and teal represent the estimates for studies using conditioning and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimate for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech).}\label{fig:mod_plot}
+\caption[Each panel shows the moderator estimates]{Each panel shows the moderator estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For stimuli exposure method, the baseline level is familiarization. Red, and teal represent the estimates for studies using conditioning and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimate for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech). Error bars show 95\% confidence intervals.}\label{fig:mod_plot}
 \end{figure*}
 \end{CodeChunk}
 
@@ -442,13 +443,13 @@ authors produced on average smaller effect sizes than the rest of the
 literature.
 
 \begin{CodeChunk}
-\begin{figure}[H]
+\begin{figure}[t!]
 
 {\centering \includegraphics{figs/image-1} 
 
 }
 
-\caption[Each dot represents the estimate for studies produced by major author in the particular research area, compared to other studies in the same research area]{Each dot represents the estimate for studies produced by major author in the particular research area, compared to other studies in the same research area.}\label{fig:image}
+\caption[Each dot represents the estimate for studies produced by major author in the particular research area, compared to other studies in the same research area]{Each dot represents the estimate for studies produced by major author in the particular research area, compared to other studies in the same research area. Error bars show 95\% confidence intervals. }\label{fig:image}
 \end{figure}
 \end{CodeChunk}
 
@@ -537,23 +538,29 @@ reflecting the phenomenon, they should be regarded as an imperfect lens
 that could distort our perception of the phenomenon.
 
 Of course, the same can be said about meta-analysis. Meta-analysis is
-not a perfect tool. Our current datasets included high level of
-heterogeneity (\(I^2\): \emph{M} = 74; \emph{SD}:21), which could bias
-our estimates of the effect sizes in unpredictable directions (Higgins
-\& Thompson, 2002). Moreover, meta-analytic methods can often produce
-effect sizes significantly larger than a comparable large-scale
-replication (Kvarven, Strømland, \& Johannesson, 2020). Part of the
-discrepancy can be attributed to the heterogeneity of research methods
-that are often minimized in a large-scale replication (Lewis, Mathur,
-VanderWeele, \& Frank, 2020). While we have included methodological
-moderators in our analysis, it is highly likely that the coded
-moderators did not fully reflect the subtlety of research methods.
-However, the ``Major author'' effect found in many research domains
-could provide a window into understanding the subtler aspects of
-research methods. In the future, we could compare and contrast the
-methods and materials used by ``major authors'' and those by others.
-Doing so would allow us to pinpoint the differences and understand which
-aspects of the methods really matter, and which do not.
+not a perfect tool. Despite the inclusion of a variety of moderators, we
+can explain relatively variation in the datasets. One measure of
+heterogeneity is \(I^2\), which calculates the proportion of variance
+accounted for by the meta-analytic model, relative to the total variance
+in the dataset. The mean \(I^2\) across all the models we ran was 0.74
+(\emph{SD} : 0.19), indicating that the majority of the variation in
+effects across studies was unexplained by our moderators (Higgins \&
+Thompson, 2002).
+
+Moreover, meta-analytic methods can often produce effect sizes
+significantly larger than a comparable large-scale replication (Kvarven,
+Strømland, \& Johannesson, 2020). Part of the discrepancy can be
+attributed to the heterogeneity of research methods that are often
+minimized in a large-scale replication (Lewis, Mathur, VanderWeele, \&
+Frank, 2020). While we have included methodological moderators in our
+analysis, it is highly likely that the coded moderators did not fully
+reflect the subtlety of research methods. However, the ``Major author''
+effect found in many research domains could provide a window into
+understanding the subtler aspects of research methods. In the future, we
+could compare and contrast the methods and materials used by ``major
+authors'' and those by others. Doing so would allow us to pinpoint the
+differences and understand which aspects of the methods really matter,
+and which do not.
 
 Our ultimate goal is to offer a data-driven synthetic theory of
 cognitive development. Here we have made our first step toward that goal

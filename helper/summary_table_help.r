@@ -1,5 +1,51 @@
 
 
+get_i2 <- function(d, ds_name, formula){
+  
+  current_d <- d %>% filter(ds_clean == ds_name)
+  
+  if (!nrow(current_d %>% filter(!is.na(same_infant))) == nrow(current_d)){
+    
+    model <- rma.mv(as.formula(formula), 
+                    V = d_var_calc, 
+                    random = ~ 1 | short_cite/unique_row, 
+                    data = current_d) 
+    
+  }else if(!nrow(current_d %>% filter(!is.na(unique_row))) == nrow(current_d)){
+    
+    model <- rma.mv(as.formula(formula), 
+                    V = d_var_calc, 
+                    random = ~ 1 | short_cite/same_infant, 
+                    data = current_d) 
+    
+  }else{
+    
+    model <- rma.mv(as.formula(formula), 
+                    V = d_var_calc, 
+                    random = ~ 1 | short_cite/same_infant/unique_row, 
+                    data = current_d)
+    
+  }
+  
+  # formula to calculate i^2
+  # source: https://www.metafor-project.org/doku.php/tips:i2_multilevel_multivariate
+  W <- diag(1/model$vi)
+  X <- model.matrix(model)
+  P <- W - W %*% X %*% solve(t(X) %*% W %*% X) %*% t(X) %*% W
+  i2 <- sum(model$sigma2) / (sum(model$sigma2) + (model$k-model$p)/sum(diag(P)))
+  
+  es <- tibble(
+    "i2" = i2,
+    ds_clean = ds_name
+  ) 
+  
+  
+  return (es)
+  
+  
+}
+
+
 
 get_descriptive_stas <- function(d){
   

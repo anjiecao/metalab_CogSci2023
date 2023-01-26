@@ -1,0 +1,28 @@
+---
+title: "Supplementary Information"
+author: "Anjie Cao, Molly Lewis, and Michael Frank"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+```{r}
+library(tidyverse)
+library(here)
+
+
+d <- read_csv(here("data/clean_data.csv"))
+all_age_pred <- readRDS(here("cached_data/min_age_pred_df.RDS"))
+```
+
+
+# test example 
+```{r}
+
+d %>% 
+  filter(ds_clean == "")
+
+```
+
