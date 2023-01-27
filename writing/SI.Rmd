@@ -9,7 +9,7 @@ output:
 subtitle: "Supplementary Information" 
 ---
 
-Each figure shows the dataset from one domain. X-axis is mean age in months. Y-axis is effect size (Cohen's $d$). Each dot on each figure represents one effect size, with the size denoting the precision of the estimated effect size. The red line represents the predicted value from the best-fitting model, and the shaded area represents the 95% confidence
+Each figure shows the dataset from one domain. X-axis is mean age in months. Y-axis is effect size (Cohen's $d$). Each dot on each figure represents one effect size, with the size denoting the precision of the estimated effect size. The red line represents the predicted value from the best-fitting model, and the shaded area represents the 95% confidence interval.
 
 
 ```{r include=FALSE}
