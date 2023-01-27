@@ -1,14 +1,7 @@
 
 ### Datasets
 
-Datasets were retrieved from `metalabr`, the R package built from Metalab. As of November 2022, the package includes 30 individual meta-analysis datasets covering different research domains in language learning and cognitive development. Our current datasets deviate from the retrieved datasets in the following way:
-
-\begin{itemize}
-\item 2 datasets were removed due data quality issues (Word segmentation neuro: only contained 1 study; Phonotactic learning: yielded null meta-analytic effect).
-\item 3 datasets were removed due to being observational studies or including studies with quasi-experimental design (Pointing and vocabulary concurrent; Pointing and vocabulary, longitudinal; Video deficit).
-\item 1 dataset was replaced with a more updated version (Infant directed speech preference).
-\item 2 pairs of dataset were combined into one because they measure theoretically identical constructs (Pair 1: Word segmentation behavioral, Functional word segmentation; Pair 2: Gaze following live, Gaze following video). 
-\end{itemize}
+Datasets were retrieved from `metalabr`, the R package built from Metalab. As of November 2022, the package includes 30 individual meta-analysis datasets covering different research domains in language learning and cognitive development. Our current datasets deviate from the retrieved datasets in the following way: 2 datasets were removed due data quality issues (Word segmentation neuro: only contained 1 study; Phonotactic learning: yielded null meta-analytic effect); 3 datasets were removed due to being observational studies or including studies with quasi-experimental design (Pointing and vocabulary concurrent; Pointing and vocabulary, longitudinal; Video deficit); 1 dataset was replaced with a more updated version (Infant directed speech preference); 2 pairs of dataset were combined into one because they measure theoretically identical constructs (Pair 1: Word segmentation behavioral, Functional word segmentation; Pair 2: Gaze following live, Gaze following video). 
 
 The final dataset contains 23 meta-analyses. Table 1 provides a summary of the datasets, along with the number of effect sizes and participants included in each dataset. 
  

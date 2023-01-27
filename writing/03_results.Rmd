@@ -252,7 +252,7 @@ Natural stimuli has advantages over artificial stimuli across modalities. We fou
 
 ### Major author 
 
-@margoni2018infants found evidence for an author-based bias in the prosocial agents literature, where results produced by certain authors were consistently larger than others. We evaluated how prevalent this phenomenon was in the literature by coding a “major author” moderator. Authors are considered to be a “major author” if they are listed as authors in more than 15% of the papers in the research area. When multiple major authors co-authored the same set of publications, we considered one author from that author group. When multiple authors were considered as major authors but were associated with different publications, we selected the ones with the most publications in the research area.
+@margoni2018infants found evidence for an author-based bias in the prosocial agents literature: results produced by certain authors were consistently larger. We evaluated how prevalent this phenomenon was in the literature by coding a “major author” moderator. Authors are considered to be a “major author” if they are listed as authors in more than 15% of the papers in the research area. When multiple major authors co-authored the same set of publications, we considered one author from that author group. When multiple authors were considered as major authors but were associated with different publications, we selected the ones with the most publications in the research area.
 
 ```{r}
 n_posistive_ef <- nrow(ma_df %>% 

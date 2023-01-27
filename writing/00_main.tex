@@ -191,23 +191,22 @@ sizes from 30 different meta-analyses. This resource allows the
 beginnings of a quantitative synthesis across different research areas
 in developmental psychology.
 
-In particular, we address three separate questions. First, we
-investigate the shape of developmental curves across domains. The form
-of growth curves has been of interest in a lot of areas of developmental
-research (e.g., accelerating growth in vocabulary: McMurray, 2007;
-asymptotic decreases in reaction time: Kail, 1991). These nuanced
-descriptions of developmental trajectories allow for a more precise
-understanding of the underlying mechanisms driving these changes. We aim
-to provide these quantitative descriptions for more research areas.
-Second, we hope to understand how research methods moderate the
-strengths of the findings. Increasingly, developmental research methods
-are scrutinized for their mechanisms and scientific rigor (Paulus, 2022;
-Stahl \& Kibbe, 2022). With MetaLab, the field is ripe for a more
-systematic understanding of how different design choices in experiments
-could influence the results. Finally, we offer a birds-eye view of the
-field by integrating the growth curves across multiple domains. This
-view would provide an empirical foundation for creating a synthesized
-theory of cognitive development.
+In particular, we address three questions. First, we investigate the
+shape of developmental curves across domains. The form of growth curves
+has been of interest in a lot of areas of developmental research (e.g.,
+accelerating growth in vocabulary: McMurray, 2007; asymptotic decreases
+in reaction time: Kail, 1991). These nuanced descriptions of
+developmental trajectories allow for a more precise understanding of the
+mechanisms driving these changes. We aim to provide these quantitative
+descriptions for more research areas. Second, we hope to understand how
+research methods moderate the strengths of the findings. Increasingly,
+developmental research methods are scrutinized for their mechanisms and
+scientific rigor (Paulus, 2022; Stahl \& Kibbe, 2022). With MetaLab, the
+field is ripe for a more systematic understanding of how different
+design choices in experiments could influence the results. Finally, we
+offer a birds-eye view of the field by integrating the growth curves
+across multiple domains. This view would provide an empirical foundation
+for creating a synthesized theory of cognitive development.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -219,20 +218,24 @@ Datasets were retrieved from \texttt{metalabr}, the R package built from
 Metalab. As of November 2022, the package includes 30 individual
 meta-analysis datasets covering different research domains in language
 learning and cognitive development. Our current datasets deviate from
-the retrieved datasets in the following way:
-
-\begin{itemize}
-\item 2 datasets were removed due data quality issues (Word segmentation neuro: only contained 1 study; Phonotactic learning: yielded null meta-analytic effect).
-\item 3 datasets were removed due to being observational studies or including studies with quasi-experimental design (Pointing and vocabulary concurrent; Pointing and vocabulary, longitudinal; Video deficit).
-\item 1 dataset was replaced with a more updated version (Infant directed speech preference).
-\item 2 pairs of dataset were combined into one because they measure theoretically identical constructs (Pair 1: Word segmentation behavioral, Functional word segmentation; Pair 2: Gaze following live, Gaze following video). 
-\end{itemize}
+the retrieved datasets in the following way: 2 datasets were removed due
+data quality issues (Word segmentation neuro: only contained 1 study;
+Phonotactic learning: yielded null meta-analytic effect); 3 datasets
+were removed due to being observational studies or including studies
+with quasi-experimental design (Pointing and vocabulary concurrent;
+Pointing and vocabulary, longitudinal; Video deficit); 1 dataset was
+replaced with a more updated version (Infant directed speech
+preference); 2 pairs of dataset were combined into one because they
+measure theoretically identical constructs (Pair 1: Word segmentation
+behavioral, Functional word segmentation; Pair 2: Gaze following live,
+Gaze following video).
 
 The final dataset contains 23 meta-analyses. Table 1 provides a summary
 of the datasets, along with the number of effect sizes and participants
 included in each dataset.
 
-The final dataset and analysis scripts are available at X.
+The final dataset and analysis scripts are available at
+\url{https://tinyurl.com/metalabCogsci}.
 
 \hypertarget{analytic-methods}{%
 \subsubsection{Analytic Methods}\label{analytic-methods}}
@@ -284,7 +287,7 @@ Language discrimination and preference & 153 & 2060 & -0.13 [-0.26,0] & 2.3 & 2.
 
 \hline
 \end{tabular}
-\caption{\label{demo-table}This table summarize the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of $\Delta_{i}$ of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Constant, Linear, Logarithmic, and Quadratic. The values were calculated from subtracting the minimum AICc from the AICc of each model. They were rounded to one decimal. The bold values represent the smallest values among the four functional forms before rounding. Asterisks mark the models that are significantly better than the other models in the same research area.}
+\caption{\label{demo-table}This table summarizes the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of $\Delta_{i}$ of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Constant, Linear, Logarithmic, and Quadratic. The values were calculated from subtracting the minimum AICc from the AICc of each model. They were rounded to one decimal. The bold values represent the smallest values among the four functional forms before rounding. Asterisks mark the models that are significantly better than the other models in the same research area.}
 \end{table*}
 
 Our first research question was about the functional form of the
@@ -425,16 +428,15 @@ Abstract rule learning: \(\beta\) = 0.27 {[}0.05, 0.5{]}, \emph{z} =
 \subsubsection{Major author}\label{major-author}}
 
 Margoni \& Surian (2018) found evidence for an author-based bias in the
-prosocial agents literature, where results produced by certain authors
-were consistently larger than others. We evaluated how prevalent this
-phenomenon was in the literature by coding a ``major author'' moderator.
-Authors are considered to be a ``major author'' if they are listed as
-authors in more than 15\% of the papers in the research area. When
-multiple major authors co-authored the same set of publications, we
-considered one author from that author group. When multiple authors were
-considered as major authors but were associated with different
-publications, we selected the ones with the most publications in the
-research area
+prosocial agents literature: results produced by certain authors were
+consistently larger. We evaluated how prevalent this phenomenon was in
+the literature by coding a ``major author'' moderator. Authors are
+considered to be a ``major author'' if they are listed as authors in
+more than 15\% of the papers in the research area. When multiple major
+authors co-authored the same set of publications, we considered one
+author from that author group. When multiple authors were considered as
+major authors but were associated with different publications, we
+selected the ones with the most publications in the research area.
 
 We found evidence for a major author effect in 8 datasets, where studies
 produced by the major author were larger than the rest of the papers. In
@@ -460,8 +462,9 @@ Finally, we synthesized all 23 datasets by grouping them based on the
 type of theoretical constructs they represented: Cognitive abilities,
 Communication, Sounds, and Words. We integrated the predictions from the
 best-fitting age-based models in Figure 2, showing predictions across
-the range of measured ages. We found a striking range of functional
-forms in the developmental trajectories across all types of theoretical
+the range of measured ages (See SI for each prediction line along with
+the corresponding data). We found a striking range of functional forms
+in the developmental trajectories across all types of theoretical
 constructs. In particular, the magnitudes of some phenomena -- online
 word recognition, gaze following, and mutual exclusivity, for example --
 increased substantially over development. In contrast, others -- sound
@@ -537,15 +540,14 @@ nuances: rather than treating methods as a perfect mirror perfectly
 reflecting the phenomenon, they should be regarded as an imperfect lens
 that could distort our perception of the phenomenon.
 
-Of course, the same can be said about meta-analysis. Meta-analysis is
-not a perfect tool. Despite the inclusion of a variety of moderators, we
-can explain relatively variation in the datasets. One measure of
-heterogeneity is \(I^2\), which calculates the proportion of variance
-accounted for by the meta-analytic model, relative to the total variance
-in the dataset. The mean \(I^2\) across all the models we ran was 0.74
-(\emph{SD} : 0.19), indicating that the majority of the variation in
-effects across studies was unexplained by our moderators (Higgins \&
-Thompson, 2002).
+Of course, meta-analysis is not a perfect tool either. Despite the
+inclusion of a variety of moderators, we can explain relatively
+variation in the datasets. One measure of heterogeneity is \(I^2\),
+which calculates the proportion of variance accounted for by the
+meta-analytic model, relative to the total variance in the dataset. The
+mean \(I^2\) across all the models we ran was 0.74 (\emph{SD} : 0.19),
+indicating that the majority of the variation in effects across studies
+was unexplained by our moderators (Higgins \& Thompson, 2002).
 
 Moreover, meta-analytic methods can often produce effect sizes
 significantly larger than a comparable large-scale replication (Kvarven,

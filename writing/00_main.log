@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.17)  26 JAN 2023 14:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.17)  26 JAN 2023 17:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,24 +570,20 @@ Underfull \hbox (badness 1052) in paragraph at lines 113--128
 
 
 
-]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 225.
-(/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [2]
-<figs/mod_plot-1.pdf, id=61, 468.75125pt x 325.215pt>
+] [2]
+<figs/mod_plot-1.pdf, id=62, 468.75125pt x 325.215pt>
 File: figs/mod_plot-1.pdf Graphic file (type pdf)
 <use figs/mod_plot-1.pdf>
-Package pdftex.def Info: figs/mod_plot-1.pdf  used on input line 337.
+Package pdftex.def Info: figs/mod_plot-1.pdf  used on input line 340.
 (pdftex.def)             Requested size: 468.75009pt x 325.2142pt.
-LaTeX Font Info:    Trying to load font information for OML+ptm on input line 364.
+LaTeX Font Info:    Trying to load font information for OML+ptm on input line 367.
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 364.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 367.
 
-Underfull \vbox (badness 3118) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -595,16 +591,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [3]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 [4 <./figs/mod_plot-1.pdf>]
-<figs/image-1.pdf, id=85, 191.71625pt x 190.7125pt>
+<figs/image-1.pdf, id=88, 191.71625pt x 190.7125pt>
 File: figs/image-1.pdf Graphic file (type pdf)
 <use figs/image-1.pdf>
-Package pdftex.def Info: figs/image-1.pdf  used on input line 448.
+Package pdftex.def Info: figs/image-1.pdf  used on input line 450.
 (pdftex.def)             Requested size: 191.71577pt x 190.71202pt.
-<figs/2-col-imageb-1.pdf, id=86, 505.89pt x 356.33125pt>
+<figs/2-col-imageb-1.pdf, id=89, 505.89pt x 356.33125pt>
 File: figs/2-col-imageb-1.pdf Graphic file (type pdf)
 <use figs/2-col-imageb-1.pdf>
-Package pdftex.def Info: figs/2-col-imageb-1.pdf  used on input line 499.
+Package pdftex.def Info: figs/2-col-imageb-1.pdf  used on input line 502.
 (pdftex.def)             Requested size: 505.88875pt x 356.33037pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -616,7 +615,7 @@ Underfull \vbox (badness 6792) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [6 <./figs/2-col-imageb-1.pdf>]
-Underfull \hbox (badness 3735) in paragraph at lines 663--667
+Underfull \hbox (badness 3735) in paragraph at lines 665--669
  \OT1/ptm/m/n/10 Com-par-ing meta-analyses and pre-reg-is-tered multiple-
  []
 
@@ -625,18 +624,18 @@ Package rerunfilecheck Info: File `00_main.out' has not changed.
 (rerunfilecheck)             Checksum: 84C8D0F641DAF31C011EF5A03DB8529F;995.
  ) 
 Here is how much of TeX's memory you used:
- 14529 strings out of 478053
- 235622 string characters out of 5839882
+ 14504 strings out of 478053
+ 235228 string characters out of 5839882
  1881793 words of memory out of 5000000
- 34326 multiletter control sequences out of 15000+600000
- 540325 words of font info for 84 fonts, out of 8000000 for 9000
+ 34305 multiletter control sequences out of 15000+600000
+ 540011 words of font info for 83 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,12n,77p,924b,443s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,12n,77p,925b,451s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}</Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 00_main.pdf (7 pages, 140774 bytes).
+Output written on 00_main.pdf (7 pages, 143120 bytes).
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
- 170 compressed objects within 2 object streams
+ 205 PDF objects out of 1000 (max. 8388607)
+ 171 compressed objects within 2 object streams
  70 named destinations out of 1000 (max. 500000)
  80 words of extra memory for PDF output out of 10000 (max. 10000000)
 

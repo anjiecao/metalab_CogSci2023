@@ -1,28 +1,156 @@
 ---
-title: "Supplementary Information"
+title: "A synthesis of early cognitive and language development using (meta-)meta-analysis"
+
 author: "Anjie Cao, Molly Lewis, and Michael Frank"
 date: "`r Sys.Date()`"
 output:
   pdf_document: default
   html_document: default
+subtitle: "Supplementary Information" 
 ---
 
+Each figure shows the dataset from one domain. X-axis is mean age in months. Y-axis is effect size (Cohen's $d$). Each dot on each figure represents one effect size, with the size denoting the precision of the estimated effect size. The red line represents the predicted value from the best-fitting model, and the shaded area represents the 95% confidence
 
-```{r}
+
+```{r include=FALSE}
 library(tidyverse)
 library(here)
+library(ggthemes)
 
-
-d <- read_csv(here("data/clean_data.csv"))
+# some additional cleaning 
+d <- read_csv(here("data/clean_data.csv")) %>% 
+  mutate(d_var = case_when(
+    is.na(d_var) ~ d_var_calc, 
+    TRUE ~ d_var
+  )) %>% 
+  mutate(ds_clean = case_when(
+    ds_clean == "Word Segmentation (combined)" ~ "Word segmentation", 
+    ds_clean == "Statistical sound category learning (habituation)" ~ "Statistical sound category learning", 
+    ds_clean == "Simple arithmetic competences"~ "Simple arithmetic competence",
+    ds_clean == "Gaze following (combined)" ~ "Gaze following",
+    TRUE ~ ds_clean
+  ))
 all_age_pred <- readRDS(here("cached_data/min_age_pred_df.RDS"))
 ```
 
 
-# test example 
-```{r}
 
-d %>% 
-  filter(ds_clean == "")
+```{r include=FALSE}
+age_range_df <- d %>% 
+  group_by(ds_clean) %>% 
+  summarise(min_age = min(mean_age_months, na.rm = TRUE), 
+            max_age = max(mean_age_months, na.rm = TRUE)) %>% 
+  rename(ds_name = ds_clean)
+
+
+categorized_age_pred_df <- all_age_pred %>% 
+  # fix some name issue
+  mutate(ds_name = case_when(
+    ds_name == "Word Segmentation (combined)" ~ "Word segmentation", 
+    ds_name == "Statistical sound category learning (habituation)" ~ "Statistical sound category learning", 
+    ds_name == "Simple arithmetic competences"~ "Simple arithmetic competence",
+    ds_name == "Gaze following (combined)" ~ "Gaze following",
+    TRUE ~ ds_name
+  )) %>% 
+  select(pred, ds_name, ci.lb, ci.ub) %>% 
+  group_by(ds_name) %>% 
+  mutate(mean_age_months = (row_number() + 1) / 2) %>% 
+  left_join(age_range_df, by = c("ds_name")) %>% 
+  filter(mean_age_months > min_age, 
+         mean_age_months < min(36, max_age))%>% 
+  mutate(
+    ds_type = case_when(
+      ds_name %in% c( "Language discrimination and preference", 
+                     "Mispronunciation sensitivity", 
+                     "Natural speech preference", "Sound symbolism", "Statistical sound category learning", 
+                     "Vowel discrimination (native)",
+                     "Vowel discrimination (non-native)" ,"Word Segmentation",
+                     "Statistical word segmentation") ~ "Sounds", 
+      
+      ds_name %in% c("Familiar word recognition", 
+                     "Cross-situational word learning", 
+                      "Label advantage in concept learning",
+                     "Mutual exclusivity",
+                     "Online word recognition",
+                     "Syntactic bootstrapping",
+                     "Switch task") ~ "Words",
+      
+      ds_name %in% c("Gaze following",
+                     "Prosocial agents",
+                     "Symbolic play", 
+                     "Infant directed speech preference") ~ "Communication", 
+      
+      ds_name %in% c("Abstract rule learning",  
+                     "Categorization bias", 
+                     "Simple arithmetic competence") ~ "Cognitive abilities"
+     )
+  ) %>% 
+  # flip the opposite coding 
+  mutate(pred = case_when(
+    ds_name == "Abstract rule learning" ~ -pred, 
+    ds_name == "Switch task" ~ -pred,
+    ds_name == "Statistical word segmentation" ~ -pred,
+    TRUE ~ pred
+  )) %>% 
+  mutate(
+    ci.lb = case_when(
+      ds_name %in% c("Abstract rule learning", "Switch task", "Statistical word segmentation") ~ -ci.lb,
+      TRUE ~ ci.lb
+    ), 
+    ci.ub = case_when(
+      ds_name %in% c("Abstract rule learning", "Switch task", "Statistical word segmentation") ~ -ci.ub,
+      TRUE ~ ci.ub
+    )
+  ) %>% 
+
+  select(ds_name, ds_type, mean_age_months, pred, ci.lb, ci.ub)
 
 ```
+
+
+```{r include=FALSE}
+plot_data_with_pred_line <- function(name, data_d, pred_d){
+  current_data_d <- data_d %>% filter(ds_clean == name) %>% filter(mean_age_months < 36)
+  current_pred_d <- pred_d %>% filter(ds_name == name)
+  
+  ggplot() +
+  geom_point(data = current_data_d, 
+             aes(x = mean_age_months, y = d_calc, size = 1/d_var),
+             alpha = .3) + 
+  geom_line(data = current_pred_d, 
+            aes(x = mean_age_months, y = pred, col = "red")) + 
+  geom_ribbon(data = current_pred_d, 
+              aes(x = mean_age_months, y = pred, ymin = ci.lb, ymax = ci.ub), alpha = 0.1) + 
+  theme_few() + 
+  ylab("Effect Size") + 
+  xlab("Mean age in months") + 
+  theme(
+    legend.position = "None"
+  ) + 
+  labs(title = name)
+  
+  
+  
+}
+```
+
+
+```{r include=FALSE, cache=TRUE}
+all_plot <- lapply(unique(d$ds_clean), 
+       function(x){
+         print(x)
+         plot_data_with_pred_line(x, d, categorized_age_pred_df)
+       })
+```
+
+
+```{r echo=FALSE}
+
+for (i in 1:length(all_plot)){
+  print(all_plot[[i]])
+
+}
+
+```
+
 
