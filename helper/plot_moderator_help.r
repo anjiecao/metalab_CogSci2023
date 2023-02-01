@@ -43,21 +43,22 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
-   geom_text(
-       label="Looking", 
-       x= 8,
-       y= -0.25,
-       size = 2.5,
-       color = "gray"
-   )+
-    geom_hline(yintercept = 0, linetype = "dashed")+ 
+    geom_hline(yintercept = 0, color = "purple", linetype = "dashed")+ 
     #coord_flip() +
     ylim(-2.5, 3)+ 
     xlab("") + 
-    ylab("") + 
+    scale_y_continuous(
+      "Estimated Coefficient (effect sizes)", 
+      sec.axis = sec_axis(~ . * 1, "Looking")
+    ) + 
+    
     labs(title = "Behavioral Measure \n (Baseline: looking)") + 
     theme_few() +
     theme(
+      axis.title.y.left = element_text(size=axis_font_size),
+      axis.title.y.right = element_text(size=axis_font_size, color = "purple", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.ticks.y.right =  element_blank(),
+      axis.text.y.right  =  element_blank(),
       legend.position = "top",
       axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust=1),
 
@@ -78,23 +79,22 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) + 
-    geom_hline(yintercept = 0, linetype = "dashed")+ 
-    geom_text(
-      label="Familiarization", 
-      x= 2,
-      y= 0.25,
-      size = 2.5,
-      color = "gray"
-    )+
+    geom_hline(yintercept = 0, color = "purple",linetype = "dashed") + 
     #coord_flip() +
     ylim(-2.5, 3)+ 
     xlab("") + 
-    ylab("") + 
+    scale_y_continuous(
+        "", 
+        sec.axis = sec_axis(~ . * 1, "Familiarization")
+      ) + 
     labs(title = "Stimuli Exposure Method \n (Baseline: Familiarization)") + 
     theme_few() +
     theme(
       legend.position = "top",
       axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust=1),
+      axis.title.y.right = element_text(size=axis_font_size, color = "purple", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.ticks.y.right =  element_blank(),
+      axis.text.y.right  =  element_blank(),
       #legend.position = c(0.7, 0.2),
       legend.title = element_blank(),
       legend.margin = margin(0, 0, 0, 0),
@@ -114,22 +114,21 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
-    geom_hline(yintercept = 0, linetype = "dashed")+ 
-    geom_text(
-      label="Artificial stimulus", 
-      x= 3,
-      y= -0.25,
-      size = 2.5,
-      color = "gray"
-    )+
+    geom_hline(yintercept = 0, color = "purple", linetype = "dashed")+ 
     #coord_flip() +
     ylim(-2.5, 3)+ 
     xlab("") + 
-    ylab("") + 
+    scale_y_continuous(
+      "", 
+      sec.axis = sec_axis(~ . * 1, " Artificial stimulus")
+    ) + 
     labs(title = "Stimuli Naturalness \n (Baseline: Artificial stimulus)") + 
     theme_few() +
     theme(
       axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust = 1),
+      axis.title.y.right = element_text(size=axis_font_size, color = "purple", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.ticks.y.right =  element_blank(),
+      axis.text.y.right  =  element_blank(),
       legend.position = "none",
       legend.title = element_blank(),
       
