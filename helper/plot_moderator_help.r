@@ -43,7 +43,7 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
-    geom_hline(yintercept = 0, color = "purple", linetype = "dashed")+ 
+    geom_hline(yintercept = 0, color = "gray", linetype = "dashed")+ 
     #coord_flip() +
     ylim(-2.5, 3)+ 
     xlab("") + 
@@ -56,7 +56,7 @@ plot_moderators <- function(all_mod_df){
     theme_few() +
     theme(
       axis.title.y.left = element_text(size=axis_font_size),
-      axis.title.y.right = element_text(size=axis_font_size, color = "purple", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.title.y.right = element_text(size=axis_font_size, color = "gray", angle = 90, vjust = 0.5 , hjust=0.3),
       axis.ticks.y.right =  element_blank(),
       axis.text.y.right  =  element_blank(),
       legend.position = "top",
@@ -79,7 +79,7 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) + 
-    geom_hline(yintercept = 0, color = "purple",linetype = "dashed") + 
+    geom_hline(yintercept = 0, color = "gray",linetype = "dashed") + 
     #coord_flip() +
     ylim(-2.5, 3)+ 
     xlab("") + 
@@ -92,7 +92,7 @@ plot_moderators <- function(all_mod_df){
     theme(
       legend.position = "top",
       axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust=1),
-      axis.title.y.right = element_text(size=axis_font_size, color = "purple", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.title.y.right = element_text(size=axis_font_size, color = "gray", angle = 90, vjust = 0.5 , hjust=0.3),
       axis.ticks.y.right =  element_blank(),
       axis.text.y.right  =  element_blank(),
       #legend.position = c(0.7, 0.2),
@@ -114,7 +114,7 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
-    geom_hline(yintercept = 0, color = "purple", linetype = "dashed")+ 
+    geom_hline(yintercept = 0, color = "gray", linetype = "dashed")+ 
     #coord_flip() +
     ylim(-2.5, 3)+ 
     xlab("") + 
@@ -126,7 +126,7 @@ plot_moderators <- function(all_mod_df){
     theme_few() +
     theme(
       axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust = 1),
-      axis.title.y.right = element_text(size=axis_font_size, color = "purple", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.title.y.right = element_text(size=axis_font_size, color = "gray", angle = 90, vjust = 0.5 , hjust=0.3),
       axis.ticks.y.right =  element_blank(),
       axis.text.y.right  =  element_blank(),
       legend.position = "none",
