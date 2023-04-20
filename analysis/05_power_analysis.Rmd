@@ -1,0 +1,88 @@
+---
+title: "05_power_analysis"
+author: "Anjie Cao, Molly Lewis, and Michael Frank"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(metameta)
+library(ggthemes)
+library(metafor)
+
+d <- read_csv(here("data/clean_data.csv"))
+summary_es <- read_rds(here("cached_data/summary_d.Rds"))
+```
+
+```{r}
+power_ooi = mapower_se(
+  dat = dat_ooi, 
+  observed_es = 0.178, 
+  name = "OOI et al 2017"
+)
+power_ooi$power_median_dat %>% View()
+```
+
+# Prep dataset to be compatible with the metameata functi 
+
+```{r}
+
+# nest relevant dataset 
+
+all_ds <- d %>% 
+  select(ds_clean, study_ID, d_calc,  d_var_calc, d_var) %>% 
+  filter(!is.na(d_var_calc) | !is.na(d_var)) %>% 
+  mutate(d_var_calc = case_when(
+    is.na(d_var_calc) ~ d_var, 
+    TRUE ~ d_var_calc
+  )) %>% 
+  select(ds_clean, study_ID, d_calc, d_var_calc) %>% 
+  rename(
+    study = study_ID, 
+    yi = d_calc
+  ) %>% 
+  mutate(sei = sqrt(d_var_calc)) %>% 
+  select(ds_clean, study, yi, sei) %>% 
+  group_by(ds_clean) %>% 
+  nest(data = c(study, yi, sei)) %>% 
+  # join the ES 
+  left_join(summary_es %>% select(ds_clean, es), by = c("ds_clean"))
+
+ 
+
+all_ds 
+```
+
+
+
+# function to get observed power
+
+```{r}
+get_es_observed_power <- function(ds_clean, data, es){
+  
+  test_res <- mapower_se(
+    dat = data, 
+    observed_es =es, 
+    name = ds_clean )
+  
+  test_res$power_median_dat$es_observed
+
+}
+```
+
+# get power
+
+```{r}
+
+all_ds$power = unlist(pmap(all_ds, get_es_observed_power))
+```
+
+```{r}
+all_ds %>% 
+  ggplot(aes(x = es, y = power))+ 
+  geom_point() + 
+  theme_few()
+```
+
