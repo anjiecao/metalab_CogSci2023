@@ -1,7 +1,7 @@
 ---
 title: "A synthesis of early cognitive and language development using (meta-)meta-analysis"
 bibliography: library.bib
-csl: apa6.csl
+csl: apa6-meta.csl
 document-params: "10pt, letterpaper"
 
 author-information: > 
@@ -25,7 +25,7 @@ output:
     
   
 nocite: | 
-  
+  @cristia2018can, @tsuji2014perceptual, @tsui2019associative, @christodoulou2017babies, @quinn2018relationship, @dunst2012preference, @frank2016performance, @lewis2020role, @fort2018symbouki, @von2021development, @dal2019cross, @carbajal2021meta, @rabagliati2019profile, @gasparini2021quantifying
 
 header-includes   :
 
@@ -49,6 +49,7 @@ library(ggthemes)
 library(metafor)
 library(kableExtra)
 library(patchwork)
+
 
 
 d <- read_csv(here("data/clean_data.csv"))

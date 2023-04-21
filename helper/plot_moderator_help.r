@@ -43,6 +43,7 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
+    scale_color_manual(values = c("#E69F00", "#56B4E9")) + 
     geom_hline(yintercept = 0, color = "gray", linetype = "dashed")+ 
     #coord_flip() +
     ylim(-2.5, 3)+ 
@@ -79,6 +80,7 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) + 
+    scale_color_manual(values = c( "#009E73", "#F0E442")) + 
     geom_hline(yintercept = 0, color = "gray",linetype = "dashed") + 
     #coord_flip() +
     ylim(-2.5, 3)+ 
@@ -114,6 +116,7 @@ plot_moderators <- function(all_mod_df){
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
     geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
                     position = position_dodge(width = .4)) +
+    scale_color_manual(values = c("#0072B2", "#D55E00")) + 
     geom_hline(yintercept = 0, color = "gray", linetype = "dashed")+ 
     #coord_flip() +
     ylim(-2.5, 3)+ 

@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.17)  1 FEB 2023 16:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.17)  21 APR 2023 14:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **00_main.tex
 (./00_main.tex
 LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2022-12-17> (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2023-02-22> (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
@@ -183,7 +183,7 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2022-11-13 v7.00u Hypertext links for LaTeX
+Package: hyperref 2023-02-07 v7.00v Hypertext links for LaTeX
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
@@ -223,7 +223,7 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 \Hy@linkcounter=\count283
 \Hy@pagecounter=\count284
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2022-11-13 v7.00u Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2023-02-07 v7.00v Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -233,23 +233,23 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count285
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2022-11-13 v7.00u Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2023-02-07 v7.00v Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4162.
-Package hyperref Info: Link nesting OFF on input line 4167.
-Package hyperref Info: Hyper index ON on input line 4170.
-Package hyperref Info: Plain pages OFF on input line 4177.
-Package hyperref Info: Backreferencing OFF on input line 4182.
+Package hyperref Info: Hyper figures OFF on input line 4177.
+Package hyperref Info: Link nesting OFF on input line 4182.
+Package hyperref Info: Hyper index ON on input line 4185.
+Package hyperref Info: Plain pages OFF on input line 4192.
+Package hyperref Info: Backreferencing OFF on input line 4197.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4410.
+Package hyperref Info: Bookmarks ON on input line 4425.
 \c@Hy@tempcnt=\count286
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4748.
+LaTeX Info: Redefining \url on input line 4763.
 \XeTeXLinkMargin=\dimen159
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -259,13 +259,13 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count287
 \Field@Width=\dimen160
 \Fld@charsize=\dimen161
-Package hyperref Info: Hyper figures OFF on input line 6027.
-Package hyperref Info: Link nesting OFF on input line 6032.
-Package hyperref Info: Hyper index ON on input line 6035.
-Package hyperref Info: backreferencing OFF on input line 6042.
-Package hyperref Info: Link coloring OFF on input line 6047.
-Package hyperref Info: Link coloring with OCG OFF on input line 6052.
-Package hyperref Info: PDF/A mode OFF on input line 6057.
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
@@ -276,7 +276,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2022-11-13 v7.00u Hyperref driver for pdfTeX
+File: hpdftex.def 2023-02-07 v7.00v Hyperref driver for pdfTeX
 (/Users/caoanjie/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
@@ -615,27 +615,34 @@ Underfull \vbox (badness 6792) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [6 <./figs/2-col-imageb-1.pdf>]
-Underfull \hbox (badness 3735) in paragraph at lines 672--676
+Underfull \hbox (badness 1436) in paragraph at lines 648--652
+ []\OT1/ptm/m/n/10 * Dal Ben, R., Souza, D. de H., & Hay, J. (2019).
+ []
+
+
+Underfull \hbox (badness 3735) in paragraph at lines 711--715
  \OT1/ptm/m/n/10 Com-par-ing meta-analyses and pre-reg-is-tered multiple-
  []
 
-[7] (./00_main.aux)
+[7] [8
+
+] (./00_main.aux)
 Package rerunfilecheck Info: File `00_main.out' has not changed.
 (rerunfilecheck)             Checksum: 84C8D0F641DAF31C011EF5A03DB8529F;995.
  ) 
 Here is how much of TeX's memory you used:
- 14504 strings out of 478053
- 235223 string characters out of 5839882
- 1881793 words of memory out of 5000000
- 34305 multiletter control sequences out of 15000+600000
+ 14521 strings out of 477984
+ 235686 string characters out of 5838315
+ 1882388 words of memory out of 5000000
+ 34376 multiletter control sequences out of 15000+600000
  540011 words of font info for 83 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,12n,77p,925b,451s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,76p,982b,461s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}</Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></Users/caoanjie/Library/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 00_main.pdf (7 pages, 143229 bytes).
+Output written on 00_main.pdf (8 pages, 154208 bytes).
 PDF statistics:
- 206 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
- 70 named destinations out of 1000 (max. 500000)
+ 229 PDF objects out of 1000 (max. 8388607)
+ 194 compressed objects within 2 object streams
+ 85 named destinations out of 1000 (max. 500000)
  80 words of extra memory for PDF output out of 10000 (max. 10000000)
 

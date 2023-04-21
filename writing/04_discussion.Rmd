@@ -12,7 +12,7 @@ age_range_df <- d %>%
 
 
 categorized_age_pred_df <- all_age_pred %>% 
-  select(pred, ds_name) %>% 
+  select(pred, ds_name, ci.lb, ci.ub) %>% 
   group_by(ds_name) %>% 
   mutate(mean_age_months = (row_number() + 1) / 2) %>% 
   left_join(age_range_df, by = c("ds_name")) %>% 
@@ -51,7 +51,17 @@ categorized_age_pred_df <- all_age_pred %>%
     ds_name == "Statistical word segmentation" ~ -pred,
     TRUE ~ pred
   )) %>% 
-  select(ds_name, ds_type, mean_age_months, pred) %>% 
+  mutate(
+    ci.lb = case_when(
+      ds_name %in% c("Abstract rule learning", "Switch task", "Statistical word segmentation") ~ -ci.lb,
+      TRUE ~ ci.lb
+    ), 
+    ci.ub = case_when(
+      ds_name %in% c("Abstract rule learning", "Switch task", "Statistical word segmentation") ~ -ci.ub,
+      TRUE ~ ci.ub
+    )
+  ) %>% 
+  select(ds_name, ds_type, mean_age_months, pred, ci.lb, ci.ub) %>% 
   mutate(ds_name = case_when(
     ds_name == "Word Segmentation (combined)" ~ "Word segmentation", 
     ds_name == "Statistical sound category learning (habituation)" ~ "Statistical sound category learning", 
@@ -117,16 +127,20 @@ label_df$y = c(
   
 )
 
+
+
 p <- categorized_age_pred_df %>% 
-  ggplot(aes(x = mean_age_months, y = pred, group = ds_name, color = ds_name)) + 
+  ggplot(aes(x = mean_age_months, y = pred, group = ds_name, col = ds_name)) + 
   geom_hline(yintercept = 0, linetype = "dashed", alpha = .5) + 
   geom_line(alpha = 1, width = 2)+ 
+  geom_ribbon(
+              aes(x = mean_age_months, y = pred, ymin = ci.lb, ymax = ci.ub, fill = ds_name), alpha = 0.1, colour = NA)+ 
   geom_text(data = label_df, aes(x = x, y = y, label = ds_name, size = 0.2), 
                    size = 2.2,
                   segment.color = NA) + 
   xlim(0, 48) + 
   ylim(-1.5, 4) + 
-  facet_wrap(~ds_type, scales = "free") + 
+  facet_wrap(~factor(ds_type, levels = c("Sounds", "Words", "Communication", "Cognitive abilities")), scales = "free") + 
   theme_few()+
   theme(legend.position = "none", 
         axis.title.x = element_text(size = 8), 
@@ -138,6 +152,7 @@ p <- categorized_age_pred_df %>%
   xlab("Age (months)") + 
   ylab("Predicted Effect Size") 
   
+
 
 p
 ```
