@@ -71,7 +71,7 @@
 \usepackage{xcolor}
 
 \author{Anjie Cao$^1$  (anjiecao@stanford.edu), 
- Molley Lewis (mollylewis@gmail.com), \\
+ Molly Lewis (mollyllewis@gmail.com), \\
  and \bf{Michael C. Frank$^1$ (mcfrank@stanford.edu)} \\
 $^1$Department of Psychology, Stanford University }
 
@@ -123,7 +123,7 @@ constructs. The former tends to be observational studies, using
 instruments like the Bayley Scales to capture an individual child's
 development (e.g. Bayley, 2006). However, this approach poses a
 challenge to move from global developmental milestones to underlying
-mechanisms. In contrast, the latter often uses experimental to allow
+mechanisms. In contrast, the latter often uses experiments to allow
 causal traction on the potential mechanisms of one single construct, but
 it is often difficult to reveal the connections between different
 processes and mechanisms.
@@ -136,20 +136,18 @@ meta-analyses of cognitive and language development compiled on MetaLab,
 a community-augmented meta-analysis platform (Bergmann et al., 2018).
 
 Statistical meta-analysis, the technique of aggregating effect sizes
-across a systematic sample of experiments, has some unique advantages as
-a source of data about developmental processes in early childhood. First
-and foremost, it allows researchers to explore questions that are
-difficult to address with individual studies. One such example is the
-functional form of developmental curves, or how different psychological
-processes change over time. Many developmental studies use linear
-regression models with age as a predictor, but this assumption of
-linearity may not capture the complexities of developmental processes.
-For example, some cognitive abilities -- such as relational reasoning --
-might follow an inverted-U shape (Carstensen et al., 2019; Walker,
-Bridgers, \& Gopnik, 2016), while others -- like early vocabulary size
--- show an exponential increase (Frank, Braginsky, Yurovsky, \&
-Marchman, 2021). The shapes of the developmental trajectories have
-significant implications for building theories (e.g. Aslin, 1980).These
+across a systematic sample of experiments, has unique advantages as a
+source of data about developmental processes. First, it allows
+researchers to explore questions that are difficult to address with
+individual studies. One such example is the functional form of
+developmental curves, or how different psychological processes change
+over time. Many developmental studies use linear regression models with
+age as a predictor, but this assumption of linearity may not capture the
+complexities of developmental processes. For example, some cognitive
+abilities -- such as relational reasoning -- might follow an inverted-U
+shape (Carstensen et al., 2019; Walker, Bridgers, \& Gopnik, 2016),
+while others -- like early vocabulary size -- show an exponential
+increase (Frank, Braginsky, Yurovsky, \& Marchman, 2021). These
 non-linear trends can be challenging to identify and interpret with
 limited data from individual studies, but meta-analytic methods can
 provide a large amount of data across a broad age range, enabling
@@ -171,7 +169,7 @@ cognitive capabilities (Bergmann \& Cristia, 2016; Cf. Black \&
 Bergmann, 2017). Debates about infants' arithmetic competence or their
 evaluations of social agents are often centered around the direction of
 preferences (Infants arithmetic competence: Clearfield \& Westfahl,
-2006; Wakeley, Rivera, \& Langer, 2000; Wynn, 1993; Evaluation of social
+2006; Wakeley, Rivera, \& Langer, 2000; Wynn, 1992; Evaluation of social
 agents: Hamlin, Wynn, \& Bloom, 2007; Salvadori et al., 2015). Due to
 the time and resources required for developmental studies, it is often
 difficult to directly evaluate the impact of subtle changes in methods.
@@ -179,21 +177,20 @@ Therefore, meta-analytic methods provide a unique opportunity to
 investigate the effects of methodological factors on research findings.
 
 Last but not least, meta-analytic methods make it possible to compare
-and connect research findings across research areas. For example, how
-does The use of effect size as the fundamental unit of analysis allows
-for comparisons across different domains and research areas. These
-comparisons can provide insight into how different processes facilitate
-learning at different stages of development and can aid in the
-development of data-driven cognitive development theories (Cao \& Lewis,
-2022; Lewis et al., 2016). However, a synthesis across multiple domains
-requires a database of multiple meta-analyses. Towards that aim, MetaLab
-was established to provide an open database of meta-analyses (Bergmann
-et al., 2018). Developmental researchers are invited to deposit their
-meta-analysis dataset into MetaLab, and they are encouraged to use the
-datasets for custom analyses. As of January 2023, Metalab contains 2,497
-effect sizes from 30 different meta-analyses. This resource allows the
-beginnings of a quantitative synthesis across different research areas
-in developmental psychology.
+and connect research findings across research areas. The use of effect
+size as the fundamental unit of analysis allows for comparisons across
+different domains and research areas, and it can help us answer
+questions such as whether mutual exclusivity facilitates the process of
+syntactic bootstrapping (Cao \& Lewis, 2022; Lewis et al., 2016).
+However, a synthesis across multiple domains requires a database of
+multiple meta-analyses. Towards that aim, MetaLab was established to
+provide an open database of meta-analyses (Bergmann et al., 2018).
+Developmental researchers are invited to deposit their meta-analysis
+dataset into MetaLab, and they are encouraged to use the datasets for
+custom analyses. As of January 2023, Metalab contains 2,497 effect sizes
+from 30 different meta-analyses. This resource allows the beginnings of
+a quantitative synthesis across different research areas in
+developmental psychology.
 
 In particular, we address three questions. First, we investigate the
 shape of developmental curves across domains. The form of growth curves
@@ -236,21 +233,22 @@ Gaze following video).
 
 The final dataset contains 23 meta-analyses. Table 1 provides a summary
 of the datasets, along with the number of effect sizes and participants
-included in each dataset.
+included in each dataset. All datasets that have manuscripts associated
+with are cited and indicated by an asterisk in the references section.
 
-The final dataset and analysis scripts are available at
-\url{https://tinyurl.com/metalabCogsci}.
+All data and analysis scripts are available
+\href{https://github.com/anjiecao/metalab_CogSci2023}{here}.
 
 \hypertarget{analytic-methods}{%
 \subsubsection{Analytic Methods}\label{analytic-methods}}
 
-All analyses were conducted in R using the \texttt{metafor} package
-(Viechtbauer, 2010). We specified multi-level random effect models with
-random effect structures that included grouping by paper and by
-participant group. We removed the clustering if the grouping information
-was missing from the dataset. All moderators were included as fixed
-effects. All model comparisons were based on the corrected Akaike
-Information Criterion (AICc).
+All analyses were conducted in R using the \texttt{metafor} package and
+the \texttt{metameta} package (Quintana, 2023; Viechtbauer, 2010). We
+specified multi-level random effect models with random effect structures
+that included grouping by paper and by participant group. We removed the
+clustering if the grouping information was missing from the dataset. All
+moderators were included as fixed effects. All model comparisons were
+based on the corrected Akaike Information Criterion (AICc).
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -260,45 +258,50 @@ Information Criterion (AICc).
 curves}\label{functional-form-of-developmental-curves}}
 
 \begin{table*}[ht]
-\begin{tabular}{l|r|r|l|r|r|r|r}
+\small
+\begin{tabular}{l|r|r|r|r|r|r|r|r}
 \hline
-\textbf{Dataset} & N ES & N Participants & ES & Const. & Linear & Log & Quad.\\
+\textbf{Dataset} & N ES & N Subj. & ES & Power & Const. & Linear & Log & Quad.\\
 \hline
-Statistical sound category learning  & 11 & 350 & 0.56 [0.19,0.93] & \textbf{0.0*} & 3.0* & 4.1 & 2.5*\\
-Vowel discrimination (native) & 143 & 2418 & 0.59 [0.43,0.75] & \textbf{0.0} & 1.3 & 1.0 & 1.6\\
-Vowel discrimination (non-native) & 49 & 600 & 0.65 [0.2,1.1] & \textbf{0.0} & 1.6 & 1.7 & 1.5\\
-Statistical word segmentation & 103 & 804 & -0.08 [-0.18,0.02] & \textbf{0.0} & 1.3 & 1.5 & 1.1\\
-Switch task & 143 & 2764 & -0.16 [-0.25,-0.06] & \textbf{0.0} & 1.1 & 1.1 & 1.1\\
-Prosocial agents & 61 & 1244 & 0.4 [0.29,0.52] & \textbf{0.0} & 2.1 & 1.9 & 2.1\\
-Simple arithmetic competences & 14 & 369 & 0.25 [0.04,0.46] & \textbf{0.0} & 6.7 & 6.7 & 6.6\\
-Symbolic play & 196 & 7148 & 0.63 [0.53,0.72] & \textbf{0.0} & 0.6 & 0.5 & 0.6\\
-Word Segmentation  & 315 & 2910 & 0.2 [0.14,0.26] & \textbf{0.0} & 1.3 & 1.0 & 1.6\\
-Infant directed speech preference & 83 & 985 & 0.47 [0.28,0.65] & \textbf{0.0} & 1.0 & 1.8 & 0.9\\
-Online word recognition & 14 & 330 & 1.37 [0.78,1.96] & 2.2 & \textbf{0.0} & 0.2 & 0.1\\
-\rowcolor{lightgray}Mutual exclusivity & 131 & 2222 & 1.27 [0.99,1.56] & 37.2 & 5.8 & \textbf{0.0*} & 16.9\\
-Label advantage in concept learning & 100 & 1644 & 0.36 [0.23,0.48] & 2.4 & 0.9 & \textbf{0.0} & 1.6\\
-Sound symbolism & 44 & 425 & 0.16 [-0.01,0.33] & 2.9 & 0.0 & \textbf{0.0} & 0.7\\
-Categorization bias & 80 & 382 & 0.25 [-0.54,1.05] & 0.9 & 0.3 & \textbf{0.0} & 0.4\\
-Syntactic bootstrapping & 60 & 832 & 0.24 [0.03,0.44] & 0.5 & 0.3 & \textbf{0.0} & 0.6\\
-\rowcolor{lightgray}Mispronunciation sensitivity & 249 & 2122 & 0.45 [0.24,0.66] & 30.7 & 6.4 & 14.5 & \textbf{0.0*}\\
-Cross-situational word learning & 48 & 2241 & 0.67 [0.5,0.84] & 4.0 & 0.1* & 1.9* & \textbf{0.0*}\\
-Gaze following  & 81 & 1407 & 0.81 [0.61,1.01] & 43.7 & 2.1* & 10.4 & \textbf{0.0*}\\
-Familiar word recognition & 34 & 586 & 0.54 [0.38,0.69] & 1.7 & 0.3 & 1.1 & \textbf{0.0}\\
-Abstract rule learning & 95 & 1123 & 0.22 [0.07,0.37] & 0.4 & 0.3 & 0.9 & \textbf{0.0}\\
-Natural speech preference & 55 & 786 & 0.44 [0.23,0.65] & 0.9 & 0.4 & 1.0 & \textbf{0.0}\\
-Language discrimination and preference & 153 & 2060 & -0.13 [-0.26,0] & 2.3 & 2.0 & 2.9 & \textbf{0.0}\\
+Statistical sound category learning  & 11 & 350 & 0.56 [0.19,0.93] & 0.30 & \textbf{0.0*} & 3.0* & 4.1 & 2.5*\\
+Vowel discrimination (native) & 143 & 2418 & 0.59 [0.43,0.75] & 0.49 & \textbf{0.0} & 1.3 & 1.0 & 1.6\\
+Vowel discrimination (non-native) & 49 & 600 & 0.65 [0.2,1.1] & 0.68 &\textbf{0.0} & 1.6 & 1.7 & 1.5\\
+Statistical word segmentation & 103 & 804 & -0.08 [-0.18,0.02] & 0.07 & \textbf{0.0} & 1.3 & 1.5 & 1.1\\
+Switch task & 143 & 2764 & -0.16 [-0.25,-0.06] & 0.09 & \textbf{0.0}  & 1.1 & 1.1 & 1.1\\
+Prosocial agents & 61 & 1244 & 0.4 [0.29,0.52] & 0.17 & \textbf{0.0}  & 2.1 & 1.9 & 2.1\\
+Simple arithmetic competences & 14 & 369 & 0.25 [0.04,0.46] & 0.23 & \textbf{0.0} & 6.7 & 6.7 & 6.6\\
+Symbolic play & 196 & 7148 & 0.63 [0.53,0.72] & 0.32 & \textbf{0.0} & 0.6 & 0.5 & 0.6\\
+Word Segmentation  & 315 & 2910 & 0.2 [0.14,0.26] & 0.17 & \textbf{0.0} & 1.3 & 1.0 & 1.6\\
+Infant directed speech preference & 83 & 985 & 0.47 [0.28,0.65] & 0.25 & \textbf{0.0} & 1.0 & 1.8 & 0.9\\
+Online word recognition & 14 & 330 & 1.37 [0.78,1.96] & 1.00 & 2.2 & \textbf{0.0} & 0.2 & 0.1\\
+\rowcolor{lightgray}Mutual exclusivity & 131 & 2222 & 1.27 [0.99,1.56] & 0.99 & 37.2 & 5.8 & \textbf{0.0*} & 16.9\\
+Label advantage in concept learning & 100 & 1644 & 0.36 [0.23,0.48] & 0.2 & 2.4 & 0.9 & \textbf{0.0} & 1.6\\
+Sound symbolism & 44 & 425 & 0.16 [-0.01,0.33] & 0.10 & 2.9 & 0.0 & \textbf{0.0} & 0.7\\
+Categorization bias & 80 & 382 & 0.25 [-0.54,1.05] & 0.11 & 0.9 & 0.3 & \textbf{0.0} & 0.4\\
+Syntactic bootstrapping & 60 & 832 & 0.24 [0.03,0.44] & 0.13 & 0.5 & 0.3 & \textbf{0.0} & 0.6\\
+\rowcolor{lightgray}Mispronunciation sensitivity & 249 & 2122 & 0.45 [0.24,0.66] & 0.47 & 30.7 & 6.4 & 14.5 & \textbf{0.0*}\\
+Cross-situational word learning & 48 & 2241 & 0.67 [0.5,0.84] & 0.86 & 4.0 & 0.1* & 1.9* & \textbf{0.0*}\\
+Gaze following  & 81 & 1407 & 0.81 [0.61,1.01] & 0.93 & 43.7 & 2.1* & 10.4 & \textbf{0.0*}\\
+Familiar word recognition & 34 & 586 & 0.54 [0.38,0.69] & 0.59 & 1.7 & 0.3 & 1.1 & \textbf{0.0}\\
+Abstract rule learning & 95 & 1123 & 0.22 [0.07,0.37] & 0.12 & 0.4 & 0.3 & 0.9 & \textbf{0.0}\\
+Natural speech preference & 55 & 786 & 0.44 [0.23,0.65] & 0.41 & 0.9 & 0.4 & 1.0 & \textbf{0.0}\\
+Language discrimination and preference & 153 & 2060 & -0.13 [-0.26,0] & 0.08 & 2.3 & 2.0 & 2.9 & \textbf{0.0}\\
 
 
 \hline
 \end{tabular}
-\caption{\label{demo-table}This table summarizes the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of $\Delta_{i}$ of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Constant, Linear, Logarithmic, and Quadratic. The values were calculated from subtracting the minimum AICc from the AICc of each model. They were rounded to one decimal. The bold values indicate the best fitting model (smallest AICc value). Asterisks indicate models that are a significantly better fit compared to other functional forms for that dataset.Highlighted rows are the datasets that yield an unambiguous best model.}
+\caption{\label{demo-table}This table summarizes the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The power column includes study-level power. The last four columns include the values of $\Delta_{i}$ of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Constant, Linear, Logarithmic, and Quadratic. The values were calculated from subtracting the minimum AICc from the AICc of each model. They were rounded to one decimal. The bold values indicate the best fitting model (smallest AICc value). Asterisks indicate models that are a significantly better fit compared to other functional forms for that dataset.Highlighted rows are the datasets that yield an unambiguous best model.}
 \end{table*}
 
 Our first research question was about the functional form of the
 developmental trajectories we observed. We examined four specific forms:
 constant, linear, logarithmic, and quadratic, each considered as an
 age-related fixed effect. We evaluated the models based on AICc (Table
-1).
+1). We also calculated the study-level power for each meta-analysis. As
+with previous analyses of a subset of these data, individual studies
+often had low power to detect the average meta-analytic effect, one
+potential cause of high variability in effect sizes (Bergmann et al.,
+2018).
 
 When using AICc in model selection, the value needs to be contextualized
 in relation to the lowest AICc among the set of models being compared.
@@ -348,7 +351,7 @@ Figure 1 provides a summary of the estimates for moderators.
 
 }
 
-\caption[Each panel shows the moderator coefficient estimates]{Each panel shows the moderator coefficient estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For stimuli exposure method, the baseline level is familiarization. Red and teal represent the estimates for studies using conditioning and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimates for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech). Error bars show 95\% confidence intervals.}\label{fig:mod_plot}
+\caption[Each panel shows the moderator coefficient estimates]{Each panel shows the moderator coefficient estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Orange dots indicate the estimate for studies using sucking measure, and the blue dots indicate the estimates for studies using HPP measure. For stimuli exposure method, the baseline level is familiarization. Green and yellow represent the estimates for studies using conditioning and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimates for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech). Error bars show 95\% confidence intervals.}\label{fig:mod_plot}
 \end{figure*}
 \end{CodeChunk}
 
@@ -359,21 +362,24 @@ Meta-analyses have very heterogeneous moderators coded, but many
 included coding of which behavioral response measure was used in the
 original study: looking-based behaviors (e.g., looking time or other
 eye-tracking measures), sucking (as in the high amplitude sucking
-procedure), and manual behaviors (e.g., pointing, exploration).
+procedure), and head-turn preference procedure (HPP). An analysis on a
+subset of the datasets has shown significant variation across methods
+(Bergmann et al., 2018). Here we extended the analysis to include more
+datasets.
 
 In general, nearly all effects were weakly positive such that sucking
-and manual response modes yielded slightly larger effect sizes than
-studies with looking behavioral measure, though these effects were not
-always significant. Behavioral measure was a significant predictor of
-effect sizes in only two domains, Vowel Discrimination (Native) and
-Sound Symbolism. In Vowel Discrimination (native), studies with Manual
-or Sucking behavioral measure have larger effect sizes than studies
-using looking as the behavioral measure (Manual: \(\beta\) = 0.58
-{[}0.33, 0.82{]}, \emph{z} = 4.6, \emph{p} \textless{} 0.01; Sucking:
-\(\beta\) = 0.96 {[}0.53, 1.4{]}, \emph{z} = 4.34, \emph{p} \textless{}
-0.01). Similarly, in Sound Symbolism, studies with Manual behavioral
-measures also yield larger effect sizes than looking studies (\(\beta\)
-= 0.61 {[}0.24, 0.97{]}, \emph{z} = 3.29, \emph{p} \textless{} 0.01).
+and HPP yielded slightly larger effect sizes than studies with looking
+behavioral measure, though these effects were not always significant.
+Behavioral measure was a significant predictor of effect sizes in only
+two domains, Vowel Discrimination (Native) and Sound Symbolism. In Vowel
+Discrimination (Native), studies with HPP or Sucking behavioral measure
+have larger effect sizes than studies using looking as the behavioral
+measure (HPP: \(\beta\) = 0.58 {[}0.33, 0.82{]}, \emph{z} = 4.6,
+\emph{p} \textless{} 0.01; Sucking: \(\beta\) = 0.96 {[}0.53, 1.4{]},
+\emph{z} = 4.34, \emph{p} \textless{} 0.01). Similarly, in Sound
+Symbolism, studies with HPP behavioral measures also yield larger effect
+sizes than looking studies (\(\beta\) = 0.61 {[}0.24, 0.97{]}, \emph{z}
+= 3.29, \emph{p} \textless{} 0.01).
 
 We also explored whether there would be an interaction between the
 research method and participants' age. The inclusion of interaction
@@ -411,12 +417,12 @@ studies (\(\beta\) = -0.38 {[}-0.69, -0.07{]}, \emph{z} = -2.41,
 \hypertarget{stimuli-naturalness}{%
 \subsubsection{Stimuli Naturalness}\label{stimuli-naturalness}}
 
-Next, we considered the effect of stimuli type. We focused on one key
-dimension: naturalness. For primarily visual stimuli, we considered
-``natural'' to mean stimuli that use real-world objects (e.g.~puppets,
-blocks). We compared these natural stimuli with representation-type
-stimuli, such as pictures, videos, or drawings. In primarily auditory
-stimuli, we compared recorded natural speech with synthesized stimuli.
+Next, we considered stimuli naturalness. For primarily visual stimuli,
+we considered ``natural'' to mean stimuli that use real-world objects
+(e.g.~puppets, blocks). We compared these natural stimuli with
+representation-type stimuli, such as pictures, videos, or drawings. In
+primarily auditory stimuli, we compared recorded natural speech with
+synthesized stimuli.
 
 Natural stimuli has advantages over artificial stimuli across
 modalities. We found that naturalness was a significant predictor for
@@ -446,8 +452,7 @@ selected the ones with the most publications in the research area.
 We found evidence for a major author effect in 8 datasets, where effect
 sizes of the studies produced by the major author were larger than the
 rest of the papers. In 3 datasets, however, we also found the opposite
-patterns, where certain authors produced on average smaller effect sizes
-than the rest of the literature.
+patterns, with certain authors produced on average smaller effect sizes.
 
 \begin{CodeChunk}
 \begin{figure}[t!]
@@ -464,11 +469,11 @@ than the rest of the literature.
 \subsection{Synthesis}\label{synthesis}}
 
 Finally, we synthesized all 23 datasets by grouping them based on the
-type of theoretical constructs they represented: Cognitive abilities,
-Communication, Sounds, and Words. We integrated the predictions from the
-best-fitting age-based models in Figure 2, showing predictions across
-the range of measured ages (See
-\href{https://anonymous.4open.science/r/metalab_CogSci2023-7857/writing/SI.pdf}{SI}
+type of theoretical constructs they represented: Sounds, Words,
+Cognitive abilities, and Communication. We integrated the predictions
+from the best-fitting age-based models in Figure 2, showing predictions
+across the range of measured ages (See
+\href{https://github.com/anjiecao/metalab_CogSci2023/blob/main/writing/SI.pdf}{SI}
 for each prediction line along with the corresponding data). We found a
 striking range of functional forms in the developmental trajectories
 across all types of theoretical constructs. In particular, the
@@ -510,7 +515,7 @@ leading to larger effects in a number of research areas.
 
 }
 
-\caption[Predictions of the best-fitting functional forms of the age model]{Predictions of the best-fitting functional forms of the age model. X-axis is age in months. Y-axis is the predicted effect size. For each research area, we plotted the predicted values for the age range included in the dataset.}\label{fig:2-col-imageb}
+\caption[Predictions of the best-fitting functional forms of the age model]{Predictions of the best-fitting functional forms of the age model. X-axis is age in months. Y-axis is the predicted effect size. The shaded area represents 95\% confidence interval of the prediction. For each research area, we plotted the predicted values for the age range included in the dataset.}\label{fig:2-col-imageb}
 \end{figure*}
 \end{CodeChunk}
 
@@ -562,15 +567,14 @@ significantly larger than a comparable large-scale replication (Kvarven,
 Strømland, \& Johannesson, 2020). Part of the discrepancy can be
 attributed to the heterogeneity of research methods that is often
 minimized in a large-scale replication (Lewis, Mathur, VanderWeele, \&
-Frank, 2020). While we have included methodological moderators in our
+Frank, 2022). While we have included methodological moderators in our
 analysis, it is highly likely that the coded moderators did not fully
 reflect the subtlety of research methods. However, the ``Major author''
 effect found in many research domains could provide a window into
-understanding the subtler aspects of research methods. In the future, we
-could compare and contrast the methods and materials used by ``major
-authors'' and those by others. Doing so would allow us to pinpoint the
-differences and understand which aspects of the methods really matter,
-and which do not.
+understanding the subtler aspects of research methods. We could compare
+and contrast the methods and materials used by ``major authors'' and
+those by others. This would allow us to pinpoint the differences and
+understand which aspects of the methods really matter, and which do not.
 
 Our ultimate goal is to offer a data-driven synthetic theory of
 cognitive development. Here we have made our first step toward that goal
@@ -579,11 +583,11 @@ domains. Moving forward, we aim to expand and refine our synthesis by
 including more research areas, correcting potential publication biases,
 and accounting for more detailed methodological factors. We would also
 like to make more connections between our meta-analysis-based work and
-the many ongoing analyses based on large-scale multi-site replication
-projects (e.g.~ManyBabies: Frank et al., 2017). Ultimately, we hope our
-analysis can provide a solid empirical foundation to help us better
-understand the complex and diverse processes involved in cognitive
-development.
+observational data, as well as the many ongoing analyses based on
+large-scale multi-site replication projects (e.g.~ManyBabies: Frank et
+al., 2017). Ultimately, we hope our analysis can provide a solid
+empirical foundation to help us better understand the complex and
+diverse processes involved in cognitive development.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
@@ -594,11 +598,7 @@ development.
 \noindent
 
 \hypertarget{refs}{}
-\begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-aslin1980some}{}}%
-Aslin, R. N. (1980). Some developmental processes in speech perception.
-\emph{Child Phonology}, \emph{2}, 67--96.
-
+\begin{CSLReferences}
 \leavevmode\vadjust pre{\hypertarget{ref-bayley2006bayley}{}}%
 Bayley, N. (2006). Bayley scales of infant and toddler development.
 
@@ -725,7 +725,7 @@ projects. \emph{Nature Human Behaviour}, \emph{4}(4), 423--434.
 \leavevmode\vadjust pre{\hypertarget{ref-lewis2016quantitative}{}}%
 Lewis, M., Braginsky, M., Tsuji, S., Bergmann, C., Piccinini, P. E.,
 Cristia, A., et al. (2016). A quantitative synthesis of early language
-acquisition using meta-analysis.
+acquisition using meta-analysis. https://psyarxiv.com/htsjm/.
 
 \leavevmode\vadjust pre{\hypertarget{ref-lewis2020role}{}}%
 * Lewis, M., Cristiano, V., Lake, B. M., Kwan, T., \& Frank, M. C.
@@ -733,9 +733,10 @@ acquisition using meta-analysis.
 the mutual exclusivity effect. \emph{Cognition}, \emph{198}, 104191.
 
 \leavevmode\vadjust pre{\hypertarget{ref-lewis2020puzzling}{}}%
-Lewis, M., Mathur, M., VanderWeele, T., \& Frank, M. C. (2020). The
+Lewis, M., Mathur, M., VanderWeele, T., \& Frank, M. C. (2022). The
 puzzling relationship between multi-lab replications and meta-analyses
-of the rest of the literature.
+of the rest of the literature. \emph{R. Soc. Open Sci},
+\emph{9}(211499).
 
 \leavevmode\vadjust pre{\hypertarget{ref-margoni2018infants}{}}%
 * Margoni, F., \& Surian, L. (2018). Infants' evaluation of prosocial
@@ -755,6 +756,11 @@ Development}, \emph{31}(1), e2306.
 * Quinn, S., Donnelly, S., \& Kidd, E. (2018). The relationship between
 symbolic play and language acquisition: A meta-analytic review.
 \emph{Developmental Review}, \emph{49}, 121--135.
+
+\leavevmode\vadjust pre{\hypertarget{ref-quintana2023guide}{}}%
+Quintana, D. S. (2023). A guide for calculating study-level statistical
+power for meta-analyses. \emph{Advances in Methods and Practices in
+Psychological Science}, \emph{6}(1), 25152459221147260.
 
 \leavevmode\vadjust pre{\hypertarget{ref-rabagliati2019profile}{}}%
 * Rabagliati, H., Ferguson, B., \& Lew-Williams, C. (2019). The profile
@@ -806,9 +812,9 @@ Wilks, T., Gerber, R. J., \& Erdie-Lalena, C. (2010). Developmental
 milestones: Cognitive development. \emph{Pediatrics in Review},
 \emph{31}(9), 364--367.
 
-\leavevmode\vadjust pre{\hypertarget{ref-wynn1993erratum}{}}%
-Wynn, K. (1993). Erratum: Addition and subtraction by human infants.
-\emph{Nature}, \emph{361}(6410), 374--374.
+\leavevmode\vadjust pre{\hypertarget{ref-wynn1992addition}{}}%
+Wynn, K. (1992). Addition and subtraction by human infants.
+\emph{Nature}, \emph{358}, 749--750.
 
 \end{CSLReferences}
 

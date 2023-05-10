@@ -1,0 +1,464 @@
+---
+title: "99_talk_figure.Rmd"
+author: "Anjie Cao, Molly Lewis, and Michael Frank"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(ggthemes)
+library(metafor)
+library(kableExtra)
+library(patchwork)
+
+
+
+d <- read_csv(here("data/clean_data.csv"))
+author_d <- read_csv(here("data/clean_author.csv"))
+
+best_fit_bmeasure_model_df <- readRDS(here("cached_data/best_fit_behavioral_measure_df.Rds"))
+best_fit_bmeasure_interaction_df <- readRDS(here("cached_data/best_fit_behavioral_measure_interaction_df.Rds"))
+
+
+best_fit_exposure_phase_df <- readRDS(here("cached_data/best_fit_exposure_phase.Rds"))
+best_fit_real_visual_df <- readRDS(here("cached_data/best_fit_real_visual_df.Rds"))
+best_fit_real_aud_df <- readRDS(here("cached_data/best_fit_real_aud_df.Rds"))
+best_fit_major_author_df <- readRDS(here("cached_data/best_fit_major_author_df.Rds"))
+
+
+source(here("helper/plot_moderator_help.r"))
+
+# Summary 
+summary_df <- readRDS(here("cached_data/summary_d.Rds"))
+```
+
+
+```{r}
+age_df <- readRDS(here("cached_data/age_models_df.Rds"))
+```
+
+
+```{r}
+
+age_df_wide <- age_df %>% 
+  filter(ic == "AICc") %>% 
+  rename(Dataset = dataset) %>% 
+  select(REML, model_spec_clean, Dataset) %>% 
+  pivot_wider(names_from = model_spec_clean, 
+              values_from = REML)
+
+age_df_wide$min <- apply(age_df_wide[c('Linear','Log', 'Quadratic', 'Const')], 1, min)
+
+# get the delta value 
+age_df_wide <- age_df_wide %>% 
+  mutate(d_linear = Linear - min, 
+         d_log = Log - min, 
+         d_quad = Quadratic - min, 
+         d_const= Const - min) %>% 
+  select(Dataset, d_linear, d_log, d_quad, d_const) %>% 
+  rename(Linear = d_linear, 
+         Log = d_log, 
+         Quadratic = d_quad, 
+         Const = d_const) %>% 
+   mutate(across(where(is.numeric), round, 2)) 
+
+age_df_wide
+
+```
+
+# MODEL COMPARISON
+
+```{r}
+library(latex2exp)
+
+age_df_wide %>% 
+  pivot_longer(cols = c("Linear", "Log", "Quadratic", "Const")) %>% 
+  ggplot(aes(x = reorder(Dataset, value), y = value, color = name)) +
+  theme_few() + 
+  geom_hline(yintercept = 4, linetype = 2, color = "gray") + 
+  geom_hline(yintercept = 0, linetype = 3) + 
+  geom_point(position = position_dodge(width = .2), 
+             #color = "white"
+             ) + 
+
+  coord_flip()+ 
+  xlab("") + 
+  ylab(unname(TeX("$\\Delta AICc"))) + 
+  labs(color = "Functional form") + 
+  guides(colour = guide_legend(nrow = 2)) + 
+  theme(legend.position = "top")
+
+
+  
+  
+```
+
+
+## failure mode: IDS
+
+```{r}
+
+get_age_model_prediction <- function(ds_name, min_age_df, model_type, all_ds){
+  
+  current_df = all_ds %>% filter(ds_clean == ds_name)
+  formula = (min_age_df %>% filter(dataset == ds_name, model_spec_clean == model_type))$model_spec
+
+  
+  if (ds_name %in% (all_ds %>% filter(is.na(same_infant)) %>% distinct(ds_clean) %>% pull())){
+    
+    model <- rma.mv(as.formula(formula), 
+                    V = d_var_calc, 
+                    random = ~ 1 | short_cite/unique_row, 
+                    data = current_df) 
+    
+  }else if(ds_name %in% (all_ds %>% filter(is.na(unique_row)) %>% distinct(ds_clean) %>% pull())){
+    
+    model <- rma.mv(as.formula(formula), 
+                    V = d_var_calc, 
+                    random = ~ 1 | short_cite/same_infant, 
+                    data = current_df) 
+    
+  }else{
+    
+    model <- rma.mv(as.formula(formula), 
+                    V = d_var_calc, 
+                    random = ~ 1 | short_cite/same_infant/unique_row, 
+                    data = current_df)
+    
+  }
+  
+  if (model_type == "Log"){
+    age = log(seq(1, 36, .5))
+  }else if(model_type == "Quadratic"){
+    age = (seq(1, 36, .5)) ** 2
+  }else{
+    age = seq(1, 36, .5)
+  }
+  
+  if (model_type != "Const"){
+    prediction =  predict(model, newmods = age, addx =TRUE) %>% 
+      as.data.frame() %>% 
+      mutate(ds_name = ds_name)
+    
+  }else{
+    
+    prediction = predict(model) %>% 
+      as.data.frame() 
+    
+    prediction = map_dfr(seq(length(age)), ~prediction)
+    
+    prediction$X.const.mean_age_months = age
+    
+    prediction$ds_name = ds_name
+    
+  }
+
+  
+  return (prediction)
+}
+
+
+```
+
+
+
+
+```{r}
+all_age_pred <- readRDS(here("cached_data/min_age_pred_df.RDS"))
+
+ids_model_df <- age_df %>% filter(dataset == "Infant directed speech preference")
+
+
+const_ids_df <- get_age_model_prediction("Infant directed speech preference", ids_model_df, "Const", d) %>% mutate(model_type = "Const")
+  
+linear_ids_df <- get_age_model_prediction("Infant directed speech preference", ids_model_df, "Linear", d) %>% mutate(model_type = "Linear")
+
+log_ids_df <- get_age_model_prediction("Infant directed speech preference", ids_model_df, "Log", d) %>% mutate(model_type = "Log")
+
+quad_ids_df <- get_age_model_prediction("Infant directed speech preference", ids_model_df, "Log", d) %>% mutate(model_type = "Quadratic")
+
+ids_all_model_df <- bind_rows(const_ids_df, linear_ids_df, log_ids_df, quad_ids_df)
+
+
+
+age_range_df <- d %>% 
+  group_by(ds_clean) %>% 
+  summarise(min_age = min(mean_age_months, na.rm = TRUE), 
+            max_age = max(mean_age_months, na.rm = TRUE)) %>% 
+  rename(ds_name = ds_clean)
+
+
+ids_pred <- ids_all_model_df %>% 
+  select(pred, ds_name, model_type, ci.lb, ci.ub) %>% 
+  group_by(ds_name,model_type) %>% 
+  mutate(mean_age_months = (row_number() + 1) / 2) %>% 
+  left_join(age_range_df, by = c("ds_name")) %>% 
+  filter(mean_age_months > min_age, 
+         mean_age_months < min(36, max_age)) %>% 
+
+  select(ds_name,  mean_age_months, pred, ci.lb, ci.ub) %>% 
+    filter(ds_name == "Infant directed speech preference")
+
+
+
+```
+
+
+```{r}
+ids_pred %>% 
+  ggplot() + 
+  geom_point(data = d %>% filter(ds_clean == "Infant directed speech preference"), 
+             aes(x = mean_age_months, y = d_calc, size = 1/d_var),
+             alpha = .3) + 
+  geom_line(aes(x = mean_age_months, y = pred, col = model_type)) + 
+  geom_ribbon(
+              aes(x = mean_age_months, y = pred, ymin = ci.lb, ymax = ci.ub, fill = model_type), alpha = 0.1) + 
+  theme_few() + 
+  theme(legend.position = "bottom") +
+   guides(title = "a") + 
+  ylab("Effect Size") + 
+  xlab("Mean age in months")+ 
+  xlim(0, 12) + 
+  labs(title = "Infant directed speech preference") 
+```
+
+
+# METHOD MODERATORS
+
+```{r}
+# baseline is looking 
+bmeasure_df <- best_fit_bmeasure_model_df %>% 
+  filter(grepl("behavioral_measure", term)) %>% 
+  mutate(term_print = case_when(
+    grepl("other", term) ~ "Behavioral Measure - Other", 
+    TRUE ~ "Behavioral Measure - Sucking"
+  )) %>% 
+  select(dataset, term_print, statistic, p.value, estimate, std.error) 
+
+bmeasure_int_df <- best_fit_bmeasure_interaction_df %>% 
+   filter(grepl("behavioral_measure", term) & grepl("age", term)) %>% 
+  mutate(term_print = "bmeasure_age_interaction") %>% 
+  select(dataset, term_print, statistic, p.value, estimate, std.error) 
+
+
+# baseline is conditioning 
+ep_df <- best_fit_exposure_phase_df %>% 
+  filter(grepl("exposure_phase", term)) %>% 
+  mutate(term_print = case_when(
+    grepl("habituation", term) ~ "Exposure phase - Habituation", 
+    grepl("conditioning", term) ~ "Exposure phase - Conditioning"
+  )) %>% 
+  select(dataset, term_print, statistic,p.value,  estimate, std.error) 
+
+rv_df <- best_fit_real_visual_df %>% 
+  filter(grepl("visual", term)) %>% 
+  mutate(term_print = "Visual stimulus type - Natural") %>% 
+  select(dataset, term_print,statistic, p.value,  estimate, std.error) 
+
+
+av_df <- best_fit_real_aud_df %>% 
+  filter(grepl("aud", term)) %>% 
+  mutate(term_print = "Auditory stimulus type - Natural") %>% 
+  select(dataset, term_print, statistic, p.value, estimate, std.error) 
+
+ma_df <- best_fit_major_author_df %>% 
+  filter(grepl("author", term)) %>% 
+  mutate(term_print = "By Major Author") %>% 
+  select(dataset, major_author, term_print, statistic, p.value, estimate, std.error)
+```
+
+
+```{r}
+all_mod_df <- bind_rows(bmeasure_df, bmeasure_int_df, ep_df, rv_df, av_df, ma_df) %>% 
+  mutate(lb = estimate - std.error  * 1.96, 
+         ub = estimate + std.error * 1.96) %>% 
+  mutate(estimate_print = paste0(round(estimate, 2), " [", round(lb, 2), ", ", round(ub, 2), "]"), 
+         z_print = round(statistic, 2), 
+         p_print = case_when(
+           p.value >= 0.01 ~ paste0("= ", round(p.value, 2)), 
+           TRUE ~ "< 0.01"
+         )) %>% 
+  separate(term_print, into = c("type", "group"), sep = "-")
+
+```
+
+```{r}
+plot_moderators(all_mod_df)
+```
+
+
+```{r}
+axis_font_size = 6 * 2
+  title_font_size = 7 * 2
+  ## behavioral measure
+  
+  # shorten label 
+  
+  all_mod_df <- all_mod_df %>% 
+    mutate(dataset_short = case_when(
+      dataset == "Cross-situational word learning" ~ "X-situation",
+      dataset == "Infant directed speech preference" ~ "IDS pref",
+      dataset ==  "Label advantage in concept learning" ~ "Label adv", 
+      dataset ==  "Language discrimination and preference" ~ "Lang disc & pref", 
+      dataset ==  "Mutual exclusivity" ~ "Mutual exclusivity", 
+      dataset ==  "Natural speech preference"  ~ "Nat. speech pref", 
+      dataset ==  "Sound symbolism"  ~ "Sound symbolism" , 
+      dataset ==  "Syntactic bootstrapping"     ~ "Syntac. bootstrapping", 
+      dataset ==  "Vowel discrimination (native)"  ~ "Vowel disc (native)" , 
+      dataset ==  "Vowel discrimination (non-native)" ~ "Vowel disc (non-native)", 
+      dataset ==  "Abstract rule learning" ~ "Abstract rule learning", 
+      dataset ==  "Familiar word recognition" ~ "Fam word recog", 
+      dataset ==  "Mispronunciation sensitivity" ~ "Mispronun. sensitivi.", 
+      dataset ==  "Simple arithmetic competences" ~ "Arithmetic", 
+      dataset ==  "Word Segmentation (combined)" ~ "Word seg", 
+      dataset ==  "Categorization bias" ~ "Categorization bias", 
+      dataset ==  "Prosocial agents" ~ "Prosocial agents", 
+      dataset ==  "Statistical word segmentation" ~ "Stat word seg", 
+      dataset ==  "Online word recognition" ~ "Online word recog", 
+      dataset ==  "Switch task" ~ "Switch task", 
+      dataset ==  "Symbolic play" ~ "Symbolic play", 
+      dataset ==  "Statistical sound category learning (habituation)" ~ "Stat sound category",
+      dataset ==  "Gaze following (combined)" ~ "Gaze following"
+    ))
+  
+all_mod_df %>% 
+    filter(grepl("Behavioral", type)) %>% 
+    mutate(group = case_when(
+      group == " Other" ~ "Head Turn Preference", 
+      TRUE ~ group
+    )) %>% 
+    ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
+    geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
+                    position = position_dodge(width = .4)) +
+  
+    scale_color_manual(values = c("#E69F00", "#56B4E9")) + 
+    geom_hline(yintercept = 0, color = "gray", linetype = "dashed")+ 
+    #coord_flip() +
+    ylim(-2.5, 3)+ 
+    xlab("") + 
+    scale_y_continuous(
+      "Estimated Coefficient ", 
+      sec.axis = sec_axis(~ . * 1, "Looking")
+    ) + 
+    
+    #labs(title = "Behavioral Measure \n (Baseline: looking)") + 
+    theme_few() +
+    theme(
+      axis.title.y.left = element_text(size=axis_font_size),
+      axis.title.y.right = element_text(size=axis_font_size, color = "gray", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.ticks.y.right =  element_blank(),
+      axis.text.y.right  =  element_blank(),
+      legend.position = "top",
+      axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust=1),
+
+            legend.title = element_blank(),
+      legend.margin = margin(0, 0, 0, 0),
+      legend.spacing.x = unit(0, "mm"),
+      legend.spacing.y = unit(0, "mm"),
+      legend.background = element_rect(fill = NA, color = NA), 
+      legend.text=element_text(size=10),
+      plot.title = element_text(hjust = 0.5, size = title_font_size)
+    )  
+
+```
+
+
+```{r}
+ all_mod_df %>% 
+    filter(grepl("Exposure", type)) %>% 
+    ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
+    geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
+                    position = position_dodge(width = .4)) + 
+    scale_color_manual(values = c( "#009E73", "#F0E442")) + 
+    geom_hline(yintercept = 0, color = "gray",linetype = "dashed") + 
+    #coord_flip() +
+    ylim(-2.5, 3)+ 
+    xlab("") + 
+    scale_y_continuous(
+        "", 
+        sec.axis = sec_axis(~ . * 1, "Familiarization")
+      ) + 
+    #labs(title = "Stimuli Exposure Method \n (Baseline: Familiarization)") + 
+    theme_few() +
+    theme(
+      legend.position = "top",
+      axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust=1),
+      axis.title.y.right = element_text(size=axis_font_size, color = "gray", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.ticks.y.right =  element_blank(),
+      axis.text.y.right  =  element_blank(),
+      #legend.position = c(0.7, 0.2),
+      legend.title = element_blank(),
+      legend.margin = margin(0, 0, 0, 0),
+      legend.spacing.x = unit(0, "mm"),
+      legend.spacing.y = unit(0, "mm"),
+      legend.background = element_rect(fill = NA, color = NA), 
+      legend.text=element_text(size=10),
+      plot.title = element_text(hjust = 0.5, size = title_font_size)
+    )  
+
+```
+
+```{r}
+all_mod_df %>% 
+    filter(grepl("Visual stimulus", type) | grepl("Auditory stimulus", type)) %>% 
+    ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
+    geom_pointrange(aes(y = estimate, ymin = lb, ymax = ub), 
+                    position = position_dodge(width = .4)) +
+    scale_color_manual(values = c("#0072B2", "#D55E00")) + 
+    geom_hline(yintercept = 0, color = "gray", linetype = "dashed")+ 
+    #coord_flip() +
+    ylim(-2.5, 3)+ 
+    xlab("") + 
+    scale_y_continuous(
+      "", 
+      sec.axis = sec_axis(~ . * 1, " Artificial stimulus")
+    ) + 
+    #labs(title = "Stimuli Naturalness \n (Baseline: Artificial stimulus)") + 
+    theme_few() +
+    theme(
+      axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust = 1),
+      axis.title.y.right = element_text(size=axis_font_size, color = "gray", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.ticks.y.right =  element_blank(),
+      axis.text.y.right  =  element_blank(),
+      legend.position = "none",
+      legend.title = element_blank(),
+      
+      legend.background = element_rect(fill = NA, color = NA), 
+      legend.text=element_text(size=10),
+      plot.title = element_text(hjust = 0.5, size = title_font_size))
+```
+
+# Heterogeneity 
+
+```{r}
+
+library(latex2exp)
+
+summary_df %>% 
+  arrange(i2) %>% 
+  ggplot(aes(x = reorder(ds_clean, -i2), y = i2)) + 
+  ylab(unname(TeX("$\\I^2"))) +
+  xlab("") + 
+  geom_point() + 
+  geom_hline(yintercept = 0.25, linetype = 2, color = "gray") + 
+  geom_hline(yintercept = 0.5, linetype = 2, color = "gray") +     
+  geom_hline(yintercept = 0.75, linetype = 2, color = "gray") +
+  theme_few() + 
+  
+  ylim(0, 1) + 
+  coord_flip()
+
+
+summary_df %>% 
+  ggplot(aes(x = i2)) + 
+  geom_histogram(bins = 13) + 
+  geom_vline(xintercept = 0.74, linetype = 2, color = "red") + 
+  theme_few()  +
+  xlab(unname(TeX("$\\I^2")))
+
+
+```
+
+

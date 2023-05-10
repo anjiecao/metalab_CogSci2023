@@ -25,12 +25,14 @@ age_models_df <- lapply(unique(d$ds_clean),
        }) %>% 
   bind_rows()
 
-saveRDS(age_models_df, here("cached_data/age_models_df.Rds"))
+#saveRDS(age_models_df, here("cached_data/age_models_df.Rds"))
 ```
 
 # visualization 
 
 ```{r}
+age_models_df <- readRDS(here("cached_data/age_models_df.Rds"))
+
 age_models_df %>% 
   filter(ic == "AICc") %>% 
   select(REML, model_spec_clean, dataset) %>% 

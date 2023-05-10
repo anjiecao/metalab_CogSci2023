@@ -77,12 +77,20 @@ get_es_observed_power <- function(ds_clean, data, es){
 ```{r}
 
 all_ds$power = unlist(pmap(all_ds, get_es_observed_power))
+
+all_ds <- all_ds %>% mutate(power = round(power, 2))
+
+saveRDS(all_ds, here("cached_data/power_df.Rds"))
 ```
 
 ```{r}
+
+all_ds
+
 all_ds %>% 
   ggplot(aes(x = es, y = power))+ 
   geom_point() + 
+  geom_hline(yintercept = .8, linetype = 2) + 
   theme_few()
 ```
 

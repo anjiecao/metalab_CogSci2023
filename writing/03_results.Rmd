@@ -45,8 +45,10 @@ age_df_wide <- age_df_wide %>%
 
 
 age_df_wide %>% 
-  left_join(summary_d_print %>% select(ds_clean, n_effects, n_kids_print, es_print) %>% rename(Dataset = ds_clean), by = "Dataset") %>% 
-  select(Dataset, n_effects, n_kids_print, es_print,Const,  Linear, Log, Quadratic) %>% 
+  left_join(summary_d_print %>% select(ds_clean, n_effects, n_kids_print, es_print) %>% rename(Dataset = ds_clean), by = "Dataset") %>%
+  left_join(power_df %>% select(ds_clean, power) %>% rename(Dataset = ds_clean), 
+            by = "Dataset") %>% 
+  select(Dataset, n_effects, power, n_kids_print, es_print,Const,  Linear, Log, Quadratic) %>% 
   rename(`N ES` = n_effects, 
          `N Participants` = n_kids_print, 
          `ES` = es_print,
@@ -59,38 +61,39 @@ age_df_wide %>%
 
 
 \begin{table*}[ht]
-\begin{tabular}{l|r|r|l|r|r|r|r}
+\small
+\begin{tabular}{l|r|r|r|r|r|r|r|r}
 \hline
-\textbf{Dataset} & N ES & N Participants & ES & Const. & Linear & Log & Quad.\\
+\textbf{Dataset} & N ES & N Subj. & ES & Power & Const. & Linear & Log & Quad.\\
 \hline
-Statistical sound category learning  & 11 & 350 & 0.56 [0.19,0.93] & \textbf{0.0*} & 3.0* & 4.1 & 2.5*\\
-Vowel discrimination (native) & 143 & 2418 & 0.59 [0.43,0.75] & \textbf{0.0} & 1.3 & 1.0 & 1.6\\
-Vowel discrimination (non-native) & 49 & 600 & 0.65 [0.2,1.1] & \textbf{0.0} & 1.6 & 1.7 & 1.5\\
-Statistical word segmentation & 103 & 804 & -0.08 [-0.18,0.02] & \textbf{0.0} & 1.3 & 1.5 & 1.1\\
-Switch task & 143 & 2764 & -0.16 [-0.25,-0.06] & \textbf{0.0} & 1.1 & 1.1 & 1.1\\
-Prosocial agents & 61 & 1244 & 0.4 [0.29,0.52] & \textbf{0.0} & 2.1 & 1.9 & 2.1\\
-Simple arithmetic competences & 14 & 369 & 0.25 [0.04,0.46] & \textbf{0.0} & 6.7 & 6.7 & 6.6\\
-Symbolic play & 196 & 7148 & 0.63 [0.53,0.72] & \textbf{0.0} & 0.6 & 0.5 & 0.6\\
-Word Segmentation  & 315 & 2910 & 0.2 [0.14,0.26] & \textbf{0.0} & 1.3 & 1.0 & 1.6\\
-Infant directed speech preference & 83 & 985 & 0.47 [0.28,0.65] & \textbf{0.0} & 1.0 & 1.8 & 0.9\\
-Online word recognition & 14 & 330 & 1.37 [0.78,1.96] & 2.2 & \textbf{0.0} & 0.2 & 0.1\\
-\rowcolor{lightgray}Mutual exclusivity & 131 & 2222 & 1.27 [0.99,1.56] & 37.2 & 5.8 & \textbf{0.0*} & 16.9\\
-Label advantage in concept learning & 100 & 1644 & 0.36 [0.23,0.48] & 2.4 & 0.9 & \textbf{0.0} & 1.6\\
-Sound symbolism & 44 & 425 & 0.16 [-0.01,0.33] & 2.9 & 0.0 & \textbf{0.0} & 0.7\\
-Categorization bias & 80 & 382 & 0.25 [-0.54,1.05] & 0.9 & 0.3 & \textbf{0.0} & 0.4\\
-Syntactic bootstrapping & 60 & 832 & 0.24 [0.03,0.44] & 0.5 & 0.3 & \textbf{0.0} & 0.6\\
-\rowcolor{lightgray}Mispronunciation sensitivity & 249 & 2122 & 0.45 [0.24,0.66] & 30.7 & 6.4 & 14.5 & \textbf{0.0*}\\
-Cross-situational word learning & 48 & 2241 & 0.67 [0.5,0.84] & 4.0 & 0.1* & 1.9* & \textbf{0.0*}\\
-Gaze following  & 81 & 1407 & 0.81 [0.61,1.01] & 43.7 & 2.1* & 10.4 & \textbf{0.0*}\\
-Familiar word recognition & 34 & 586 & 0.54 [0.38,0.69] & 1.7 & 0.3 & 1.1 & \textbf{0.0}\\
-Abstract rule learning & 95 & 1123 & 0.22 [0.07,0.37] & 0.4 & 0.3 & 0.9 & \textbf{0.0}\\
-Natural speech preference & 55 & 786 & 0.44 [0.23,0.65] & 0.9 & 0.4 & 1.0 & \textbf{0.0}\\
-Language discrimination and preference & 153 & 2060 & -0.13 [-0.26,0] & 2.3 & 2.0 & 2.9 & \textbf{0.0}\\
+Statistical sound category learning  & 11 & 350 & 0.56 [0.19,0.93] & 0.30 & \textbf{0.0*} & 3.0* & 4.1 & 2.5*\\
+Vowel discrimination (native) & 143 & 2418 & 0.59 [0.43,0.75] & 0.49 & \textbf{0.0} & 1.3 & 1.0 & 1.6\\
+Vowel discrimination (non-native) & 49 & 600 & 0.65 [0.2,1.1] & 0.68 &\textbf{0.0} & 1.6 & 1.7 & 1.5\\
+Statistical word segmentation & 103 & 804 & -0.08 [-0.18,0.02] & 0.07 & \textbf{0.0} & 1.3 & 1.5 & 1.1\\
+Switch task & 143 & 2764 & -0.16 [-0.25,-0.06] & 0.09 & \textbf{0.0}  & 1.1 & 1.1 & 1.1\\
+Prosocial agents & 61 & 1244 & 0.4 [0.29,0.52] & 0.17 & \textbf{0.0}  & 2.1 & 1.9 & 2.1\\
+Simple arithmetic competences & 14 & 369 & 0.25 [0.04,0.46] & 0.23 & \textbf{0.0} & 6.7 & 6.7 & 6.6\\
+Symbolic play & 196 & 7148 & 0.63 [0.53,0.72] & 0.32 & \textbf{0.0} & 0.6 & 0.5 & 0.6\\
+Word Segmentation  & 315 & 2910 & 0.2 [0.14,0.26] & 0.17 & \textbf{0.0} & 1.3 & 1.0 & 1.6\\
+Infant directed speech preference & 83 & 985 & 0.47 [0.28,0.65] & 0.25 & \textbf{0.0} & 1.0 & 1.8 & 0.9\\
+Online word recognition & 14 & 330 & 1.37 [0.78,1.96] & 1.00 & 2.2 & \textbf{0.0} & 0.2 & 0.1\\
+\rowcolor{lightgray}Mutual exclusivity & 131 & 2222 & 1.27 [0.99,1.56] & 0.99 & 37.2 & 5.8 & \textbf{0.0*} & 16.9\\
+Label advantage in concept learning & 100 & 1644 & 0.36 [0.23,0.48] & 0.2 & 2.4 & 0.9 & \textbf{0.0} & 1.6\\
+Sound symbolism & 44 & 425 & 0.16 [-0.01,0.33] & 0.10 & 2.9 & 0.0 & \textbf{0.0} & 0.7\\
+Categorization bias & 80 & 382 & 0.25 [-0.54,1.05] & 0.11 & 0.9 & 0.3 & \textbf{0.0} & 0.4\\
+Syntactic bootstrapping & 60 & 832 & 0.24 [0.03,0.44] & 0.13 & 0.5 & 0.3 & \textbf{0.0} & 0.6\\
+\rowcolor{lightgray}Mispronunciation sensitivity & 249 & 2122 & 0.45 [0.24,0.66] & 0.47 & 30.7 & 6.4 & 14.5 & \textbf{0.0*}\\
+Cross-situational word learning & 48 & 2241 & 0.67 [0.5,0.84] & 0.86 & 4.0 & 0.1* & 1.9* & \textbf{0.0*}\\
+Gaze following  & 81 & 1407 & 0.81 [0.61,1.01] & 0.93 & 43.7 & 2.1* & 10.4 & \textbf{0.0*}\\
+Familiar word recognition & 34 & 586 & 0.54 [0.38,0.69] & 0.59 & 1.7 & 0.3 & 1.1 & \textbf{0.0}\\
+Abstract rule learning & 95 & 1123 & 0.22 [0.07,0.37] & 0.12 & 0.4 & 0.3 & 0.9 & \textbf{0.0}\\
+Natural speech preference & 55 & 786 & 0.44 [0.23,0.65] & 0.41 & 0.9 & 0.4 & 1.0 & \textbf{0.0}\\
+Language discrimination and preference & 153 & 2060 & -0.13 [-0.26,0] & 0.08 & 2.3 & 2.0 & 2.9 & \textbf{0.0}\\
 
 
 \hline
 \end{tabular}
-\caption{\label{demo-table}This table summarizes the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The last four columns include the values of $\Delta_{i}$ of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Constant, Linear, Logarithmic, and Quadratic. The values were calculated from subtracting the minimum AICc from the AICc of each model. They were rounded to one decimal. The bold values indicate the best fitting model (smallest AICc value). Asterisks indicate models that are a significantly better fit compared to other functional forms for that dataset.Highlighted rows are the datasets that yield an unambiguous best model.}
+\caption{\label{demo-table}This table summarizes the number of effect sizes \(ES\) and the number of participants included in each meta-analysis dataset. The ES estimates represent the aggregated effect sizes and their 95\% confidence intervals from each dataset. The power column includes study-level power. The last four columns include the values of $\Delta_{i}$ of corrected Akaike Information Criterion \(AICc\) for the age model with different functional forms: Constant, Linear, Logarithmic, and Quadratic. The values were calculated from subtracting the minimum AICc from the AICc of each model. They were rounded to one decimal. The bold values indicate the best fitting model (smallest AICc value). Asterisks indicate models that are a significantly better fit compared to other functional forms for that dataset.Highlighted rows are the datasets that yield an unambiguous best model.}
 \end{table*}
 
 
@@ -133,7 +136,7 @@ model_comparison_df <- age_df_wide %>%
 
 
 
-Our first research question was about the functional form of the developmental trajectories we observed. We examined four specific forms: constant, linear, logarithmic, and quadratic, each considered as an age-related fixed effect.  We evaluated the models based on AICc (Table 1).
+Our first research question was about the functional form of the developmental trajectories we observed. We examined four specific forms: constant, linear, logarithmic, and quadratic, each considered as an age-related fixed effect.  We evaluated the models based on AICc (Table 1). We also calculated the study-level power for each meta-analysis. As with previous analyses of a subset of these data, individual studies often had low power to detect the average meta-analytic effect, one potential cause of high variability in effect sizes (Bergmann et al., 2018). 
 
 
 When using AICc in model selection, the value needs to be contextualized in relation to the lowest AICc among the set of models being compared. Under the conventional interpretation, $\Delta_{i}$ ($AIC_i - AIC_{min}$, where $AIC_i$ is the model being evaluated, and $AIC_{min}$ is the lowest AIC among the set of models) less than 4 suggests minimal evidence against the model with higher AICc; $\Delta_{i}$ above 4 suggests substantial support for the model with lower AICc [@burnham2004multimodel]. With this interpretation framework, the functional forms in most domains can not be meaningfully distinguished, with exceptions in 6 domains. In Mutual Exclusivity, there is a strong preference for the logarithmic model ($\Delta_{Linear}$ = `r filter(model_comparison_df, Dataset == "Mutual exclusivity")$lin_diff` ; $\Delta_{Quad.}$ = `r filter(model_comparison_df, Dataset == "Mutual exclusivity")$qua_diff`; $\Delta_{Const.}$ = `r filter(model_comparison_df, Dataset == "Mutual exclusivity")$const_diff`). We also found a strong preference for the quadratic model in Mispronunciation sensitivity ($\Delta_{Linear}$ = `r filter(model_comparison_df, Dataset == "Mispronunciation sensitivity")$lin_diff`; $\Delta_{Log}$ = `r filter(model_comparison_df, Dataset =="Mispronunciation sensitivity")$log_diff`; $\Delta_{Const.}$ = `r filter(model_comparison_df, Dataset == "Mispronunciation sensitivity")$const_diff`) and a strong preference for the constant model in Simple arithmetic competence ( $\Delta_{Quad.}$ = `r filter(model_comparison_df, Dataset == "Simple arithmetic competences")$qua_diff`;$\Delta_{Linear}$ = `r filter(model_comparison_df, Dataset == "Simple arithmetic competences")$lin_diff`; $\Delta_{Log}$ = `r filter(model_comparison_df, Dataset =="Simple arithmetic competences")$log_diff`). The comparison is less clear-cut in Gaze following, where there is support for the Quadratic model against the Constant model and the Logarithmic model ($\Delta_{Log}$ = `r filter(model_comparison_df, Dataset =="Gaze following (combined)")$log_diff`;$\Delta_{Const.}$ = `r filter(model_comparison_df, Dataset == "Gaze following (combined)")$const_diff`), but the Linear model is comparable with the Quadratic model ($\Delta_{Linear}$ = `r filter(model_comparison_df, Dataset =="Gaze following (combined)")$lin_diff`). Finally, in Statistical sound category learning and Cross situational word learning, we only found evidence against the logarithmic model ($\Delta_{Log}$ = `r filter(model_comparison_df, Dataset == "Statistical sound category learning (habituation)")$log_diff`) and the constant model ($\Delta_{Log}$ = `r filter(model_comparison_df, Dataset == "Cross-situational word learning")$const_diff`), respectively. 
@@ -201,7 +204,7 @@ all_mod_df <- bind_rows(bmeasure_df, bmeasure_int_df, ep_df, rv_df, av_df, ma_df
 
 ```
 
-```{r mod_plot, fig.env = "figure*", fig.pos = "t!", fig.width=7, fig.height=5, fig.align = "center", set.cap.width=T, num.cols.cap=2, fig.cap = "Each panel shows the moderator coefficient estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Red dots indicate the estimate for studies using sucking measure, and the teal dots indicate the estimates for studies using manual measure. For stimuli exposure method, the baseline level is familiarization. Red and teal represent the estimates for studies using conditioning and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimates for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech). Error bars show 95\\% confidence intervals."}
+```{r mod_plot, fig.env = "figure*", fig.pos = "t!", fig.width=7, fig.height=4, fig.align = "center", set.cap.width=T, num.cols.cap=2, fig.cap = "Each panel shows the moderator coefficient estimates. Each dot represents the estimate of the particular moderator level compared to the baseline. For behavioral measure, the baseline level is looking. Orange dots indicate the estimate for studies using sucking measure, and the blue dots indicate the estimates for studies using HPP measure. For stimuli exposure method, the baseline level is familiarization. Green and yellow represent the estimates for studies using conditioning and habituation in exposure phase, respectively. For stimuli naturalness, the dots represent the estimates for studies using natural stimuli (e.g. real-world objects; natural speech) compared to studies using artificial stimuli (e.g. pictures, synthetic speech). Error bars show 95\\% confidence intervals."}
 
 plot_moderators(all_mod_df)
 ```
@@ -221,9 +224,9 @@ int_improved_dataset <- best_fit_bmeasure_model_df %>%
 
 ```
 
-Meta-analyses have very heterogeneous moderators coded, but many included coding of which behavioral response measure was used in the original study: looking-based behaviors (e.g., looking time or other eye-tracking measures), sucking (as in the high amplitude sucking procedure), and manual behaviors (e.g., pointing, exploration).
+Meta-analyses have very heterogeneous moderators coded, but many included coding of which behavioral response measure was used in the original study: looking-based behaviors (e.g., looking time or other eye-tracking measures), sucking (as in the high amplitude sucking procedure), and head-turn preference procedure (HPP). An analysis on a subset of the datasets has shown significant variation across methods [@bergmann2018promoting]. Here we extended the analysis to include more datasets.
 
-In general, nearly all effects were weakly positive such that sucking and manual response modes yielded slightly larger effect sizes than studies with looking behavioral measure, though these effects were not always significant. Behavioral measure was a significant predictor of effect sizes in only two domains, Vowel Discrimination (Native) and Sound Symbolism. In Vowel Discrimination (native), studies with Manual or Sucking behavioral measure have larger effect sizes than studies using looking as the behavioral measure (Manual: $\beta$ = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$estimate_print`, *z* = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$z_print`, *p* `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$p_print`; Sucking: $\beta$ = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$estimate_print`, *z* = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$z_print`, *p* `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$p_print`). Similarly, in Sound Symbolism, studies with Manual behavioral measures also yield larger effect sizes than looking studies ($\beta$ = `r filter(bm_models, dataset == "Sound symbolism")$estimate_print`, *z* = `r filter(bm_models, dataset == "Sound symbolism")$z_print`, *p* `r filter(bm_models, dataset == "Sound symbolism")$p_print`). 
+In general, nearly all effects were weakly positive such that sucking and HPP yielded slightly larger effect sizes than studies with looking behavioral measure, though these effects were not always significant. Behavioral measure was a significant predictor of effect sizes in only two domains, Vowel Discrimination (Native) and Sound Symbolism. In Vowel Discrimination (Native), studies with HPP or Sucking behavioral measure have larger effect sizes than studies using looking as the behavioral measure (HPP: $\beta$ = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$estimate_print`, *z* = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$z_print`, *p* `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Other")$p_print`; Sucking: $\beta$ = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$estimate_print`, *z* = `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$z_print`, *p* `r filter(bm_models, dataset == "Vowel discrimination (native)", group == " Sucking")$p_print`). Similarly, in Sound Symbolism, studies with HPP behavioral measures also yield larger effect sizes than looking studies ($\beta$ = `r filter(bm_models, dataset == "Sound symbolism")$estimate_print`, *z* = `r filter(bm_models, dataset == "Sound symbolism")$z_print`, *p* `r filter(bm_models, dataset == "Sound symbolism")$p_print`). 
 
 We also explored whether there would be an interaction between the research method and participants’ age. The inclusion of interaction terms did not meaningfully improve the AICc of any of the main model (All $\Delta_{interaction}$ < 2). The current datasets can not distinguish between the interaction effect and the main effect of the behavioral measure. 
 
@@ -244,7 +247,7 @@ vis_mod <- all_mod_df %>% filter(type == "Visual stimulus type ")
 aud_mod <-  all_mod_df %>% filter(type == "Auditory stimulus type ")
 ```
 
-Next, we considered the effect of stimuli type. We focused on one key dimension: naturalness. For primarily visual stimuli, we considered “natural” to mean stimuli that use real-world objects (e.g. puppets, blocks). We compared these natural stimuli with representation-type stimuli, such as pictures, videos, or drawings. In primarily auditory stimuli, we compared recorded natural speech with synthesized stimuli. 
+Next, we considered stimuli naturalness. For primarily visual stimuli, we considered “natural” to mean stimuli that use real-world objects (e.g. puppets, blocks). We compared these natural stimuli with representation-type stimuli, such as pictures, videos, or drawings. In primarily auditory stimuli, we compared recorded natural speech with synthesized stimuli. 
 
 Natural stimuli has advantages over artificial stimuli across modalities. We found that naturalness was a significant predictor for Label advantage in concept learning, with natural stimuli yielding larger effect sizes than representation-type stimuli ($\beta$ = `r filter(vis_mod, dataset =="Label advantage in concept learning")$estimate_print`, *z* = `r filter(vis_mod, dataset =="Label advantage in concept learning")$z_print`, *p* `r filter(vis_mod, dataset =="Label advantage in concept learning")$p_print`). Similarly, in both Statistical word segmentation and Abstract rule learning, we found a natural speech advantage (Statistical word segmentation: $\beta$ = `r filter(aud_mod, dataset =="Statistical word segmentation")$estimate_print`, *z* = `r filter(aud_mod, dataset =="Statistical word segmentation")$z_print`, *p* `r filter(aud_mod, dataset =="Statistical word segmentation")$p_print`; Abstract rule learning: $\beta$ = `r filter(aud_mod, dataset =="Abstract rule learning")$estimate_print`, *z* = `r filter(aud_mod, dataset =="Abstract rule learning")$z_print`, *p* `r filter(aud_mod, dataset =="Abstract rule learning")$p_print`). 
 
@@ -263,7 +266,7 @@ n_negative_ef <- nrow(ma_df %>%
   distinct(dataset))
 ```
 
-We found evidence for a major author effect in `r n_posistive_ef` datasets, where effect sizes of the studies produced by the major author were larger than the rest of the papers. In `r n_negative_ef` datasets, however, we also found the opposite patterns, where certain authors produced on average smaller effect sizes than the rest of the literature. 
+We found evidence for a major author effect in `r n_posistive_ef` datasets, where effect sizes of the studies produced by the major author were larger than the rest of the papers. In `r n_negative_ef` datasets, however, we also found the opposite patterns, with certain authors produced on average smaller effect sizes.
 
 ```{r image, fig.env = "figure", fig.pos = "t!", fig.align='center', fig.width=3, fig.height=3, set.cap.width=T, num.cols.cap=1, fig.cap = "Each dot represents the estimate of coefficient for studies produced by major author in the particular research area, compared to other studies in the same research area. Error bars show 95\\% confidence intervals. "}
 
@@ -272,6 +275,6 @@ plot_major_author(all_mod_df)
 
 ## Synthesis 
 
-Finally, we synthesized all 23 datasets by grouping them based on the type of theoretical constructs they represented: Cognitive abilities, Communication, Sounds, and Words. We integrated the predictions from the best-fitting age-based models in Figure 2, showing predictions across the range of measured ages (See [SI](https://anonymous.4open.science/r/metalab_CogSci2023-7857/writing/SI.pdf) for each prediction line along with the corresponding data). We found a striking range of functional forms in the developmental trajectories across all types of theoretical constructs. In particular, the magnitudes of some phenomena – online word recognition, gaze following, and mutual exclusivity, for example – increased substantially over development. In contrast, others – sound symbolism, categorization bias, and others – stayed constant at a measurable level without showing developmental increases. We considered several explanations for why some phenomena would be constant: one is that these meta-analyses might correspond to relatively more experience-independent biases. On the other hand, we cannot rule out cross-experiment confounding factors wherein experimenters test progressively harder stimuli with development, thus counteracting any developmental gains that might otherwise be measured.  
+Finally, we synthesized all 23 datasets by grouping them based on the type of theoretical constructs they represented: Sounds, Words, Cognitive abilities, and Communication. We integrated the predictions from the best-fitting age-based models in Figure 2, showing predictions across the range of measured ages (See [SI](https://github.com/anjiecao/metalab_CogSci2023/blob/main/writing/SI.pdf) for each prediction line along with the corresponding data). We found a striking range of functional forms in the developmental trajectories across all types of theoretical constructs. In particular, the magnitudes of some phenomena – online word recognition, gaze following, and mutual exclusivity, for example – increased substantially over development. In contrast, others – sound symbolism, categorization bias, and others – stayed constant at a measurable level without showing developmental increases. We considered several explanations for why some phenomena would be constant: one is that these meta-analyses might correspond to relatively more experience-independent biases. On the other hand, we cannot rule out cross-experiment confounding factors wherein experimenters test progressively harder stimuli with development, thus counteracting any developmental gains that might otherwise be measured.  
 
 

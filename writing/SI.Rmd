@@ -34,7 +34,6 @@ all_age_pred <- readRDS(here("cached_data/min_age_pred_df.RDS"))
 ```
 
 
-
 ```{r include=FALSE}
 age_range_df <- d %>% 
   group_by(ds_clean) %>% 
@@ -108,21 +107,6 @@ categorized_age_pred_df <- all_age_pred %>%
 ```
 
 
-
-```{r}
-categorized_age_pred_df %>% 
-  ggplot() + 
-  geom_line(aes(x = mean_age_months, y = pred, col = ds_name)) + 
-  geom_ribbon(
-              aes(x = mean_age_months, y = pred, ymin = ci.lb, ymax = ci.ub, fill = ds_name), alpha = 0.1) + 
-  theme_few() + 
-  ylab("Effect Size") + 
-  xlab("Mean age in months") + 
-  theme(
-    legend.position = "None"
-  ) + 
-  facet_wrap(~ds_type)
-```
 
 
 ```{r include=FALSE}

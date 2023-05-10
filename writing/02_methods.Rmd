@@ -3,11 +3,11 @@
 
 Datasets were retrieved from `metalabr`, the R package built from Metalab. As of November 2022, the package includes 30 individual meta-analysis datasets covering different research domains in language learning and cognitive development. Our current datasets deviate from the retrieved datasets in the following way: 2 datasets were removed due data quality issues (Word segmentation neuro: only contained 1 study; Phonotactic learning: yielded null meta-analytic effect); 3 datasets were removed due to being observational studies or including studies with quasi-experimental design (Pointing and vocabulary concurrent; Pointing and vocabulary, longitudinal; Video deficit); 1 dataset was replaced with a more updated version (Infant directed speech preference); 2 pairs of dataset were combined into one because they measure theoretically identical constructs (Pair 1: Word segmentation behavioral, Functional word segmentation; Pair 2: Gaze following live, Gaze following video). 
 
-The final dataset contains 23 meta-analyses. Table 1 provides a summary of the datasets, along with the number of effect sizes and participants included in each dataset. 
+The final dataset contains 23 meta-analyses. Table 1 provides a summary of the datasets, along with the number of effect sizes and participants included in each dataset. All datasets that have manuscripts associated with are cited and indicated by an asterisk in the references section.
  
-The final dataset and analysis scripts are available at https://tinyurl.com/metalabCogsci. 
+All data and analysis scripts are available [here](https://github.com/anjiecao/metalab_CogSci2023). 
 
 ### Analytic Methods
 
 
-All analyses were conducted in R using the `metafor` package [@viechtbauer2010conducting]. We specified multi-level random effect models with random effect structures that included grouping by paper and by participant group. We removed the clustering if the grouping information was missing from the dataset. All moderators were included as fixed effects. All model comparisons were based on the corrected Akaike Information Criterion (AICc).
+All analyses were conducted in R using the `metafor` package and the `metameta` package [@viechtbauer2010conducting;@quintana2023guide]. We specified multi-level random effect models with random effect structures that included grouping by paper and by participant group. We removed the clustering if the grouping information was missing from the dataset. All moderators were included as fixed effects. All model comparisons were based on the corrected Akaike Information Criterion (AICc).

@@ -37,7 +37,7 @@ plot_moderators <- function(all_mod_df){
     all_mod_df %>% 
     filter(grepl("Behavioral", type)) %>% 
     mutate(group = case_when(
-      group == " Other" ~ "Manual", 
+      group == " Other" ~ "HPP", 
       TRUE ~ group
     )) %>% 
     ggplot(aes(x = reorder(dataset_short,estimate), y = estimate, color = group)) + 
@@ -57,11 +57,11 @@ plot_moderators <- function(all_mod_df){
     theme_few() +
     theme(
       axis.title.y.left = element_text(size=axis_font_size),
-      axis.title.y.right = element_text(size=axis_font_size, color = "gray", angle = 90, vjust = 0.5 , hjust=0.3),
+      axis.title.y.right = element_text(size=axis_font_size, color = "gray", angle = 90, vjust = 0 , hjust=0),
       axis.ticks.y.right =  element_blank(),
       axis.text.y.right  =  element_blank(),
       legend.position = "top",
-      axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0.5, hjust=1),
+      axis.text=element_text(size=axis_font_size,angle = 90, vjust = 0, hjust=1),
 
             legend.title = element_blank(),
       legend.margin = margin(0, 0, 0, 0),

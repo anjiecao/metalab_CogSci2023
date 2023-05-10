@@ -6,7 +6,7 @@ document-params: "10pt, letterpaper"
 
 author-information: > 
     \author{Anjie Cao$^1$  (anjiecao@stanford.edu), 
-     Molley Lewis (mollylewis@gmail.com), \\
+     Molly Lewis (mollyllewis@gmail.com), \\
      and \bf{Michael C. Frank$^1$ (mcfrank@stanford.edu)} \\
     $^1$Department of Psychology, Stanford University
     }
@@ -60,7 +60,7 @@ source(here("helper/plot_moderator_help.r"))
 
 # Summary 
 summary_df <- readRDS(here("cached_data/summary_d.Rds"))
-
+power_df <- readRDS(here("cached_data/power_df.Rds"))
 
 # Functional form eval
 age_df <- readRDS(here("cached_data/age_models_df.Rds"))
